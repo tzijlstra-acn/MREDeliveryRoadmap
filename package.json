@@ -1,0 +1,15 @@
+{
+  "name": "uc3-agentic-compliance-blueprint",
+  "version": "1.0.0",
+  "description": "UC3 Agentic Compliance Delivery Blueprint - 18-Month Implementation Roadmap",
+  "private": true,
+  "scripts": {
+    "audit:content": "node scripts/content-audit.mjs",
+    "test": "node scripts/data-integrity.mjs",
+    "verify": "npm run audit:content && npm run test",
+    "check:fast": "npm run audit:content && npm run test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
