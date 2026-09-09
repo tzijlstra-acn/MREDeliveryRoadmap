@@ -47,7 +47,7 @@ function section(name) {
 console.log('UC3 Data Integrity Tests');
 console.log('========================');
 
-let PHASES, WORKSTREAMS, DELIVERABLES, ROLES, PODS, MILESTONES, GOVERNANCE_FORUMS, DECISIONS, RISKS, KPIS, ADDONS, REGULATIONS, WAVES, STAGE_GATES;
+let PHASES, WORKSTREAMS, DELIVERABLES, ROLES, PODS, MILESTONES, GOVERNANCE_FORUMS, DECISIONS, RISKS, KPIS, ADDONS, REGULATIONS, WAVES, STAGE_GATES, ROADMAP_CONTENT, ARCH_LAYERS, APP_TIERS, SCENARIOS;
 
 try {
   PHASES = loadData('phases.js', 'PHASES');
@@ -63,6 +63,10 @@ try {
   ADDONS = loadData('addons.js', 'ADDONS');
   REGULATIONS = loadData('regulations.js', 'REGULATIONS');
   WAVES = loadData('waves.js', 'WAVES');
+  ROADMAP_CONTENT = loadData('roadmap-content.js', 'ROADMAP_CONTENT');
+  ARCH_LAYERS = loadData('architecture.js', 'ARCH_LAYERS');
+  APP_TIERS = loadData('architecture.js', 'APP_TIERS');
+  SCENARIOS = loadData('scenarios.js', 'SCENARIOS');
   try {
     STAGE_GATES = loadData('governance.js', 'STAGE_GATES');
   } catch (e) {
@@ -296,7 +300,7 @@ if (STAGE_GATES) {
 section('Content safeguards');
 
 // Load all data files as text for string search
-var allText = ['phases.js','workstreams.js','deliverables.js','roles.js','milestones.js','governance.js','kpis.js','addons.js','regulations.js','waves.js'].map(function(f) {
+var allText = ['phases.js','workstreams.js','deliverables.js','roles.js','milestones.js','governance.js','kpis.js','addons.js','regulations.js','waves.js','roadmap-content.js','architecture.js','scenarios.js'].map(function(f) {
   return readFileSync(join(ROOT, 'data', f), 'utf8');
 }).join('\n');
 
@@ -361,6 +365,75 @@ assert(
   REGULATIONS.filter(function(r){ return r.proposedWave === 'wave-1'; }).length === 1,
   'Exactly one regulation may be in wave-1 (the DORA reference scenario)'
 );
+
+// -- Roadmap content --
+section('Roadmap content');
+assert(Array.isArray(ROADMAP_CONTENT), 'ROADMAP_CONTENT must be an array');
+assert(ROADMAP_CONTENT.length === 18, 'Must have exactly 18 monthly roadmap entries (Oct 2026 to Mar 2028)');
+ROADMAP_CONTENT.forEach(function(m) {
+  assert(m.month, 'Every roadmap month must have a month field');
+  assert(m.phase, 'Every roadmap month must have a phase field');
+  assert(m.regulatoryPortfolio && m.regulatoryPortfolio.action, 'Every roadmap month must have a regulatoryPortfolio.action: ' + m.month);
+  assert(m.complianceContent && m.complianceContent.action, 'Every roadmap month must have a complianceContent.action: ' + m.month);
+  assert(m.platformIntegration && m.platformIntegration.action, 'Every roadmap month must have a platformIntegration.action: ' + m.month);
+  assert(m.userWorkflow && m.userWorkflow.action, 'Every roadmap month must have a userWorkflow.action: ' + m.month);
+  assert(m.evidenceReporting && m.evidenceReporting.action, 'Every roadmap month must have a evidenceReporting.action: ' + m.month);
+  assert(!/—/.test(JSON.stringify(m)), 'Roadmap month ' + m.month + ' must not contain an em dash');
+  assert(!/–/.test(JSON.stringify(m)), 'Roadmap month ' + m.month + ' must not contain an en dash');
+});
+var phase1Months = ROADMAP_CONTENT.filter(function(m){return m.phase==='phase-1';});
+var phase2Months = ROADMAP_CONTENT.filter(function(m){return m.phase==='phase-2';});
+var phase3Months = ROADMAP_CONTENT.filter(function(m){return m.phase==='phase-3';});
+assert(phase1Months.length === 6, 'Must have 6 Phase 1 months in ROADMAP_CONTENT');
+assert(phase2Months.length === 6, 'Must have 6 Phase 2 months in ROADMAP_CONTENT');
+assert(phase3Months.length === 6, 'Must have 6 Phase 3 months in ROADMAP_CONTENT');
+
+// -- Architecture --
+section('Architecture');
+assert(Array.isArray(ARCH_LAYERS), 'ARCH_LAYERS must be an array');
+assert(ARCH_LAYERS.length === 7, 'Must have exactly 7 architecture layers');
+ARCH_LAYERS.forEach(function(l) {
+  assert(l.id, 'Every arch layer must have an id');
+  assert(l.name, 'Every arch layer ' + l.id + ' must have a name');
+  assert(l.description, 'Every arch layer ' + l.id + ' must have a description');
+  assert(Array.isArray(l.components) && l.components.length > 0, 'Every arch layer ' + l.id + ' must have components');
+  assert(typeof l.isNew === 'boolean', 'Every arch layer ' + l.id + ' must have an isNew boolean');
+});
+assert(ARCH_LAYERS.find(function(l){return l.layer==='experience';}), 'Must have an experience layer');
+assert(ARCH_LAYERS.find(function(l){return l.layer==='workflow';}), 'Must have a workflow layer');
+assert(ARCH_LAYERS.find(function(l){return l.layer==='agent';}), 'Must have an agent layer');
+
+assert(Array.isArray(APP_TIERS), 'APP_TIERS must be an array');
+assert(APP_TIERS.length === 4, 'Must have exactly 4 application integration tiers');
+['tier-0','tier-1','tier-2','tier-3'].forEach(function(tid) {
+  assert(APP_TIERS.find(function(t){return t.id===tid;}), 'App tier ' + tid + ' must exist');
+});
+APP_TIERS.forEach(function(t) {
+  assert(t.id, 'Every app tier must have an id');
+  assert(t.name, 'Every app tier ' + t.id + ' must have a name');
+  assert(t.description, 'Every app tier ' + t.id + ' must have a description');
+  assert(t.suitableWhen, 'Every app tier ' + t.id + ' must have a suitableWhen field');
+});
+
+// -- Scenarios --
+section('Scenarios');
+assert(Array.isArray(SCENARIOS), 'SCENARIOS must be an array');
+assert(SCENARIOS.length === 3, 'Must have exactly 3 resource scenarios');
+['lean','recommended','accelerated'].forEach(function(sid) {
+  assert(SCENARIOS.find(function(s){return s.id===sid;}), 'Scenario ' + sid + ' must exist');
+});
+SCENARIOS.forEach(function(s) {
+  assert(s.id, 'Every scenario must have an id');
+  assert(s.name, 'Every scenario ' + s.id + ' must have a name');
+  assert(s.description, 'Every scenario ' + s.id + ' must have a description');
+  assert(s.persistentCoreFTE && typeof s.persistentCoreFTE.min === 'number', 'Every scenario ' + s.id + ' must have persistentCoreFTE.min');
+  assert(s.month18Outcome, 'Every scenario ' + s.id + ' must have a month18Outcome');
+  assert(!/\d+ regulations live/i.test(s.month18Outcome), 'Scenario ' + s.id + ' must not claim a fabricated regulation count as live');
+  assert(!/52 FTE/i.test(JSON.stringify(s)), 'Scenario ' + s.id + ' must not contain the forbidden value 52 FTE');
+  assert(!/3\.0%/.test(JSON.stringify(s)), 'Scenario ' + s.id + ' must not contain the forbidden value 3.0%');
+  assert(!/—/.test(JSON.stringify(s)), 'Scenario ' + s.id + ' must not contain an em dash');
+  assert(!/–/.test(JSON.stringify(s)), 'Scenario ' + s.id + ' must not contain an en dash');
+});
 
 // -- Summary --
 console.log('\n========================');

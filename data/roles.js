@@ -7,12 +7,14 @@ var ROLES = [
 
   { id: 'product-owner', title: 'Agentic Compliance Product Owner', pod: 'pod-1', side: 'client',
     fte: { phase1: 0.5, phase2: 0.5, phase3: 0.5 }, priority: 'Day 1',
+    consolidation: 'Programme and Product Lead',
     mission: 'Owns the product vision, backlog and acceptance decisions. The primary bridge between business need and delivery.',
     skills: ['Product management','Agile delivery','Stakeholder alignment'],
     deliverableIds: ['D01','D02','D10'] },
 
   { id: 'programme-director', title: 'Programme Director', pod: 'pod-1', side: 'accenture',
     fte: { phase1: 1.0, phase2: 1.0, phase3: 1.0 }, priority: 'Day 1',
+    consolidation: 'Programme and Product Lead',
     mission: 'Leads integrated programme delivery, governance and phase-gate execution. Accountable for plan, RAID and steering materials.',
     skills: ['Large-scale transformation','Programme governance','Financial management','Executive reporting'],
     deliverableIds: ['D01','D11','D12'] },
@@ -25,6 +27,7 @@ var ROLES = [
 
   { id: 'pmo-lead', title: 'PMO Lead', pod: 'pod-1', side: 'accenture',
     fte: { phase1: 0.5, phase2: 0.5, phase3: 0.5 }, priority: 'Week 1',
+    consolidation: 'UX, Change, Value and PMO support',
     mission: 'Manages RAID, decisions, milestones and reporting cadence across the programme.',
     skills: ['Programme governance','RAID management','Reporting'],
     deliverableIds: ['D01'] },
@@ -37,12 +40,14 @@ var ROLES = [
 
   { id: 'compliance-lead', title: 'Regulatory Compliance Lead', pod: 'pod-2', side: 'accenture',
     fte: { phase1: 1.0, phase2: 1.0, phase3: 0.75 }, priority: 'Day 1',
+    consolidation: 'Compliance and Control Lead',
     mission: 'Leads regulatory interpretation, obligation mapping and control design. Owns the compliance-scope decision.',
     skills: ['DORA and regulatory frameworks','NFR control frameworks','Norms and Work Products','A-CART and RACE'],
     deliverableIds: ['D02','D04','D09'] },
 
   { id: 'irm-sme', title: 'IRM / GCL Subject-Matter Expert', pod: 'pod-2', side: 'client',
     fte: { phase1: 0.3, phase2: 0.3, phase3: 0.2 }, priority: 'Week 2',
+    consolidation: 'Compliance and Control Lead',
     mission: 'Provides regulatory and integrated risk-management expertise for control design and exception policy.',
     skills: ['Regulatory interpretation','Risk management','Control frameworks'],
     deliverableIds: ['D04'] },
@@ -67,12 +72,14 @@ var ROLES = [
 
   { id: 'solution-architect', title: 'Enterprise / Solution Architect', pod: 'pod-3', side: 'accenture',
     fte: { phase1: 1.0, phase2: 0.75, phase3: 0.5 }, priority: 'Day 1',
+    consolidation: 'Solution and Agentic AI Architect',
     mission: 'Defines target architecture, system responsibilities and integration contracts across the three hubs.',
     skills: ['Solution architecture','Event-driven architecture','System integration','API design'],
     deliverableIds: ['D03','D05','D07'] },
 
   { id: 'agentic-architect', title: 'Agentic AI Architect', pod: 'pod-3', side: 'accenture',
     fte: { phase1: 1.0, phase2: 1.0, phase3: 0.75 }, priority: 'Day 1',
+    consolidation: 'Solution and Agentic AI Architect',
     mission: 'Leads agent design, orchestration and model-evaluation framework. Accountable for the agentic capability.',
     skills: ['Agent architecture','Tool-using agents','Workflow orchestration','Prompt engineering','Human-in-the-Loop patterns'],
     deliverableIds: ['D05','D07','D12'] },
@@ -91,6 +98,7 @@ var ROLES = [
 
   { id: 'ux-designer', title: 'UX / Service Designer', pod: 'pod-3', side: 'accenture',
     fte: { phase1: 0.75, phase2: 0.5, phase3: 0.25 }, priority: 'Week 2',
+    consolidation: 'UX, Change, Value and PMO support',
     mission: 'Designs user journeys, Human-in-the-Loop interactions and the Product Hub workflow.',
     skills: ['Service design','User journey mapping','Interaction design','Accessibility'],
     deliverableIds: ['D10'] },
@@ -139,18 +147,21 @@ var ROLES = [
 
   { id: 'security-architect', title: 'Security Architect', pod: 'pod-5', side: 'accenture',
     fte: { phase1: 0.5, phase2: 0.5, phase3: 0.5 }, priority: 'Week 2',
+    consolidation: 'QA, Security and Responsible AI',
     mission: 'Defines and reviews identity, access, data protection and security architecture.',
     skills: ['Security architecture','IAM','Data protection','Security testing'],
     deliverableIds: ['D03','D06'] },
 
   { id: 'responsible-ai-lead', title: 'Responsible AI / Model Risk Lead', pod: 'pod-5', side: 'accenture',
     fte: { phase1: 0.5, phase2: 0.5, phase3: 0.5 }, priority: 'Week 2',
+    consolidation: 'QA, Security and Responsible AI',
     mission: 'Implements Responsible AI controls, model governance and auditability requirements.',
     skills: ['Responsible AI','Model risk','AI governance','Auditability'],
     deliverableIds: ['D06'] },
 
   { id: 'qa-lead', title: 'QA and Test Automation Lead', pod: 'pod-5', side: 'accenture',
     fte: { phase1: 0.75, phase2: 1.0, phase3: 0.5 }, priority: 'Month 2',
+    consolidation: 'QA, Security and Responsible AI',
     mission: 'Leads functional, integration and security testing strategy and execution.',
     skills: ['Test automation','Integration testing','Security testing','Performance testing'],
     deliverableIds: ['D06','D10'] },
@@ -163,6 +174,7 @@ var ROLES = [
 
   { id: 'change-lead', title: 'Change and Adoption Lead', pod: 'pod-6', side: 'accenture',
     fte: { phase1: 0.25, phase2: 0.75, phase3: 0.5 }, priority: 'Month 2',
+    consolidation: 'UX, Change, Value and PMO support',
     mission: 'Manages user adoption, communications, training delivery and readiness assessment.',
     skills: ['Change management','Communications','Training delivery','Adoption measurement'],
     deliverableIds: ['D10'] },
@@ -175,6 +187,7 @@ var ROLES = [
 
   { id: 'value-analyst', title: 'Value Realisation Analyst', pod: 'pod-6', side: 'accenture',
     fte: { phase1: 0.25, phase2: 0.5, phase3: 0.5 }, priority: 'Month 2',
+    consolidation: 'UX, Change, Value and PMO support',
     mission: 'Designs and operates the value-measurement framework; produces the benefits tracker and scale economics.',
     skills: ['KPI design','Value measurement','Benefits tracking','Business-case modelling'],
     deliverableIds: ['D11','D12'] }
