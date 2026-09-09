@@ -34,6 +34,49 @@ var GOVERNANCE_FORUMS = [
     lead: 'Programme Director',
     participants: ['Programme Director','Relevant Workstream Leads','Security Architect','Compliance Lead'],
     purpose: 'Address regulatory, security or material risk decisions outside the standard cadence. Prevents decisions becoming blockers.'
+  },
+  {
+    id: 'gf-7',
+    name: 'Regulation Wave Readiness Review',
+    icon: 'ti-checklist',
+    cadence: 'Per wave, approximately monthly during Phase 2 and Phase 3',
+    lead: 'Regulatory Coverage Lead',
+    participants: 'Regulation Leads, SMEs, Data and Evidence owners, QA Lead',
+    purpose: 'Confirm that each regulation meets the readiness criteria to enter the onboarding factory and progress through quality gates.',
+    agenda: ['Source document availability', 'Interpretation and mapping progress', 'Owner and SME availability', 'Data and evidence readiness', 'System access and dependencies', 'Testing and release readiness']
+  }
+];
+
+var STAGE_GATES = [
+  {
+    id: 'G0', name: 'Gate 0: Mobilisation Approved', month: '2026-10', phase: 'phase-1',
+    criteria: ['Executive Sponsor confirmed and active', 'Agentic Compliance Product Owner named', 'Phase 1 funding formally approved', 'Core team mobilisation authorised', 'Programme governance established'],
+    approvers: ['Executive Sponsor', 'Programme Director'],
+    decisionOptions: ['Approve and mobilise', 'Defer pending funding decision', 'Reject']
+  },
+  {
+    id: 'G1', name: 'Gate 1: Foundation Design Approved', month: '2026-12', phase: 'phase-1',
+    criteria: ['Canonical compliance object model approved', 'Target architecture approved', 'Governance cadence operating', 'System access plan confirmed', '24-regulation portfolio inventory established (partial)'],
+    approvers: ['Executive Sponsor', 'IT Compliance Lead', 'Solution Architect'],
+    decisionOptions: ['Approve and continue Phase 1 build', 'Conditionally approve with documented gaps', 'Return for rework']
+  },
+  {
+    id: 'G2', name: 'Gate 2: Reference Scenario Proven', month: '2027-03', phase: 'phase-1',
+    criteria: ['Backup and Restore works end to end across all three hubs', 'Human approvals and audit trail are operational', 'Evidence supports DDCR conformance status', 'Baseline and actual measurements exist', 'First regulatory wave is proposed and approved', 'Phase 2 funding decided'],
+    approvers: ['Executive Sponsor', 'Steering Committee'],
+    decisionOptions: ['Approve Phase 2 and Wave 1', 'Approve Phase 2 with revised wave scope', 'Return for additional proof']
+  },
+  {
+    id: 'G3', name: 'Gate 3: Regulatory Factory Operational', month: '2027-09', phase: 'phase-2',
+    criteria: ['Hub-to-hub orchestration is automated and operational', 'Regulatory onboarding factory has been used for at least one regulation', 'Service controls are operating', 'Exception handling is operational', 'Value evidence is available and reviewed', 'Phase 3 scale approach approved'],
+    approvers: ['Executive Sponsor', 'Steering Committee'],
+    decisionOptions: ['Approve Phase 3 scale plan', 'Approve Phase 3 with revised wave scope', 'Return for factory validation']
+  },
+  {
+    id: 'G4', name: 'Gate 4: Scale Decision', month: '2028-03', phase: 'phase-3',
+    criteria: ['Production-grade service is operational', 'Status of all 24 regulations is transparent', 'Reusable components are proven and catalogued', 'Remaining path to full portfolio coverage is defined and costed', 'Value case has been validated or recalibrated', 'Next-wave investment is approved'],
+    approvers: ['Executive Sponsor', 'Steering Committee', 'CIO or equivalent'],
+    decisionOptions: ['Approve full portfolio scale investment', 'Approve phased extension', 'Pause and review']
   }
 ];
 
@@ -105,5 +148,35 @@ var RISKS = [
     id: 'D-02', category: 'Dependency', title: 'Regulatory clarity on applicability rules from IRM / GCL',
     probability: null, impact: 'High', owner: 'Compliance Lead', status: 'open',
     mitigation: 'IRM / GCL sign-off required on applicability logic before Build phase in January 2027.', due: '2027-01'
+  },
+  {
+    id: 'R-03', category: 'Risk', title: 'Regulatory SME availability constrains wave throughput',
+    probability: 'Medium', impact: 'High', owner: 'Regulatory Coverage Lead', status: 'open',
+    mitigation: 'Map SME availability to wave plan early. Build structured interpretation templates to reduce SME time per regulation.', due: '2027-01'
+  },
+  {
+    id: 'R-04', category: 'Risk', title: 'Evidence source connectivity requires longer than planned',
+    probability: 'Medium', impact: 'Medium', owner: 'Evidence and Verification Lead', status: 'open',
+    mitigation: 'Inventory evidence sources in Phase 1 and identify blockers early. Prioritise Wave 1 sources.', due: '2027-02'
+  },
+  {
+    id: 'A-03', category: 'Assumption', title: 'At least one additional regulation is ready for Wave 2',
+    probability: null, impact: null, owner: 'Regulatory Coverage Lead', status: 'open',
+    mitigation: 'Complete portfolio inventory by November 2026. Confirm Wave 2 candidate at Gate 2.', due: '2027-01'
+  },
+  {
+    id: 'D-03', category: 'Dependency', title: 'DDCR integration requires access to current DDCR data model',
+    probability: null, impact: 'High', owner: 'DDCR Specialist', status: 'open',
+    mitigation: 'Confirm DDCR data model access by December 2026 as part of architecture approval.', due: '2026-12'
+  },
+  {
+    id: 'D-04', category: 'Dependency', title: '24-regulation inventory requires input from Compliance and Legal owners',
+    probability: null, impact: 'High', owner: 'Regulatory Coverage Lead', status: 'open',
+    mitigation: 'Engage Compliance and Legal leads in October 2026 as part of programme mobilisation.', due: '2026-11'
+  },
+  {
+    id: 'R-05', category: 'Risk', title: 'Agent evaluation framework not agreed before agent build begins',
+    probability: 'Low', impact: 'High', owner: 'Responsible AI Lead', status: 'open',
+    mitigation: 'Include evaluation framework in architecture approval Gate 1 criteria.', due: '2026-12'
   }
 ];

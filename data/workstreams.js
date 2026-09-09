@@ -106,10 +106,8 @@ var WORKSTREAMS = [
       'Compliance Hub integration',
       'Product Hub integration',
       'Reporting Hub and DDCR integration',
-      'Evidence-source integration',
       'Canonical object model design',
-      'Data quality management',
-      'Traceability and lineage'
+      'Data quality management'
     ],
     coreDeliverables: [
       'Common data and case model',
@@ -170,5 +168,26 @@ var WORKSTREAMS = [
       'Value baseline and benefits dashboard',
       'Scale business case'
     ]
+  },
+  {
+    id: 'ws-8',
+    shortName: 'EVR',
+    name: 'Evidence, Verification and Reporting',
+    icon: 'ti-certificate',
+    color: '#059669',
+    purpose: 'Prove that regulatory requirements are implemented and remain fulfilled through automated evidence, technical verification and conformance reporting.',
+    lead: 'Evidence and Verification Lead',
+    phases: ['phase-2', 'phase-3'],
+    activities: [
+      'Design and implement evidence collection connectors',
+      'Establish evidence provenance and lineage tracking',
+      'Implement technical verification patterns',
+      'Integrate verified evidence with DDCR',
+      'Support RACE and A-CART assessment preparation',
+      'Operate exception handling for failed verification',
+      'Catalogue reusable evidence and verification components'
+    ],
+    coreDeliverables: ['D12 Evidence and Verification Connector Library', 'D13 DDCR and RACE Reporting Integration'],
+    deliverableIds: ['D12', 'D13']
   }
 ];

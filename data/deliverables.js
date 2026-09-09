@@ -182,5 +182,97 @@ var DELIVERABLES = [
     ],
     status: 'proposed', confidence: 'working-assumption',
     decisionRequired: 'Scale investment approval and next-vertical selection'
+  },
+  {
+    id: 'D13',
+    name: 'DDCR and RACE Reporting Integration',
+    executiveSummary: 'Trusted compliance and assessment reporting linking verified evidence to DDCR conformance status with full audit trail and approval retention.',
+    phaseId: 'phase-2',
+    workstreamId: 'ws-8',
+    accountableRoleId: 'reporting-hub-sme',
+    supportingRoleIds: ['evidence-automation-engineer', 'solution-architect'],
+    targetMonth: '2027-09',
+    dependencies: ['D08', 'D12'],
+    definitionOfDone: [
+      'Verified evidence is linked to DDCR conformance status',
+      'Reason for every status change is visible and auditable',
+      'RACE assessment preparation is supported',
+      'Human approval requirements are retained and captured',
+      'Conformance outcome is auditable end to end',
+      'Exception flow for disputed status is operational'
+    ],
+    status: 'proposed',
+    confidence: 'working-assumption',
+    decisionRequired: null
+  },
+  {
+    id: 'D14',
+    name: 'Regulatory Onboarding Factory',
+    executiveSummary: 'A repeatable, governed method for bringing additional regulations onto the shared Agentic Compliance service, reducing onboarding time with each wave.',
+    phaseId: 'phase-2',
+    workstreamId: 'ws-2',
+    accountableRoleId: 'compliance-lead',
+    supportingRoleIds: ['delivery-lead', 'solution-architect', 'agentic-architect'],
+    targetMonth: '2027-08',
+    dependencies: ['D07', 'D09'],
+    definitionOfDone: [
+      'Regulation intake process is operational',
+      'Readiness assessment criteria and scoring are defined',
+      'Mapping and configuration templates are available',
+      'Quality gates for interpretation and mapping are defined',
+      'Testing method per regulation is established',
+      'Release process per regulation is defined',
+      'Onboarding throughput is measurable'
+    ],
+    status: 'proposed',
+    confidence: 'working-assumption',
+    decisionRequired: 'Wave 1 regulation selection must be confirmed at Gate 2 to validate factory scope'
+  },
+  {
+    id: 'D15',
+    name: 'Target Operating Model and Service Transition',
+    executiveSummary: 'A governable, supportable Agentic Compliance service with confirmed ownership, service levels, support model and BAU transition plan.',
+    phaseId: 'phase-3',
+    workstreamId: 'ws-8',
+    accountableRoleId: 'om-lead',
+    supportingRoleIds: ['change-lead', 'training-lead'],
+    targetMonth: '2028-02',
+    dependencies: ['D12', 'D01'],
+    definitionOfDone: [
+      'Product Owner and Service Owner are defined and confirmed',
+      'RACI is approved',
+      'Decision rights are approved',
+      'Service catalogue is published',
+      'Support model is operational',
+      'Service levels are defined and baselined',
+      'Incident and change processes are established',
+      'Training is completed for all key roles',
+      'BAU transition plan is executed'
+    ],
+    status: 'proposed',
+    confidence: 'working-assumption',
+    decisionRequired: null
+  },
+  {
+    id: 'D16',
+    name: 'Measured Value Case and Portfolio Scale Plan',
+    executiveSummary: 'An evidence-based recommendation for continued investment, including validated or recalibrated value assumptions and the remaining route to 24-regulation coverage.',
+    phaseId: 'phase-3',
+    workstreamId: 'ws-8',
+    accountableRoleId: 'value-analyst',
+    supportingRoleIds: ['programme-director', 'om-lead'],
+    targetMonth: '2028-03',
+    dependencies: ['D04', 'D15'],
+    definitionOfDone: [
+      'Baseline and actuals are compared across all 4 value dimensions',
+      '13.8% directional assumption is confirmed, recalibrated or rejected with evidence',
+      'Quality and control outcomes are assessed against targets',
+      'Wave economics per regulation are understood',
+      'Remaining route to 24-regulation portfolio coverage is defined',
+      'Scale investment recommendation is approved by Steering Committee'
+    ],
+    status: 'proposed',
+    confidence: 'working-assumption',
+    decisionRequired: 'Scale investment decision required at Gate 4 (March 2028)'
   }
 ];

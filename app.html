@@ -650,13 +650,16 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
   <div class="sidebar-section-label">Navigation</div>
   <a class="nav-item active" data-section="executive" onclick="navigate('executive')" href="#executive" aria-current="page">
-    <i class="ti ti-home"></i> Executive Overview
+    <i class="ti ti-presentation"></i> Executive Decision
   </a>
   <a class="nav-item" data-section="roadmap" onclick="navigate('roadmap')" href="#roadmap">
     <i class="ti ti-timeline"></i> 18-Month Roadmap
   </a>
-  <a class="nav-item" data-section="workstreams" onclick="navigate('workstreams')" href="#workstreams">
-    <i class="ti ti-layout-grid"></i> Workstreams &amp; Deliverables
+  <a class="nav-item" data-section="portfolio" onclick="navigate('portfolio')" href="#portfolio">
+    <i class="ti ti-books"></i> Regulatory Portfolio
+  </a>
+  <a class="nav-item" data-section="capabilities" onclick="navigate('capabilities')" href="#capabilities">
+    <i class="ti ti-layout-grid"></i> Capabilities
   </a>
   <a class="nav-item" data-section="team" onclick="navigate('team')" href="#team">
     <i class="ti ti-users"></i> Team &amp; Skills
@@ -665,7 +668,7 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
     <i class="ti ti-chart-bar"></i> Execution Control
   </a>
   <a class="nav-item" data-section="scale" onclick="navigate('scale')" href="#scale" style="white-space:nowrap">
-    <i class="ti ti-rocket"></i> Scale &amp; Add-ons
+    <i class="ti ti-rocket"></i> Value &amp; Scale
   </a>
   <div class="sidebar-footer">
     <div style="margin-bottom:4px;font-weight:600;color:rgba(255,255,255,0.35)">Status</div>
@@ -679,23 +682,55 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 <main class="main" id="main" role="main">
 
 <!-- ============================================================
-     SECTION 1: Executive Overview
+     SECTION 1: Executive Decision
 ============================================================ -->
 <section class="section active" id="executive">
   <div class="section-header">
-    <div class="section-label">Executive Overview</div>
-    <h1 class="section-title">UC3 - Agentic Compliance Delivery Blueprint</h1>
-    <p class="section-tagline">Build the first end-to-end Backup and Restore compliance vertical and establish the reusable foundation for Compliance as a Service.</p>
+    <div class="section-label">Executive Decision</div>
+    <h1 class="section-title">Agentic Compliance Delivery Blueprint</h1>
+    <p class="section-tagline">Build the shared capability once. Prove it through Backup and Restore as the reference segment within DORA. Scale it across 24 regulations.</p>
+  </div>
+
+  <!-- Decision callout -->
+  <div style="background:var(--warning-pale);border:1px solid var(--warning);border-radius:10px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:flex-start;gap:14px">
+    <i class="ti ti-alert-triangle" style="color:var(--warning);font-size:20px;flex-shrink:0;margin-top:2px"></i>
+    <div>
+      <div style="font-size:12px;font-weight:700;color:var(--warning);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:4px">Decision required</div>
+      <div style="font-size:14px;font-weight:600;color:var(--ink)">Mobilise the six-month Foundation and Proof phase (October 2026 to March 2027)</div>
+      <div style="font-size:13px;color:var(--text-muted);margin-top:4px">Confirm Executive Sponsor, approve Phase 1 funding, and name the Agentic Compliance Product Owner before October 2026 to maintain the programme start date.</div>
+    </div>
+  </div>
+
+  <!-- Proof-to-portfolio visual -->
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0;margin-bottom:28px;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+    <div style="flex:1;min-width:180px;padding:20px;background:var(--panel);border-right:1px solid var(--line)">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--phase-1);margin-bottom:8px">Proof - Phase 1</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px">Backup and Restore</div>
+      <div style="font-size:12px;color:var(--text-muted)">One compliance segment within DORA. Reference scenario to prove the shared capability mechanism.</div>
+    </div>
+    <div style="padding:12px;color:var(--text-muted);font-size:20px;flex-shrink:0">&#8594;</div>
+    <div style="flex:1.2;min-width:200px;padding:20px;background:#fff;border-right:1px solid var(--line)">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-deep);margin-bottom:8px">Build once - reuse always</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px">Agentic Compliance Capability</div>
+      <div style="font-size:12px;color:var(--text-muted)">Shared agents, orchestration, evidence connectors and onboarding factory. Reusable across all regulations.</div>
+    </div>
+    <div style="padding:12px;color:var(--text-muted);font-size:20px;flex-shrink:0">&#8594;</div>
+    <div style="flex:1;min-width:180px;padding:20px;background:var(--purple-pale)">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--phase-3);margin-bottom:8px">Scale - Phases 2 and 3</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px">24-Regulation Portfolio</div>
+      <div style="font-size:12px;color:var(--text-muted)">North Star target. Wave selection subject to gate decisions. Committed Month 18 coverage: decision required.</div>
+    </div>
   </div>
 
   <!-- Hero takeaway -->
   <div class="card-hero" style="margin-bottom:28px">
     <div style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:10px">Executive proposition</div>
-    <p style="font-size:17px;font-weight:600;color:#fff;line-height:1.5;max-width:680px">The next phase is to build, operate and measure the first end-to-end Agentic Compliance vertical for Backup and Restore, then industrialise the proven components for scale.</p>
+    <p style="font-size:17px;font-weight:600;color:#fff;line-height:1.5;max-width:680px">One shared capability. Proven through Backup and Restore as the DORA reference scenario. Scaled across 24 regulations through repeatable onboarding waves.</p>
     <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px">
       <button onclick="navigate('roadmap')" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Explore roadmap</button>
+      <button onclick="navigate('portfolio')" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Review portfolio</button>
       <button onclick="navigate('team')" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">View team</button>
-      <button onclick="navigate('workstreams')" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Review deliverables</button>
+      <button onclick="navigate('capabilities')" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Review deliverables</button>
     </div>
   </div>
 
@@ -773,13 +808,86 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 </section>
 
 <!-- ============================================================
-     SECTION 3: Workstreams and Deliverables
+     SECTION 3: Regulatory Portfolio
 ============================================================ -->
-<section class="section" id="workstreams">
+<section class="section" id="portfolio">
   <div class="section-header">
-    <div class="section-label">Workstreams &amp; Deliverables</div>
+    <div class="section-label">Regulatory Portfolio</div>
+    <h1 class="section-title">24-regulation coverage: from reference scenario to industrialised delivery</h1>
+    <p class="section-tagline">Wave 1 uses Backup and Restore as the reference segment within DORA to prove the shared capability. Waves 2 and 3 are subject to Gate 2 and Gate 3 decisions. North Star target: 24 regulations. Committed Month 18 coverage: decision required.</p>
+  </div>
+
+  <!-- Portfolio overview strip -->
+  <div id="portfolio-overview" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px"></div>
+
+  <!-- Portfolio tab bar -->
+  <div class="tab-bar" role="tablist" style="margin-bottom:20px">
+    <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchPortfolioTab('reg-register-view')">Regulation register</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchPortfolioTab('wave-view')">Wave view</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchPortfolioTab('dod-view')">Onboarding definition of done</button>
+  </div>
+
+  <!-- Regulation register tab -->
+  <div class="tab-content active" id="reg-register-view">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" role="toolbar">
+      <select id="reg-status-filter" onchange="renderRegTable()" style="padding:6px 12px;border:1px solid var(--line);border-radius:6px;font-size:12px;color:var(--ink)">
+        <option value="all">All statuses</option>
+        <option value="not-inventoried">Not inventoried</option>
+        <option value="inventoried">Inventoried</option>
+        <option value="assessed">Assessed</option>
+        <option value="prioritised">Prioritised</option>
+        <option value="mapped">Mapped</option>
+        <option value="configured">Configured</option>
+        <option value="validated">Validated</option>
+        <option value="live">Live</option>
+        <option value="continuously-monitored">Continuously monitored</option>
+      </select>
+      <select id="reg-wave-filter" onchange="renderRegTable()" style="padding:6px 12px;border:1px solid var(--line);border-radius:6px;font-size:12px;color:var(--ink)">
+        <option value="all">All waves</option>
+        <option value="wave-1">Wave 1</option>
+        <option value="wave-2">Wave 2</option>
+        <option value="wave-3">Wave 3+</option>
+        <option value="not-assigned">Not assigned</option>
+      </select>
+    </div>
+    <div style="overflow-x:auto">
+      <table id="reg-table" style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead>
+          <tr style="border-bottom:2px solid var(--line);text-align:left">
+            <th style="padding:8px 12px;white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);cursor:pointer" onclick="sortRegTable('id')">ID</th>
+            <th style="padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);cursor:pointer" onclick="sortRegTable('name')">Name</th>
+            <th style="padding:8px 12px;white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);cursor:pointer" onclick="sortRegTable('status')">Status</th>
+            <th style="padding:8px 12px;white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);cursor:pointer" onclick="sortRegTable('priority')">Priority</th>
+            <th style="padding:8px 12px;white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted)">Wave</th>
+            <th style="padding:8px 12px;white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted)">Jurisdiction</th>
+            <th style="padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted)">Next decision</th>
+          </tr>
+        </thead>
+        <tbody id="reg-table-body"></tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:12px">Click any row for full regulation detail. REG-01 (DORA) is the only confirmed regulation. REG-02 through REG-24 are portfolio placeholders pending inventory. Wave 2 and Wave 3 regulation selection is a decision required at Gate 2 (March 2027) and Gate 3 (September 2027) respectively.</p>
+  </div>
+
+  <!-- Wave view tab -->
+  <div class="tab-content" id="wave-view">
+    <div id="wave-view-container"></div>
+  </div>
+
+  <!-- Definition of done tab -->
+  <div class="tab-content" id="dod-view">
+    <div id="dod-container"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4: Capabilities and Deliverables
+============================================================ -->
+<section class="section" id="capabilities">
+  <div class="section-header">
+    <div class="section-label">Capabilities &amp; Deliverables</div>
     <h1 class="section-title">What will be built and who is accountable</h1>
-    <p class="section-tagline">Seven workstreams spanning all three phases. Twelve core deliverables with definitions of done.</p>
+    <p class="section-tagline">Eight workstreams spanning all three phases. Sixteen core deliverables with definitions of done, spanning foundation build through to service transition and value measurement.</p>
   </div>
 
   <div class="tab-bar" role="tablist">
@@ -1065,6 +1173,8 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 <script src="data/governance.js"></script>
 <script src="data/kpis.js"></script>
 <script src="data/addons.js"></script>
+<script src="data/regulations.js"></script>
+<script src="data/waves.js"></script>
 
 <script>
 // ── State ──
@@ -1088,7 +1198,8 @@ function navigate(sectionId) {
   window.scrollTo(0, 0);
 
   if (sectionId === 'roadmap' && !document.querySelector('#roadmap-container table')) renderRoadmap();
-  if (sectionId === 'workstreams' && !document.querySelector('#ws-accordion .ws-card')) renderWorkstreams();
+  if (sectionId === 'portfolio' && !document.querySelector('#reg-table tbody')) renderPortfolio();
+  if (sectionId === 'capabilities' && !document.querySelector('#ws-accordion .ws-card')) renderCapabilities();
   if (sectionId === 'team' && !document.querySelector('#pod-grid .pod-card')) renderTeam();
   if (sectionId === 'control' && !document.querySelector('#gate-cards .gate-card')) renderControl();
   if (sectionId === 'scale' && !document.querySelector('#addon-grid-rec .addon-card')) renderScale();
@@ -1372,7 +1483,7 @@ function switchTab(tabId, tabName) {
   if (tabName === 'deliverables') renderDeliverables();
 }
 
-function renderWorkstreams() {
+function renderCapabilities() {
   // Populate ws filter dropdown
   var sel = document.getElementById('del-ws-filter');
   WORKSTREAMS.forEach(function(ws){ sel.innerHTML += '<option value="' + ws.id + '">' + ws.name + '</option>'; });
@@ -1794,9 +1905,180 @@ function openRoleDrawer(id) {
   openDrawer('role-drawer');
 }
 
+// ── Portfolio section ──
+var regSortCol = 'priority';
+var regSortDir = 'asc';
+
+function switchPortfolioTab(tabId) {
+  var tabs = ['reg-register-view','wave-view','dod-view'];
+  tabs.forEach(function(t) {
+    var el = document.getElementById(t);
+    if (el) el.classList.toggle('active', t === tabId);
+  });
+  document.querySelectorAll('#portfolio .tab-btn').forEach(function(btn, i) {
+    btn.classList.toggle('active', ['reg-register-view','wave-view','dod-view'][i] === tabId);
+    btn.setAttribute('aria-selected', ['reg-register-view','wave-view','dod-view'][i] === tabId ? 'true' : 'false');
+  });
+  if (tabId === 'wave-view') renderWaveView();
+  if (tabId === 'dod-view') renderDodView();
+}
+
+function renderPortfolio() {
+  // Overview strip
+  var statuses = ['not-inventoried','inventoried','assessed','prioritised','mapped','configured','validated','live','continuously-monitored'];
+  var counts = {};
+  statuses.forEach(function(s){ counts[s] = 0; });
+  REGULATIONS.forEach(function(r){ if (counts[r.status] !== undefined) counts[r.status]++; });
+  var overviewItems = [
+    { label: 'Total regulations', value: REGULATIONS.length, color: 'var(--blue-dark)' },
+    { label: 'Inventoried+', value: REGULATIONS.filter(function(r){ return r.status !== 'not-inventoried'; }).length, color: 'var(--blue-mid)' },
+    { label: 'Assessed+', value: REGULATIONS.filter(function(r){ return ['assessed','prioritised','mapped','configured','validated','live','continuously-monitored'].includes(r.status); }).length, color: 'var(--purple)' },
+    { label: 'In delivery', value: REGULATIONS.filter(function(r){ return ['configured','validated','live','continuously-monitored'].includes(r.status); }).length, color: 'var(--success)' },
+    { label: 'Live', value: REGULATIONS.filter(function(r){ return r.status === 'live' || r.status === 'continuously-monitored'; }).length, color: 'var(--success)' }
+  ];
+  document.getElementById('portfolio-overview').innerHTML = overviewItems.map(function(item) {
+    return '<div style="background:var(--panel);border-radius:10px;padding:14px 18px;min-width:120px;flex:1">' +
+      '<div style="font-size:24px;font-weight:700;color:' + item.color + '">' + item.value + '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted);margin-top:2px">' + item.label + '</div>' +
+    '</div>';
+  }).join('');
+  renderRegTable();
+}
+
+function renderRegTable() {
+  var statusFilter = document.getElementById('reg-status-filter') ? document.getElementById('reg-status-filter').value : 'all';
+  var waveFilter = document.getElementById('reg-wave-filter') ? document.getElementById('reg-wave-filter').value : 'all';
+  var regs = REGULATIONS.filter(function(r) {
+    if (statusFilter !== 'all' && r.status !== statusFilter) return false;
+    if (waveFilter !== 'all') {
+      if (waveFilter === 'not-assigned' && r.proposedWave) return false;
+      if (waveFilter !== 'not-assigned' && r.proposedWave !== waveFilter) return false;
+    }
+    return true;
+  });
+  regs.sort(function(a, b) {
+    var av = a[regSortCol], bv = b[regSortCol];
+    if (av === null || av === undefined) av = 9999;
+    if (bv === null || bv === undefined) bv = 9999;
+    if (typeof av === 'string') av = av.toLowerCase();
+    if (typeof bv === 'string') bv = bv.toLowerCase();
+    if (av < bv) return regSortDir === 'asc' ? -1 : 1;
+    if (av > bv) return regSortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+  var statusColors = { 'not-inventoried': '#9CA3AF', 'inventoried': '#60A5FA', 'assessed': '#A78BFA', 'prioritised': '#F59E0B', 'mapped': '#3B82F6', 'configured': '#8B5CF6', 'validated': '#10B981', 'live': '#059669', 'continuously-monitored': '#065F46' };
+  var waveLabels = { 'wave-1': 'Wave 1', 'wave-2': 'Wave 2', 'wave-3': 'Wave 3+' };
+  var tbody = document.getElementById('reg-table-body');
+  if (!tbody) return;
+  tbody.innerHTML = regs.map(function(r) {
+    var isRef = r.id === 'REG-01';
+    var statusColor = statusColors[r.status] || '#9CA3AF';
+    var wave = r.proposedWave ? (waveLabels[r.proposedWave] || r.proposedWave) : '<span style="color:var(--text-muted)">Not assigned</span>';
+    return '<tr onclick="openRegDrawer(\'' + r.id + '\')" style="border-bottom:1px solid var(--line);cursor:pointer;transition:background 0.12s" onmouseover="this.style.background=\'var(--panel)\'" onmouseout="this.style.background=\'\'">' +
+      '<td style="padding:10px 12px;white-space:nowrap;font-family:monospace;font-size:12px;font-weight:600;color:var(--blue-dark)">' + r.id + '</td>' +
+      '<td style="padding:10px 12px;max-width:280px">' +
+        '<span style="font-weight:500">' + r.name + '</span>' +
+        (isRef ? ' <span style="font-size:10px;background:#EAF3FA;color:var(--blue-dark);border-radius:4px;padding:1px 6px;font-weight:600;margin-left:4px">Reference scenario</span>' : '') +
+        (r.name.includes('Name to confirm') ? ' <span style="font-size:10px;background:var(--warning-pale);color:var(--warning);border-radius:4px;padding:1px 6px;font-weight:600;margin-left:4px">Name to confirm</span>' : '') +
+      '</td>' +
+      '<td style="padding:10px 12px;white-space:nowrap"><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:' + statusColor + ';flex-shrink:0"></span>' + (r.status || 'not-inventoried').replace(/-/g,' ') + '</span></td>' +
+      '<td style="padding:10px 12px;text-align:center">' + (r.priority || '') + '</td>' +
+      '<td style="padding:10px 12px;white-space:nowrap">' + wave + '</td>' +
+      '<td style="padding:10px 12px;white-space:nowrap">' + (r.jurisdiction || 'To assess') + '</td>' +
+      '<td style="padding:10px 12px;font-size:12px;color:var(--text-muted)">' + (r.nextDecision || 'To define') + '</td>' +
+    '</tr>';
+  }).join('');
+  if (regs.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="padding:24px;text-align:center;color:var(--text-muted)">No regulations match the selected filters.</td></tr>';
+  }
+}
+
+function sortRegTable(col) {
+  if (regSortCol === col) { regSortDir = regSortDir === 'asc' ? 'desc' : 'asc'; }
+  else { regSortCol = col; regSortDir = 'asc'; }
+  renderRegTable();
+}
+
+function renderWaveView() {
+  var container = document.getElementById('wave-view-container');
+  if (!container || !WAVES) return;
+  container.innerHTML = WAVES.map(function(wave) {
+    var regs = REGULATIONS.filter(function(r){ return r.proposedWave === wave.id; });
+    var isDecisionRequired = wave.status === 'decision-required';
+    return '<div style="margin-bottom:24px;border:' + (isDecisionRequired ? '2px dashed ' + wave.color : '2px solid ' + wave.color) + ';border-radius:10px;overflow:hidden">' +
+      '<div style="background:' + wave.color + ';padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px">' +
+        '<div>' +
+          '<div style="font-weight:700;color:#fff;font-size:14px">' + wave.name + '</div>' +
+          '<div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:3px">' + wave.startMonth + ' to ' + wave.endMonth + '</div>' +
+        '</div>' +
+        (isDecisionRequired ? '<span style="background:rgba(255,255,255,0.15);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px">Decision required</span>' : '') +
+      '</div>' +
+      '<div style="padding:16px 18px">' +
+        '<p style="font-size:13px;color:var(--ink);margin-bottom:12px">' + wave.description + '</p>' +
+        (wave.regulationCountNote ? '<p style="font-size:12px;color:var(--warning);background:var(--warning-pale);border-radius:6px;padding:8px 12px;margin-bottom:12px">' + wave.regulationCountNote + '</p>' : '') +
+        (regs.length > 0
+          ? regs.map(function(r){ return '<div style="display:inline-flex;align-items:center;gap:6px;background:var(--panel);border-radius:6px;padding:6px 12px;margin:4px;font-size:12px;font-weight:500">' + r.id + ': ' + r.name + '</div>'; }).join('')
+          : '<span style="font-size:12px;color:var(--text-muted);font-style:italic">No regulations confirmed for this wave. Selection subject to gate decision.</span>'
+        ) +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderDodView() {
+  var container = document.getElementById('dod-container');
+  if (!container || !REGULATION_ONBOARDING_DOD) return;
+  container.innerHTML = '<div style="background:var(--panel);border-radius:10px;padding:20px 24px">' +
+    '<h3 style="font-size:14px;font-weight:700;margin-bottom:4px">Regulation onboarding definition of done</h3>' +
+    '<p style="font-size:12px;color:var(--text-muted);margin-bottom:16px">A regulation is considered onboarded only when all 16 criteria below are confirmed. Criteria apply to each regulation independently.</p>' +
+    '<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px">' +
+      REGULATION_ONBOARDING_DOD.map(function(item, i) {
+        return '<li style="font-size:13px">' +
+          '<span style="font-weight:600">' + item.criterion + '</span>' +
+          (item.note ? '<div style="font-size:12px;color:var(--text-muted);margin-top:2px">' + item.note + '</div>' : '') +
+        '</li>';
+      }).join('') +
+    '</ol>' +
+  '</div>';
+}
+
+function openRegDrawer(regId) {
+  var r = REGULATIONS.find(function(x){ return x.id === regId; });
+  if (!r) return;
+  var isRef = r.id === 'REG-01';
+  var statusColors = { 'not-inventoried': '#9CA3AF', 'inventoried': '#60A5FA', 'assessed': '#A78BFA', 'prioritised': '#F59E0B', 'mapped': '#3B82F6', 'configured': '#8B5CF6', 'validated': '#10B981', 'live': '#059669', 'continuously-monitored': '#065F46' };
+  var statusColor = statusColors[r.status] || '#9CA3AF';
+  document.getElementById('drawer-title').textContent = r.id + ': ' + r.name;
+  var body = document.getElementById('drawer-body');
+  body.innerHTML =
+    (isRef ? '<div style="background:#EAF3FA;border-radius:8px;padding:12px 14px;margin-bottom:16px;border-left:3px solid var(--blue-dark)"><strong>Reference scenario:</strong> ' + r.referenceScenario + '</div>' +
+      '<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">' + (r.referenceScenarioNote || '') + '</div>' : '') +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Status</div><div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:' + statusColor + '"></span>' + r.status.replace(/-/g,' ') + '</div></div>' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Confidence</div><div>' + (r.confidence || 'To assess').replace(/-/g,' ') + '</div></div>' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Jurisdiction</div><div>' + (r.jurisdiction || 'To assess') + '</div></div>' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Domain</div><div>' + (r.domain || 'To assess') + '</div></div>' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Priority</div><div>' + (r.priority || 'To assess') + '</div></div>' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Proposed wave</div><div>' + (r.proposedWave || 'Not assigned') + '</div></div>' +
+    '</div>' +
+    '<div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Owner and accountability</div>' +
+    '<div style="background:var(--panel);border-radius:8px;padding:12px 14px;font-size:12px;margin-bottom:16px">' +
+      '<div><strong>Owner:</strong> ' + (r.owner || 'Name to confirm') + '</div>' +
+      '<div style="margin-top:4px"><strong>Accountable function:</strong> ' + (r.accountableFunction || 'To confirm') + '</div>' +
+    '</div>' +
+    (isRef && Array.isArray(r.sourceDocuments) && r.sourceDocuments.length > 0
+      ? '<div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Source documents</div>' +
+        '<ul style="font-size:12px;padding-left:18px;margin-bottom:16px">' + r.sourceDocuments.map(function(d){ return '<li>' + d + '</li>'; }).join('') + '</ul>'
+      : '') +
+    '<div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Next decision required</div>' +
+    '<div style="background:var(--warning-pale);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--warning);margin-bottom:16px">' + (r.nextDecision || 'To define') + '</div>' +
+    (!isRef ? '<div style="font-size:12px;color:var(--text-muted);font-style:italic;border-top:1px solid var(--line);padding-top:12px">This regulation has not yet been inventoried. All detail fields will be completed during the portfolio inventory workstream in Phase 1.</div>' : '');
+  openDrawer('del-drawer');
+}
+
 // ── Initialise ──
 renderExecutive();
-renderWorkstreams();
+renderCapabilities();
 </script>
 </body>
 </html>
