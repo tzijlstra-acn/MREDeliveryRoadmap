@@ -231,13 +231,12 @@ assert(reg01 && reg01.referenceScenario, 'REG-01 must have a referenceScenario f
 assert(reg01 && reg01.referenceScenarioNote && reg01.referenceScenarioNote.length > 0, 'REG-01 must have a referenceScenarioNote clarifying B&R is a reference scenario, not the programme goal');
 assert(reg01 && reg01.status === 'assessed', 'REG-01 status must be assessed');
 
-// REG-02 through REG-24 must use safe placeholder names
+// REG-02 through REG-24 must not be in Wave 1 (Wave 1 is reserved for DORA reference scenario)
 REGULATIONS.filter(function(r){return r.id !== 'REG-01';}).forEach(function(r) {
   assert(
-    r.name && (r.name.includes('Name to confirm') || r.name.includes('To confirm')),
-    'Regulation ' + r.id + ' must use safe placeholder name pattern (e.g. "Regulation R02 - Name to confirm"), got: ' + r.name
+    r.proposedWave !== 'wave-1',
+    'Regulation ' + r.id + ' must not be assigned to wave-1. Wave 1 is the DORA reference scenario only.'
   );
-  assert(r.status === 'not-inventoried', 'Regulation ' + r.id + ' status must be not-inventoried (placeholder)');
 });
 
 // All regulations must have required fields
@@ -350,15 +349,18 @@ assert(/decision required/i.test(allText), 'Wave 2 or 3 count must be flagged as
   assert(allText.includes(id), 'Deliverable ' + id + ' must exist in data files');
 });
 
-// Regulation safe naming check
+// Regulation portfolio completeness check
 var regText = readFileSync(join(ROOT, 'data', 'regulations.js'), 'utf8');
-var inventedNamePattern = /name:\s*'(?!Regulation R\d\d - Name to confirm|DORA|To assess)([^']{3,}?)(?<! to confirm)'/g;
-// Only check REG-02+ for invented names (REG-01 DORA is permitted)
-var placeholderRegs = regText.match(/'REG-0[2-9]'|'REG-[12]\d'/g);
-if (placeholderRegs) {
-  var hasNameToConfirm = /Name to confirm/.test(regText);
-  assert(hasNameToConfirm, 'Placeholder regulations (REG-02+) must use "Name to confirm" pattern');
+// All 24 regulation IDs must be present
+for (var ri = 1; ri <= 24; ri++) {
+  var rid = 'REG-' + (ri < 10 ? '0' : '') + ri;
+  assert(regText.includes("'" + rid + "'"), 'Regulation ' + rid + ' must be defined in regulations.js');
 }
+// REG-01 must be DORA (checked above), and only REG-01 may be in wave-1
+assert(
+  REGULATIONS.filter(function(r){ return r.proposedWave === 'wave-1'; }).length === 1,
+  'Exactly one regulation may be in wave-1 (the DORA reference scenario)'
+);
 
 // -- Summary --
 console.log('\n========================');

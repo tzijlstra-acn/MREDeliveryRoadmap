@@ -2033,9 +2033,11 @@ function renderDodView() {
     '<p style="font-size:12px;color:var(--text-muted);margin-bottom:16px">A regulation is considered onboarded only when all 16 criteria below are confirmed. Criteria apply to each regulation independently.</p>' +
     '<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px">' +
       REGULATION_ONBOARDING_DOD.map(function(item, i) {
+        var text = typeof item === 'object' ? item.criterion : item;
+        var note = typeof item === 'object' ? item.note : null;
         return '<li style="font-size:13px">' +
-          '<span style="font-weight:600">' + item.criterion + '</span>' +
-          (item.note ? '<div style="font-size:12px;color:var(--text-muted);margin-top:2px">' + item.note + '</div>' : '') +
+          '<span style="font-weight:500">' + text + '</span>' +
+          (note ? '<div style="font-size:12px;color:var(--text-muted);margin-top:2px">' + note + '</div>' : '') +
         '</li>';
       }).join('') +
     '</ol>' +
