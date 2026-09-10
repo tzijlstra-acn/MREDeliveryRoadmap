@@ -684,6 +684,146 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
   font-size: 12px; color: var(--ink); margin-bottom: 4px;
 }
 
+/* ── Runs (Phase D) ── */
+.runs-selector { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+
+.runs-summary-card {
+  background: var(--panel); border-radius: 10px;
+  border: 1px solid var(--line); padding: 16px 20px;
+  margin-bottom: 20px;
+}
+.runs-summary-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-bottom: 10px;
+}
+@media (max-width: 700px) { .runs-summary-row { grid-template-columns: 1fr; } }
+.runs-summary-trigger-label {
+  font-size: 9.5px; font-weight: 800; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px;
+}
+.runs-summary-trigger { font-size: 12px; color: var(--ink); font-weight: 500; }
+.runs-summary-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+.runs-chain-scroll { overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+.runs-chain { display: flex; align-items: flex-start; gap: 0; min-width: max-content; padding: 4px 2px; }
+
+.runs-step {
+  display: flex; flex-direction: column; align-items: center;
+  width: 130px; padding: 12px 10px 10px;
+  background: var(--white); border: 1.5px solid;
+  border-radius: 10px; cursor: pointer; text-align: center;
+  gap: 5px; transition: box-shadow 0.15s;
+}
+.runs-step:hover { box-shadow: 0 2px 14px rgba(0,0,0,0.1); }
+.runs-step:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.runs-step-shape { margin-bottom: 2px; }
+.runs-step-num { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
+.runs-step-label { font-size: 11px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.runs-step-agent { font-size: 9.5px; font-weight: 700; font-style: italic; }
+.runs-step-type {
+  display: inline-block; padding: 2px 7px; border-radius: 10px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.04em;
+}
+
+.runs-step-arrow { padding: 0 6px; flex-shrink: 0; }
+
+.runs-legend {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  font-size: 11px; color: var(--text-muted);
+}
+.runs-legend-item { display: flex; align-items: center; gap: 5px; }
+.runs-legend-note { font-style: italic; font-size: 10px; margin-left: auto; }
+
+.runs-drawer-body { font-size: 13px; line-height: 1.6; }
+.runs-drawer-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.runs-drawer-desc { color: var(--ink); margin-bottom: 14px; }
+.runs-drawer-fields { display: flex; flex-direction: column; gap: 8px; }
+.runs-drawer-field { display: flex; gap: 8px; font-size: 12px; }
+.runs-field-label { font-weight: 700; min-width: 120px; color: var(--text-muted); }
+
+/* ── Portfolio (Phase E) ── */
+.port-filter-tabs {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.port-filter-note { font-size: 10.5px; color: var(--text-muted); font-style: italic; margin-left: auto; }
+
+.port-wave-notice {
+  background: #FEF3C7; border: 1px solid #F59E0B;
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 11.5px; color: #92400E; margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.port-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.port-tile {
+  display: flex; flex-direction: column; gap: 5px;
+  padding: 12px 12px 10px; border-radius: 10px;
+  border: 1.5px solid var(--line); background: var(--white);
+  cursor: pointer; text-align: left;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  min-height: 140px;
+}
+.port-tile:hover { border-color: var(--blue); box-shadow: 0 2px 12px rgba(52,86,197,0.1); }
+.port-tile:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.port-tile-ref { border-color: #C53A7B; background: #FEF0F6; }
+.port-tile-ref:hover { border-color: #C53A7B; box-shadow: 0 2px 12px rgba(197,58,123,0.15); }
+
+.port-wave-badge {
+  display: inline-block; padding: 2px 8px; border-radius: 10px;
+  font-size: 9px; font-weight: 800; letter-spacing: 0.04em;
+  text-transform: uppercase; align-self: flex-start;
+}
+.port-wave-tbd { background: #FEF3C7; color: #92400E; }
+
+.port-tile-header { display: flex; align-items: center; justify-content: space-between; }
+.port-tile-id { font-size: 9px; font-weight: 800; color: var(--text-muted); letter-spacing: 0.05em; }
+.port-region-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+.port-tile-name { font-size: 11.5px; font-weight: 700; color: var(--ink); line-height: 1.3; flex: 1; }
+
+.port-tile-footer { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.port-tile-domain { font-size: 9px; color: var(--text-muted); font-weight: 600; }
+.port-tile-jur { font-size: 9px; font-weight: 800; color: var(--text-muted); }
+
+.port-tile-ref-label {
+  font-size: 9px; color: #C53A7B; font-weight: 700; font-style: italic;
+}
+
+.port-tile-status {
+  display: inline-block; padding: 1px 6px; border-radius: 8px;
+  font-size: 8.5px; font-weight: 700; letter-spacing: 0.03em;
+  align-self: flex-start;
+}
+
+.port-count-note { font-size: 11px; color: var(--text-muted); font-style: italic; }
+
+/* Portfolio drawer */
+.port-drawer-body { font-size: 13px; line-height: 1.6; }
+.port-drawer-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.port-drawer-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.port-drawer-field { display: flex; gap: 8px; font-size: 12px; }
+.port-field-label { font-weight: 700; min-width: 160px; color: var(--text-muted); }
+.port-drawer-ref {
+  background: #FEF0F6; border-left: 3px solid #C53A7B;
+  padding: 10px 14px; border-radius: 0 6px 6px 0;
+  font-size: 12px; margin-bottom: 14px;
+}
+.port-drawer-ref-note { font-size: 11px; color: var(--text-muted); margin: 4px 0 0; line-height: 1.5; }
+.port-drawer-notes { font-size: 12px; color: var(--ink); margin-bottom: 14px; line-height: 1.5; }
+.port-drawer-decision {
+  background: #FEF3C7; border-radius: 8px; padding: 10px 14px;
+  font-size: 12px; color: #92400E;
+}
+.port-drawer-date { font-size: 11px; margin-top: 4px; font-style: italic; }
+
 /* ── Roadmap (Phase B) ── */
 .rdm-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 
