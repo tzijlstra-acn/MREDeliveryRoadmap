@@ -531,3 +531,185 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 
 /* ── React Flow overrides ── */
 .react-flow__node { font-family: 'Inter', system-ui, sans-serif; }
+
+/* ── Roadmap (Phase B) ── */
+.rdm-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+
+.rdm-outer {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+}
+
+.rdm-grid {
+  display: grid;
+  min-width: 900px;
+}
+
+/* Governance spine */
+.rdm-spine-label {
+  grid-column: 1;
+  padding: 5px 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--text-muted);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center;
+}
+
+.rdm-phase-band {
+  padding: 5px 10px;
+  font-size: 11px; font-weight: 700;
+  color: #fff;
+  border-bottom: 1px solid var(--line);
+  border-right: 2px solid rgba(255,255,255,0.25);
+  display: flex; align-items: center;
+}
+
+/* Month headers */
+.rdm-col-hdr-spacer {
+  grid-column: 1;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+.rdm-month-hdr {
+  padding: 5px 4px;
+  font-size: 10px; font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+/* Lane rows */
+.rdm-lane-label {
+  padding: 8px 10px;
+  font-size: 11px; font-weight: 600;
+  color: var(--ink);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-left: 3px solid;
+  display: flex; align-items: center;
+  min-height: 88px;
+  background: var(--white);
+  line-height: 1.35;
+}
+
+.rdm-cell {
+  padding: 6px 8px;
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  min-height: 88px;
+  vertical-align: top;
+}
+
+.rdm-cell-gov { border-bottom: none; }
+
+.rdm-cell-action {
+  font-weight: 600; color: var(--ink);
+  margin-bottom: 4px; line-height: 1.3;
+}
+
+.rdm-cell-output {
+  color: var(--text-muted); font-style: italic;
+  font-size: 9.5px; margin-bottom: 5px; line-height: 1.3;
+}
+
+.rdm-cell-pod {
+  display: inline-block;
+  padding: 1px 5px; border-radius: 8px;
+  font-size: 8.5px; font-weight: 700; letter-spacing: 0.03em;
+}
+
+/* Milestone rail */
+.rdm-ms-rail {
+  display: flex;
+  height: 60px;
+  border-top: 2px solid var(--line);
+  background: var(--panel);
+}
+
+.rdm-ms-rail-label {
+  width: 180px;
+  padding: 0 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--text-muted);
+  display: flex; align-items: center;
+  flex-shrink: 0;
+  border-right: 1px solid var(--line);
+}
+
+.rdm-ms-track {
+  position: relative;
+  flex: 1;
+}
+
+.rdm-ms-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: none; border: none;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 2px;
+  padding: 2px;
+  transition: opacity 0.15s;
+}
+.rdm-ms-marker:hover { opacity: 0.75; }
+.rdm-ms-marker:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.rdm-ms-id {
+  font-size: 8.5px; font-weight: 700;
+  color: var(--text-muted); white-space: nowrap;
+}
+
+/* Legend */
+.rdm-legend {
+  display: flex; flex-wrap: wrap;
+  align-items: center; gap: 12px 20px;
+  margin-top: 14px;
+  font-size: 11px; color: var(--text-muted);
+}
+
+.rdm-legend-item {
+  display: flex; align-items: center; gap: 5px;
+}
+
+.rdm-legend-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+}
+
+.rdm-legend-note {
+  font-style: italic; font-size: 10px;
+  margin-left: auto;
+}
+
+/* Milestone drawer body */
+.rdm-drawer-body { font-size: 13px; line-height: 1.6; }
+.rdm-drawer-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.rdm-drawer-desc { color: var(--ink); margin-bottom: 16px; }
+.rdm-drawer-gate-note {
+  background: var(--panel); border-left: 3px solid #5C4FC5;
+  padding: 10px 14px; border-radius: 0 6px 6px 0;
+  font-size: 12px; color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.rdm-drawer-field {
+  display: flex; gap: 8px; font-size: 12px;
+  margin-bottom: 8px;
+}
+.rdm-drawer-field-label {
+  font-weight: 700; min-width: 90px; color: var(--text-muted);
+}
+
+/* chip-proposed / chip-confirmed status chips */
+.chip-proposed { background: #FEF3C7; color: #92400E; }
+.chip-confirmed { background: #D1FAE5; color: #065F46; }
