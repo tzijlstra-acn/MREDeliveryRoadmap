@@ -17,6 +17,7 @@ function navigate(sectionId) {
   activeSection = sectionId;
   closeSidebar();
   window.scrollTo(0, 0);
+  if (typeof history !== 'undefined') history.replaceState(null, '', '#' + sectionId);
 
   if (sectionId === 'roadmap') renderRoadmap();
   if (sectionId === 'architecture') renderArchitecture();
