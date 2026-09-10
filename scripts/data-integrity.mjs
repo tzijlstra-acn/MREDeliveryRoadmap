@@ -48,7 +48,7 @@ console.log('UC3 Data Integrity Tests');
 console.log('========================');
 
 let PHASES, WORKSTREAMS, DELIVERABLES, ROLES, PODS, MILESTONES, GOVERNANCE_FORUMS, DECISIONS, RISKS, KPIS, ADDONS, REGULATIONS, WAVES, STAGE_GATES, ROADMAP_CONTENT, ARCH_LAYERS, APP_TIERS, SCENARIOS;
-let RUNS, EXECUTION_MECHANISMS, MODEL_CATALOGUE, TASK_MODEL_ROUTING, VALUE_BRIDGE, VALUE_SCENARIOS, ASSUMPTION_HISTORY, GTRF_ROLES, WORKFORCE_IMPACT_SUMMARY;
+let RUNS, EXECUTION_MECHANISMS, MODEL_CATALOGUE, TASK_MODEL_ROUTING, VALUE_BRIDGE, VALUE_SCENARIOS, ASSUMPTION_HISTORY, GTRF_ROLES, WORKFORCE_IMPACT_SUMMARY, GLOSSARY;
 
 try {
   PHASES = loadData('phases.js', 'PHASES');
@@ -77,6 +77,7 @@ try {
   ASSUMPTION_HISTORY = loadData('value-assumptions.js', 'ASSUMPTION_HISTORY');
   GTRF_ROLES = loadData('people-impact.js', 'GTRF_ROLES');
   WORKFORCE_IMPACT_SUMMARY = loadData('people-impact.js', 'WORKFORCE_IMPACT_SUMMARY');
+  GLOSSARY = loadData('glossary.js', 'GLOSSARY');
   try {
     STAGE_GATES = loadData('governance.js', 'STAGE_GATES');
   } catch (e) {
@@ -306,11 +307,24 @@ if (STAGE_GATES) {
   console.log('  INFO: STAGE_GATES not yet defined in governance.js - skipping gate detail checks');
 }
 
+// -- Governance (RISKS uniqueness) --
+section('Governance (RISKS uniqueness)');
+assert(Array.isArray(RISKS) && RISKS.length > 0, 'RISKS must be a non-empty array');
+var riskIds = RISKS.map(function(r){ return r.id; });
+var uniqueRiskIds = new Set(riskIds);
+assert(riskIds.length === uniqueRiskIds.size, 'All RISKS IDs must be unique (no duplicate IDs)');
+RISKS.forEach(function(r) {
+  assert(r.id, 'RISK entry must have an id');
+  assert(r.category, 'RISK ' + r.id + ' must have a category');
+  assert(r.title, 'RISK ' + r.id + ' must have a title');
+  assert(r.mitigation, 'RISK ' + r.id + ' must have a mitigation');
+});
+
 // -- Content safeguards --
 section('Content safeguards');
 
 // Load all data files as text for string search
-var allText = ['phases.js','workstreams.js','deliverables.js','roles.js','milestones.js','governance.js','kpis.js','addons.js','regulations.js','waves.js','roadmap-content.js','architecture.js','scenarios.js','runs.js','models.js','value-assumptions.js','people-impact.js'].map(function(f) {
+var allText = ['phases.js','workstreams.js','deliverables.js','roles.js','milestones.js','governance.js','kpis.js','addons.js','regulations.js','waves.js','roadmap-content.js','architecture.js','scenarios.js','runs.js','models.js','value-assumptions.js','people-impact.js','glossary.js'].map(function(f) {
   return readFileSync(join(ROOT, 'data', f), 'utf8');
 }).join('\n');
 
@@ -601,6 +615,21 @@ assert(/working assumption/i.test(newDataText), 'Value assumptions must use work
 assert(/capacity freed/i.test(newDataText), '396 FTE must be framed as capacity freed in new data files');
 assert(!/396 FTE.{0,60}headcount reduction target/i.test(newDataText), '396 FTE must not be framed as a headcount reduction target (must be capacity freed)');
 assert(/Subject to GTRF/i.test(newDataText), 'GTRF role data must note subject to GTRF analysis');
+
+// -- Glossary --
+section('Glossary (GLOSSARY)');
+assert(Array.isArray(GLOSSARY), 'GLOSSARY must be an array');
+assert(GLOSSARY.length >= 20, 'GLOSSARY must have at least 20 entries (got ' + GLOSSARY.length + ')');
+var glossaryIds = GLOSSARY.map(function(g){ return g.id; });
+var uniqueGlossaryIds = new Set(glossaryIds);
+assert(glossaryIds.length === uniqueGlossaryIds.size, 'All GLOSSARY IDs must be unique');
+GLOSSARY.forEach(function(g) {
+  assert(g.id, 'Glossary entry must have an id');
+  assert(g.term, 'Glossary entry ' + g.id + ' must have a term');
+  assert(g.definition && g.definition.length > 10, 'Glossary entry ' + g.id + ' must have a non-trivial definition');
+  assert(!/—/.test(g.definition), 'Glossary entry ' + g.id + ' must not contain an em dash');
+  assert(!/–/.test(g.definition), 'Glossary entry ' + g.id + ' must not contain an en dash');
+});
 
 // -- Summary --
 console.log('\n========================');

@@ -150,7 +150,7 @@ var RISKS = [
     mitigation: 'IRM / GCL sign-off required on applicability logic before Build phase in January 2027.', due: '2027-01'
   },
   {
-    id: 'R-03', category: 'Risk', title: 'Regulatory SME availability constrains wave throughput',
+    id: 'R-06', category: 'Risk', title: 'Regulatory SME availability constrains wave throughput',
     probability: 'Medium', impact: 'High', owner: 'Regulatory Coverage Lead', status: 'open',
     mitigation: 'Map SME availability to wave plan early. Build structured interpretation templates to reduce SME time per regulation.', due: '2027-01'
   },
