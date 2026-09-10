@@ -3,12 +3,53 @@ var activeScenario = 'recommended';
 
 function renderTeam() {
   renderWorkforceImpactPanel();
+  renderTeamRampChart();
   renderScenarioSelector();
   renderPodGrid();
   renderSquadModel();
   renderCostLevers();
   renderGuardrails();
   renderSkillHeatmap();
+}
+
+function renderTeamRampChart() {
+  if (typeof echarts === 'undefined' || typeof SCENARIOS === 'undefined') return;
+  uc3ChartDestroy('team-ramp-chart');
+  var sc = SCENARIOS.find(function(s){ return s.id === activeScenario; }) || SCENARIOS[1];
+  var squadFtePerUnit = 4.5;
+  var coreFte = (sc.persistentCoreFTE.min + sc.persistentCoreFTE.max) / 2;
+  var clientFte = (sc.clientFTE.min + sc.clientFTE.max) / 2;
+  var squadP1 = sc.onboardingSquads.min * squadFtePerUnit;
+  var squadP2 = ((sc.onboardingSquads.min + sc.onboardingSquads.max) / 2) * squadFtePerUnit;
+  var squadP3 = (sc.onboardingSquads.max + 1) * squadFtePerUnit;
+
+  uc3Chart('team-ramp-chart', {
+    title: {
+      text: 'Team ramp: ' + sc.name + ' scenario',
+      left: 0,
+      textStyle: { fontSize: 13, fontWeight: '700', color: '#1A1A1A' },
+      subtext: 'Illustrative planning assumption, not a commercial estimate. Figures directional only.',
+      subtextStyle: { fontSize: 10, color: '#6B7280' }
+    },
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(params) {
+        var total = 0;
+        var html = '<strong>' + params[0].axisValue + '</strong><br>';
+        params.forEach(function(p) { total += p.value; html += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + ' FTE<br>'; });
+        return html + '<strong>Total: ' + total.toFixed(1) + ' FTE (directional)</strong>';
+      }
+    },
+    legend: { bottom: 0, data: ['Core team', 'Regulation squads', 'Client SMEs'] },
+    grid: { top: 72, bottom: 40, left: 46, right: 16 },
+    xAxis: { type: 'category', data: ['Phase 1 (Oct 2026)', 'Phase 2 (Apr 2027)', 'Phase 3 (Oct 2027)'] },
+    yAxis: { type: 'value', name: 'FTE', nameTextStyle: { fontSize: 11, color: '#6B7280' } },
+    series: [
+      { name: 'Core team',         type: 'bar', stack: 'total', data: [coreFte, coreFte, coreFte], itemStyle: { color: '#3456C5' } },
+      { name: 'Regulation squads', type: 'bar', stack: 'total', data: [squadP1, squadP2, squadP3], itemStyle: { color: '#A100FF' } },
+      { name: 'Client SMEs',       type: 'bar', stack: 'total', data: [clientFte * 0.75, clientFte, clientFte * 1.25], itemStyle: { color: '#D97706' } }
+    ]
+  });
 }
 
 function renderWorkforceImpactPanel() {
@@ -114,6 +155,7 @@ function renderScenarioSelector() {
 function selectScenario(id) {
   activeScenario = id;
   renderScenarioSelector();
+  renderTeamRampChart();
 }
 
 function renderPodGrid() {
