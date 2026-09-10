@@ -89,9 +89,7 @@ export default function Team() {
         <div className="section-label">Team and Skills</div>
         <h1 className="section-title">Who is required and how does ownership transfer?</h1>
         <p className="section-tagline">
-          Delivery team structured across Accenture External and Munich Re Dedicated roles.
-          All FTE figures are illustrative planning assumptions, not commercial estimates.
-          Part-time roles reflect expected fractional commitment, not a full FTE equivalence.
+          Who builds it. Who runs it. How capability transfers from Accenture to Munich Re across 18 months.
         </p>
       </div>
 

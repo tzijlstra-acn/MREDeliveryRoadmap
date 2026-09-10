@@ -79,9 +79,7 @@ export default function Control() {
         <div className="section-label">Execution Control</div>
         <h1 className="section-title">How will execution be managed?</h1>
         <p className="section-tagline">
-          Stage-gate governance, delivery forums, key decisions and risk register for
-          the 18-month programme. All gate approvals are formal decisions by the Executive Sponsor
-          and Steering Committee.
+          Three gates. Four decisions. Full RAID register. All programme execution, visible.
         </p>
       </div>
 

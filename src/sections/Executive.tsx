@@ -81,9 +81,7 @@ export default function Executive() {
         <div className="section-label">Executive Decision</div>
         <h1 className="section-title">What should Munich Re approve?</h1>
         <p className="section-tagline">
-          Build the common Agentic Compliance capability once. Prove the mechanism through DORA
-          Backup and Restore. Replicate it through Wave 1 regulations. Scale it toward
-          24-regulation portfolio coverage. One platform. One operating model. One investment.
+          One platform. Prove it through DORA. Replicate through Wave 1. Scale to 24 regulations.
         </p>
       </div>
 

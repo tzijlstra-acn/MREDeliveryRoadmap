@@ -102,9 +102,7 @@ export default function Portfolio() {
         <div className="section-label">Regulatory Portfolio</div>
         <h1 className="section-title">Which regulations should be onboarded first?</h1>
         <p className="section-tagline">
-          24-regulation portfolio across 8 regions and 12 domains. DORA is the anchor for Phase 1.
-          Wave assignments for the remaining 23 regulations are provisional and subject to formal
-          approval at Gate 2. All wave assignments are proposed -- client approval required.
+          24 regulations. 4 proposed waves. Click any tile for detail. Wave assignments are provisional -- Gate 2 decision required.
         </p>
       </div>
 

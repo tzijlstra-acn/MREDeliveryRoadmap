@@ -95,9 +95,7 @@ export default function Runs() {
         <div className="section-label">Obligation Chain and Runs</div>
         <h1 className="section-title">What happens when a requirement changes?</h1>
         <p className="section-tagline">
-          Three execution runs show how the agentic platform handles a regulatory change from
-          detection through to DDCR update. Human approval gates are preserved at every
-          accountable decision point.
+          One requirement change triggers a full end-to-end run. Three runs show the pattern at today, Phase 1, and scale.
         </p>
       </div>
 

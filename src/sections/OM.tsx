@@ -102,9 +102,7 @@ export default function OM() {
         <div className="section-label">Target Operating Model</div>
         <h1 className="section-title">How does the operating model change?</h1>
         <p className="section-tagline">
-          Five-dimension transformation map showing the journey from today to North Star.
-          Select a stage to see what changes across Product Portfolio, Organisation, Technology,
-          People and Value Management.
+          Five dimensions. Four stages. Select any stage to see exactly what must change.
         </p>
       </div>
 

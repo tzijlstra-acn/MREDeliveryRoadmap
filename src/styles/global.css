@@ -1252,3 +1252,219 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 /* chip-proposed / chip-confirmed status chips */
 .chip-proposed { background: #FEF3C7; color: #92400E; }
 .chip-confirmed { background: #D1FAE5; color: #065F46; }
+
+/* ── Roadmap split layout (new symbol+detail design) ── */
+.rdm-split {
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.rdm-gantt-col {
+  flex: 1; min-width: 0; overflow-x: auto;
+}
+.rdm-detail-panel {
+  width: 300px; flex-shrink: 0;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--white);
+  max-height: 680px; overflow-y: auto;
+  position: sticky; top: 70px;
+}
+.rdm-detail-empty {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 10px;
+  padding: 40px 20px; color: var(--text-muted); text-align: center;
+  font-size: 13px;
+}
+.rdm-detail-content { padding: 16px; }
+.rdm-detail-month-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px; flex-wrap: wrap; gap: 6px;
+}
+.rdm-detail-month-name {
+  font-size: 15px; font-weight: 700; color: var(--ink);
+}
+.rdm-detail-block {
+  background: var(--panel); border-radius: 7px;
+  padding: 10px 12px; margin-bottom: 10px;
+}
+.rdm-detail-block-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;
+}
+.rdm-detail-block-text { font-size: 13px; line-height: 1.5; }
+.rdm-detail-block-decision {
+  background: #FEF3C7; border-left: 3px solid #B97912;
+}
+.rdm-detail-ms-row {
+  display: flex; align-items: flex-start; gap: 6px;
+  font-size: 12px; margin-top: 6px; line-height: 1.4;
+}
+.rdm-detail-lanes { margin-top: 14px; }
+.rdm-detail-lane-row {
+  border-top: 1px solid var(--line); padding: 10px 0;
+}
+.rdm-detail-lane-hdr {
+  display: flex; align-items: center; gap: 5px;
+  margin-bottom: 4px; flex-wrap: wrap;
+}
+.rdm-detail-lane-name {
+  font-size: 11px; font-weight: 700; flex: 1;
+}
+.rdm-detail-lane-pod {
+  font-size: 10px; color: var(--text-muted);
+  background: var(--panel); border-radius: 4px; padding: 1px 6px;
+  white-space: nowrap;
+}
+.rdm-detail-lane-action { font-size: 13px; line-height: 1.4; font-weight: 600; }
+.rdm-detail-lane-output { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* Bar cells */
+.rdm-month-hdr {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 5px 2px; gap: 1px;
+}
+.rdm-month-short { font-size: 10px; font-weight: 700; }
+.rdm-month-year  { font-size: 9px; color: var(--text-muted); }
+.rdm-col-selected { background: var(--blue-pale) !important; }
+
+.rdm-bar-cell {
+  all: unset; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3px 2px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.rdm-bar-cell:hover { background: var(--panel) !important; }
+.rdm-bar-cell-selected { border-left-width: 2px !important; }
+.rdm-bar {
+  width: 100%; border-radius: 4px; border: 1px solid transparent;
+  padding: 3px 4px; display: flex; align-items: center; gap: 3px;
+  min-height: 26px; transition: background 0.2s, border-color 0.2s;
+}
+.rdm-bar-label {
+  font-size: 9px; font-weight: 600; letter-spacing: 0.02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Lane label compact */
+.rdm-lane-label-compact {
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 2px; padding: 6px 8px;
+  border-top: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  min-height: 40px;
+}
+.rdm-lane-abbr { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; }
+.rdm-lane-full  { font-size: 9px; color: var(--text-muted); line-height: 1.2; }
+
+/* Clear button */
+.rdm-clear-btn {
+  background: none; border: 1px solid var(--line); border-radius: 6px;
+  padding: 5px 12px; font-size: 12px; cursor: pointer; color: var(--text-muted);
+}
+.rdm-clear-btn:hover { background: var(--panel); }
+
+/* Drawer */
+.rdm-drawer-body { font-size: 13px; line-height: 1.6; }
+
+/* ── Architecture flow diagram ── */
+.arch-flow-diagram {
+  flex: 1; display: flex; flex-direction: column; gap: 0;
+  min-width: 0;
+}
+.arch-flow-node-wrap { display: flex; flex-direction: column; }
+.arch-flow-node {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; background: var(--white);
+  border: 1px solid var(--line); border-radius: 8px;
+  cursor: pointer; transition: box-shadow 0.15s;
+}
+.arch-flow-node:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+.arch-flow-node-left {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+}
+.arch-flow-node-abbr {
+  width: 34px; height: 34px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.arch-flow-node-bar-track {
+  width: 80px; height: 5px; background: var(--line); border-radius: 3px; overflow: hidden;
+}
+.arch-flow-node-bar-fill { height: 100%; border-radius: 3px; }
+.arch-flow-node-mid {
+  display: flex; flex-direction: column; gap: 3px; flex-shrink: 0;
+}
+.arch-flow-node-name { font-size: 12px; font-weight: 700; color: var(--ink); }
+.arch-flow-status-chip {
+  font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+  white-space: nowrap;
+}
+.arch-flow-node-note {
+  font-size: 12px; color: var(--text-muted); line-height: 1.4; flex: 1;
+}
+.arch-flow-arrow {
+  display: flex; align-items: center; gap: 0;
+  height: 18px; padding: 0 22px; position: relative; overflow: visible;
+}
+.arch-flow-arrow-line {
+  position: absolute; left: 22px; right: 22px; top: 50%; height: 2px;
+  transform: translateY(-50%);
+}
+.arch-flow-packet {
+  position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  top: 50%; transform: translateY(-50%);
+  left: 22px;
+}
+@keyframes arch-packet-flow {
+  0%   { left: 22px; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: calc(100% - 22px); opacity: 0; }
+}
+.arch-flow-arrow-pulse .arch-flow-packet {
+  animation: arch-packet-flow 1.4s ease-in-out infinite;
+}
+.arch-loop-note {
+  font-size: 11px; color: var(--text-muted); margin-top: 12px;
+  font-style: italic;
+}
+
+/* ── Scale scenario panel ── */
+.scale-scenario-card {
+  all: unset; cursor: pointer; padding: 14px 16px;
+  border: 1.5px solid var(--line); border-radius: 10px;
+  display: flex; flex-direction: column; gap: 4px;
+  background: var(--white); transition: border-color 0.15s, background 0.15s;
+}
+.scale-scenario-card:hover { border-color: var(--blue); }
+.scale-scenario-card.active { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+.scale-scenario-name { font-size: 14px; font-weight: 700; }
+.scale-scenario-desc { font-size: 12px; color: var(--text-muted); }
+.scale-scenario-figure {
+  font-size: 22px; font-weight: 800; margin-top: 4px;
+}
+.scale-scenario-range { font-size: 12px; font-weight: 500; margin-left: 4px; }
+
+.scale-scenario-panel {
+  background: var(--white); border: 1px solid var(--line);
+  border-left: 4px solid var(--blue); border-radius: 10px;
+  padding: 18px 20px; margin-bottom: 24px;
+}
+.scale-scenario-panel-top {
+  display: flex; align-items: flex-start; gap: 20px; margin-bottom: 12px;
+}
+.scale-scenario-panel-figure {
+  font-size: 48px; font-weight: 800; line-height: 1; flex-shrink: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.scale-scenario-panel-meta { display: flex; flex-direction: column; gap: 3px; }
+.scale-scenario-panel-label { font-size: 15px; font-weight: 700; }
+.scale-scenario-panel-denom { font-size: 12px; color: var(--text-muted); }
+.scale-scenario-panel-gate  { font-size: 12px; color: var(--text-muted); }
+.scale-scenario-panel-desc  { font-size: 13px; line-height: 1.5; margin-bottom: 8px; }
+.scale-scenario-panel-scope { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.scale-scenario-panel-qual  {
+  font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--line);
+  padding-top: 8px; margin-top: 4px;
+}
