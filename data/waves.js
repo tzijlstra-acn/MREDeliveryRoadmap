@@ -57,3 +57,6 @@ var WAVES = [
     regulationCountNote: 'Number of regulations in Phase 3 waves is a decision required at Gate 3 (September 2027). North Star target is full coverage of 24 regulations; committed Month 18 coverage is a separate decision required.'
   }
 ];
+
+// ES module export for Vite/React
+export { WAVES };

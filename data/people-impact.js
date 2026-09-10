@@ -208,3 +208,6 @@ var FUTURE_TASK_OUTCOME_TAXONOMY = [
   { id: 'agent-executed', label: 'Agent-executed', description: 'An AI agent performs the multi-step task end-to-end. A human gate precedes and follows where required by the authority matrix.', color: '#B35000' },
   { id: 'retired', label: 'Retired', description: 'The task becomes unnecessary as the capability matures. No human or AI resource required.', color: '#6B7280' }
 ];
+
+// ES module export for Vite/React
+export { GTRF_ROLES, WORKFORCE_IMPACT_SUMMARY };

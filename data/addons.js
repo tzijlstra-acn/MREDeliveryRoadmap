@@ -100,3 +100,6 @@ var ADDONS = [
     note: 'North Star horizon item. Requires an operational vertical as foundation.'
   }
 ];
+
+// ES module export for Vite/React
+export { ADDONS };

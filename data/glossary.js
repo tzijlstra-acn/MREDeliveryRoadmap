@@ -100,3 +100,6 @@ var GLOSSARY = [
     definition: 'A group of regulations onboarded together onto the Agentic Compliance platform. Wave 1 contains DORA (Backup and Restore reference). Wave 2 onwards: decision required at Gate 2.'
   }
 ];
+
+// ES module export for Vite/React
+export { GLOSSARY };

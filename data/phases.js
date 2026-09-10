@@ -241,3 +241,6 @@ var PHASES = [
     ]
   }
 ];
+
+// ES module export for Vite/React
+export { PHASES };

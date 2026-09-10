@@ -380,3 +380,6 @@ var UX_MEASURES = [
   { metric: 'User override rate for AI proposals', target: 'Under 20% (proxy for proposal quality)' },
   { metric: 'Unresolved exception age', target: 'No exception unresolved for more than 5 business days' }
 ];
+
+// ES module export for Vite/React
+export { ARCH_LAYERS, APP_TIERS };

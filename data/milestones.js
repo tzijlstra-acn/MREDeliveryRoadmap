@@ -22,3 +22,6 @@ var MILESTONES = [
   { id: 'G3', label: 'Gate 3: Scale Decision', date: '2028-03', monthIdx: 18, phase: 'phase-3', type: 'gate', status: 'proposed', deliverableIds: ['D11','D12'], description: 'Phase 3 exit. CaaS v1 operational; scale investment approved.' },
   { id: 'G4', label: 'Gate 4: Scale Decision', date: '2028-03', monthIdx: 18, phase: 'phase-3', type: 'gate', status: 'proposed', deliverableIds: ['D15','D16'], description: 'Phase 3 exit. Production service operational, portfolio status transparent, remaining 24-regulation path defined, next-wave investment approved.' }
 ];
+
+// ES module export for Vite/React
+export { MILESTONES };

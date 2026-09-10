@@ -174,3 +174,6 @@ var CAPACITY_FREED_NOTE = {
   headcountWarning: 'Do not use this figure as a headcount reduction target. It represents freed capacity available for redeployment, not a reduction commitment.',
   source: 'UC3_Savings_Logic_Client_Slide.pptx'
 };
+
+// ES module export for Vite/React
+export { VALUE_BRIDGE, VALUE_SCENARIOS, ASSUMPTION_HISTORY };

@@ -180,3 +180,6 @@ var RISKS = [
     mitigation: 'Include evaluation framework in architecture approval Gate 1 criteria.', due: '2026-12'
   }
 ];
+
+// ES module export for Vite/React
+export { GOVERNANCE_FORUMS, DECISIONS, RISKS };

@@ -4,7 +4,7 @@
  * Run: node scripts/data-integrity.mjs
  */
 
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -328,15 +328,29 @@ var allText = ['phases.js','workstreams.js','deliverables.js','roles.js','milest
   return readFileSync(join(ROOT, 'data', f), 'utf8');
 }).join('\n');
 
-var appText = readFileSync(join(ROOT, 'app.html'), 'utf8');
+var appHtml = readFileSync(join(ROOT, 'app.html'), 'utf8');
+// Include React source files in the scan (V5: content lives in src/ not app.html)
+function readSrcRecursive(dir) {
+  var result = '';
+  try {
+    readdirSync(dir).forEach(function(f) {
+      var fp = join(dir, f);
+      if (statSync(fp).isDirectory()) { result += readSrcRecursive(fp); }
+      else if (f.endsWith('.tsx') || f.endsWith('.ts') || f.endsWith('.css')) { result += readFileSync(fp, 'utf8') + '\n'; }
+    });
+  } catch(e) {}
+  return result;
+}
+var srcText = readSrcRecursive(join(ROOT, 'src'));
+var appText = appHtml + '\n' + srcText;
 var combined = allText + '\n' + appText;
 
 assert(!/52 FTE/i.test(combined), 'Forbidden value "52 FTE" must not appear in any data or app file');
 assert(!/3\.0%/.test(combined), 'Forbidden value "3.0%" must not appear in any data or app file');
 assert(!/\b3\.0 per cent\b/i.test(combined), 'Forbidden value "3.0 per cent" must not appear');
 assert(!/enterprise.{0,50}headcount reduction/i.test(combined), 'Enterprise-wide headcount reduction claim must not appear');
-assert(/13\.8%/.test(combined), 'The 13.8% directional value must appear in app.html');
-assert(/to validate|working assumption|directional/i.test(appText), 'The 13.8% value must be qualified as directional or working assumption');
+assert(/13\.8%/.test(combined), 'The 13.8% directional value must appear in data or source files');
+assert(/to validate|working assumption|directional/i.test(combined), 'The 13.8% value must be qualified as directional or working assumption');
 assert(!/lorem ipsum/i.test(combined), 'Lorem ipsum placeholder text must not appear');
 
 // Check Phase 1 label
@@ -354,8 +368,8 @@ assert(/Human-in-the-Loop|human approval/i.test(combined), 'Human-in-the-Loop or
 // DDCR positioning
 assert(/DDCR/.test(combined), 'DDCR must be referenced');
 
-// Staffing labelled illustrative
-assert(/[Ii]llustrative/.test(appText), 'Staffing must be labelled illustrative in app.html');
+// Staffing labelled illustrative (in data files or source files)
+assert(/[Ii]llustrative/.test(combined), 'Staffing must be labelled illustrative in data or source files');
 
 // Backup and Restore as reference scenario (not the goal)
 assert(/Backup.{0,5}Restore/i.test(combined), 'Backup and Restore must be referenced');

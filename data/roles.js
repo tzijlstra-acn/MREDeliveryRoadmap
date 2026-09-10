@@ -273,3 +273,6 @@ var PODS = [
     outputs: ['Target operating model','RACI','BAU support model','Training and adoption','Benefits tracker','Workforce implications','Scale business case']
   }
 ];
+
+// ES module export for Vite/React
+export { ROLES, PODS };

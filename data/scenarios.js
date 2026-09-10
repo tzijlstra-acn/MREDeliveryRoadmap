@@ -229,3 +229,6 @@ var GUARDRAILS = [
     scenario: 'All scenarios  -  can be lean but must exist'
   }
 ];
+
+// ES module export for Vite/React
+export { SCENARIOS };

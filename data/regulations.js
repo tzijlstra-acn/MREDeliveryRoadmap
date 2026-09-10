@@ -848,3 +848,6 @@ var REGULATION_ONBOARDING_DOD = [
   'Audit traceability demonstrated end to end',
   'Monitoring and content-maintenance ownership confirmed operational'
 ];
+
+// ES module export for Vite/React
+export { REGULATIONS };

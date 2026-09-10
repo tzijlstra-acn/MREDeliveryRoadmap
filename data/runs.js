@@ -315,3 +315,6 @@ var MODEL_TIERS = [
   { id: 'reasoning', label: 'Reasoning', description: 'More capable models for complex mapping, drafting and multi-document analysis.' },
   { id: 'frontier', label: 'Frontier', description: 'Most capable models for ambiguous multi-step reasoning. Enterprise-approved contract required.' }
 ];
+
+// ES module export for Vite/React
+export { RUNS, EXECUTION_MECHANISMS };

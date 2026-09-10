@@ -292,3 +292,6 @@ var DELIVERABLES = [
     decisionRequired: 'Scale investment decision required at Gate 4 (March 2028)'
   }
 ];
+
+// ES module export for Vite/React
+export { DELIVERABLES };

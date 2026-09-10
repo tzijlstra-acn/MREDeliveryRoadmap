@@ -207,3 +207,6 @@ var WORKSTREAMS = [
     deliverableIds: ['D12', 'D13']
   }
 ];
+
+// ES module export for Vite/React
+export { WORKSTREAMS };

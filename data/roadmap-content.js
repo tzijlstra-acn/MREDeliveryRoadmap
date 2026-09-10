@@ -540,3 +540,6 @@ var ROADMAP_CONTENT = [
     clientDecision: 'Gate 4 approval: scale investment and next-vertical selection'
   }
 ];
+
+// ES module export for Vite/React
+export { ROADMAP_CONTENT };

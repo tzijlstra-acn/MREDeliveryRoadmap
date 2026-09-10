@@ -210,3 +210,6 @@ var COST_PER_RUN_COMPONENTS = [
     note: 'Exception rate is a working assumption; to be baselined in Phase 1.'
   }
 ];
+
+// ES module export for Vite/React
+export { MODEL_CATALOGUE, TASK_MODEL_ROUTING };
