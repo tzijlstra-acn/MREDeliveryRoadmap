@@ -905,12 +905,19 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
   </div>
 
   <div class="tab-bar" role="tablist">
-    <button class="tab-btn active" data-tab="ws-view" role="tab" aria-selected="true" onclick="switchTab('ws-view','workstreams')">Workstream view</button>
+    <button class="tab-btn active" data-tab="cap-map-view" role="tab" aria-selected="true" onclick="switchTab('cap-map-view','capability-map')">Capability map</button>
+    <button class="tab-btn" data-tab="ws-view" role="tab" aria-selected="false" onclick="switchTab('ws-view','workstreams')">Workstream view</button>
     <button class="tab-btn" data-tab="del-view" role="tab" aria-selected="false" onclick="switchTab('del-view','deliverables')">Deliverable register</button>
+    <button class="tab-btn" data-tab="om-crosswalk-view" role="tab" aria-selected="false" onclick="switchTab('om-crosswalk-view','om-crosswalk')">OM crosswalk</button>
+  </div>
+
+  <!-- Capability map tab (default) -->
+  <div class="tab-content active" id="cap-map-view">
+    <div id="cap-map-container"></div>
   </div>
 
   <!-- Workstreams tab -->
-  <div class="tab-content active" id="ws-view">
+  <div class="tab-content" id="ws-view">
     <div id="ws-accordion" class="ws-accordion"></div>
   </div>
 
@@ -931,6 +938,11 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
     <!-- OM dimension filter chips -->
     <div id="del-om-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"></div>
     <div id="del-grid" class="del-grid"></div>
+  </div>
+
+  <!-- OM crosswalk tab -->
+  <div class="tab-content" id="om-crosswalk-view">
+    <div id="om-crosswalk-container"></div>
   </div>
 </section>
 
