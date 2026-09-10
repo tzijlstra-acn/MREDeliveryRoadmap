@@ -19,7 +19,7 @@ function navigate(sectionId) {
   window.scrollTo(0, 0);
 
   if (sectionId === 'roadmap') renderRoadmap();
-  if (sectionId === 'architecture' && !document.querySelector('#arch-layers .arch-layer')) renderArchitecture();
+  if (sectionId === 'architecture') renderArchitecture();
   if (sectionId === 'runs' && !document.querySelector('#runs-content .run-flow')) renderRuns();
   if (sectionId === 'portfolio') renderPortfolio();
   if (sectionId === 'capabilities' && !document.querySelector('#ws-accordion .ws-card')) renderCapabilities();

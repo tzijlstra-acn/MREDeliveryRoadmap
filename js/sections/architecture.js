@@ -1,7 +1,7 @@
 ﻿// ── Section 3: Architecture and Application Onboarding ──
 function renderArchitecture() {
   renderAppPopulationContext();
-  renderArchEvolution();
+  renderArchEvolutionGrid();
   renderArchLayers();
   renderArchBoundary();
   renderArchHeadless();
@@ -42,27 +42,143 @@ function renderAppPopulationContext() {
   ].join('');
 }
 
-function renderArchEvolution() {
+function renderArchEvolutionGrid() {
+  var el = document.getElementById('arch-evolution-table');
+  if (!el) return;
+
+  var GRID_LAYERS = [
+    {
+      order: 1, name: 'Experience', labelColor: '#6B7280',
+      today:  { status: 'existing',      text: 'Compliance Hub, Product Hub, DDCR, SDLC tools. Manual assembly. No shared case status.' },
+      phase1: { status: 'existing-plus', text: 'Same hubs. MITRA surfaces into Compliance Hub (provisional). MAYA surfaces into Product Hub (provisional). Scoped to Backup and Restore.', agents: ['MITRA (provisional)', 'MAYA (provisional)'] },
+      phase2: { status: 'enhanced',      text: 'Shared case status visible in existing hubs. Handovers automated across hub boundaries.' },
+      phase3: { status: 'enhanced',      text: 'Consistent Compliance-as-a-Service experience across all live regulations.' }
+    },
+    {
+      order: 2, name: 'Integration', labelColor: '#3456C5',
+      today:  { status: 'none',     text: 'Point-to-point integrations. No shared case identity. Manual status reconciliation.' },
+      phase1: { status: 'building', text: 'Integration facade designed and prototyped for Backup and Restore pilot scope.' },
+      phase2: { status: 'live',     text: 'Integration facade live for Compliance Hub, Product Hub and Reporting Hub. Common case ID operational.' },
+      phase3: { status: 'scaled',   text: 'Connector library reusable. Extended to Wave 2 and Wave 3 regulations.' }
+    },
+    {
+      order: 3, name: 'Workflow', labelColor: '#5C4FC5',
+      today:  { status: 'none',     text: 'Manual case tracking. Approvals managed in email and spreadsheets. No durable state.' },
+      phase1: { status: 'building', text: 'Approval gates and human-task model designed. Pilot workflow tested manually.' },
+      phase2: { status: 'live',     text: 'Durable workflow engine live. Automated handovers. Retries and exception queues.' },
+      phase3: { status: 'scaled',   text: 'Full case orchestration at scale. Exception-driven operations. BAU service operations.' }
+    },
+    {
+      order: 4, name: 'Agents', labelColor: '#A100FF',
+      today:  { status: 'none',  text: 'No specialist AI agents. LLM use is ad hoc and ungoverned.' },
+      phase1: { status: 'agent', text: 'MITRA in Compliance Hub (provisional). MAYA in Product Hub (provisional). Governed prompts and structured evaluation.', agents: ['MITRA (provisional)', 'MAYA (provisional)'] },
+      phase2: { status: 'agent', text: 'Agents extended for applicability, evidence assembly and DDCR preparation. Evaluation framework live.' },
+      phase3: { status: 'agent', text: 'Agent runtime at scale. Multi-regulation support. Cost-per-regulation economics understood.' }
+    },
+    {
+      order: 5, name: 'Knowledge', labelColor: '#A100FF',
+      today:  { status: 'none',     text: 'Regulations stored in documents and email. No canonical compliance object model.' },
+      phase1: { status: 'building', text: 'Backup and Restore obligations in knowledge store. Compliance object model defined.' },
+      phase2: { status: 'live',     text: 'Wave 1 regulations loaded. Interpretation approval workflow. Reusable configuration library.' },
+      phase3: { status: 'scaled',   text: 'Onboarding factory operational. Knowledge store covers Wave 1 and Wave 2 regulations.' }
+    },
+    {
+      order: 6, name: 'Evidence', labelColor: '#059669',
+      today:  { status: 'none',     text: 'Evidence assembled manually. No provenance. Freshness unknown.' },
+      phase1: { status: 'building', text: 'Priority evidence sources connected for Backup and Restore. Provenance tracked.' },
+      phase2: { status: 'live',     text: 'Automated evidence assembly. Verification rules live. DDCR status linked to evidence.' },
+      phase3: { status: 'scaled',   text: 'Evidence connector library reusable. DDCR reporting operational across all live regulations.' }
+    },
+    {
+      order: 7, name: 'Platform', labelColor: '#374151',
+      today:  { status: 'existing',      text: 'Standard GT enterprise IT. Existing security, identity and deployment platforms.' },
+      phase1: { status: 'existing-plus', text: 'Security and Responsible AI controls live. AgentOps tooling provisioned. Evaluation framework agreed.' },
+      phase2: { status: 'enhanced',      text: 'Monitoring dashboards. Agent quality metrics. Exception management. Support model drafted.' },
+      phase3: { status: 'scaled',        text: 'Full service operations: incident management, change control, SLAs, BAU team trained.' }
+    }
+  ];
+
+  var STATUS_CONFIG = {
+    'none':         { bg: '#F3F4F6', borderTop: '2px solid #D1D5DB', badge: '',          badgeBg: '',        badgeColor: '' },
+    'existing':     { bg: '#F9FAFB', borderTop: '2px solid #9CA3AF', badge: 'Existing',  badgeBg: '#E5E7EB', badgeColor: '#374151' },
+    'existing-plus':{ bg: '#F0F4FF', borderTop: '2px solid #3456C5', badge: 'Enhanced',  badgeBg: '#DBEAFE', badgeColor: '#1D4ED8' },
+    'building':     { bg: '#EFF6FF', borderTop: '2px solid #3456C5', badge: 'Building',  badgeBg: '#DBEAFE', badgeColor: '#1D4ED8' },
+    'live':         { bg: '#EFF6FF', borderTop: '2px solid #3456C5', badge: 'Live',      badgeBg: '#D1FAE5', badgeColor: '#059669' },
+    'scaled':       { bg: '#EFF6FF', borderTop: '2px solid #3456C5', badge: 'Scaled',    badgeBg: '#D1FAE5', badgeColor: '#059669' },
+    'enhanced':     { bg: '#EFF6FF', borderTop: '2px solid #3456C5', badge: 'Enhanced',  badgeBg: '#DBEAFE', badgeColor: '#1D4ED8' },
+    'agent':        { bg: '#F4EBFF', borderTop: '2px solid #A100FF', badge: 'Agent',     badgeBg: '#E9D5FF', badgeColor: '#7C3AED' }
+  };
+
+  var PHASE_LABELS      = ['Today', 'Phase 1', 'Phase 2', 'Phase 3'];
+  var PHASE_HDR_COLORS  = ['#374151', '#3456C5', '#5A1E96', '#A100FF'];
+
   var h = '<h2 style="font-size:16px;font-weight:700;margin-bottom:16px">Architecture evolution: Today to Phase 3</h2>';
-  h += '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">';
-  h += '<thead><tr style="background:var(--panel)">';
-  h += '<th style="padding:10px 12px;text-align:left;font-weight:700;border:1px solid var(--line);width:130px">Area</th>';
-  h += '<th style="padding:10px 12px;text-align:left;font-weight:700;border:1px solid var(--line)">Today</th>';
-  h += '<th style="padding:10px 12px;text-align:left;font-weight:700;border:1px solid var(--line);color:var(--phase-1)">Phase 1</th>';
-  h += '<th style="padding:10px 12px;text-align:left;font-weight:700;border:1px solid var(--line);color:var(--phase-2)">Phase 2</th>';
-  h += '<th style="padding:10px 12px;text-align:left;font-weight:700;border:1px solid var(--line);color:var(--phase-3)">Phase 3</th>';
-  h += '</tr></thead><tbody>';
-  ARCH_EVOLUTION.forEach(function(row) {
-    h += '<tr>';
-    h += '<td style="padding:10px 12px;font-weight:600;border:1px solid var(--line);vertical-align:top;background:var(--panel)">' + row.area + '</td>';
-    h += '<td style="padding:10px 12px;border:1px solid var(--line);vertical-align:top;color:var(--text-muted)">' + row.today + '</td>';
-    h += '<td style="padding:10px 12px;border:1px solid var(--line);vertical-align:top;border-top:2px solid var(--phase-1)">' + row.phase1 + '</td>';
-    h += '<td style="padding:10px 12px;border:1px solid var(--line);vertical-align:top;border-top:2px solid var(--phase-2)">' + row.phase2 + '</td>';
-    h += '<td style="padding:10px 12px;border:1px solid var(--line);vertical-align:top;border-top:2px solid var(--phase-3)">' + row.phase3 + '</td>';
-    h += '</tr>';
+  h += '<div style="overflow-x:auto">';
+  h += '<div style="display:grid;grid-template-columns:140px repeat(4,minmax(160px,1fr));min-width:780px;border:1px solid var(--line);border-radius:10px;overflow:hidden">';
+
+  // Header row
+  h += '<div style="padding:10px 12px;background:#1F2937;color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;border-right:1px solid rgba(255,255,255,0.15)">Layer</div>';
+  PHASE_LABELS.forEach(function(label, i) {
+    h += '<div style="padding:10px 12px;background:' + PHASE_HDR_COLORS[i] + ';color:#fff;font-size:12px;font-weight:700;text-align:center' + (i < 3 ? ';border-right:1px solid rgba(255,255,255,0.15)' : '') + '">' + label + '</div>';
   });
-  h += '</tbody></table></div>';
-  document.getElementById('arch-evolution-table').innerHTML = h;
+
+  // Layer rows with deterministic/agentic boundary before Layer 4 (idx 3)
+  GRID_LAYERS.forEach(function(layer, idx) {
+    var phases = [layer.today, layer.phase1, layer.phase2, layer.phase3];
+    var isLastLayer = idx === GRID_LAYERS.length - 1;
+
+    if (idx === 3) {
+      h += '<div style="grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:6px 16px;background:#FFF7ED;border-top:2px dashed #F59E0B;border-bottom:2px dashed #F59E0B">';
+      h += '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#92400E">Deterministic / Agentic boundary</span>';
+      h += '<span style="flex:1;border-top:1.5px dashed #FCD34D;display:block"></span>';
+      h += '<span style="font-size:10px;color:#92400E;font-style:italic">Workflow owns state. Agents return bounded outputs only.</span>';
+      h += '</div>';
+    }
+
+    // Label cell
+    h += '<div style="padding:12px;background:var(--panel);' + (isLastLayer ? '' : 'border-bottom:1px solid var(--line);') + 'border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center">';
+    h += '<div style="font-size:10px;font-weight:700;color:#fff;background:' + layer.labelColor + ';padding:2px 7px;border-radius:8px;display:inline-block;margin-bottom:4px;white-space:nowrap">Layer ' + layer.order + '</div>';
+    h += '<div style="font-size:12px;font-weight:600;color:var(--ink)">' + layer.name + '</div>';
+    h += '</div>';
+
+    // Phase cells
+    phases.forEach(function(phase, pi) {
+      var cfg = STATUS_CONFIG[phase.status] || STATUS_CONFIG['none'];
+      var isLastCol = pi === 3;
+      h += '<div style="padding:12px;background:' + cfg.bg + ';border-top:' + cfg.borderTop + ';' + (isLastLayer ? '' : 'border-bottom:1px solid var(--line);') + (isLastCol ? '' : 'border-right:1px solid var(--line);') + '">';
+      if (cfg.badge) {
+        h += '<span style="font-size:9px;font-weight:700;background:' + cfg.badgeBg + ';color:' + cfg.badgeColor + ';padding:1px 6px;border-radius:8px;display:inline-block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em">' + cfg.badge + '</span><br>';
+      }
+      h += '<span style="font-size:11px;line-height:1.45;color:' + (phase.status === 'none' ? '#9CA3AF' : 'var(--ink)') + '">' + phase.text + '</span>';
+      if (phase.agents && phase.agents.length > 0) {
+        h += '<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px">';
+        phase.agents.forEach(function(agent) {
+          h += '<span style="font-size:9px;font-weight:700;background:#F4EBFF;color:#7C3AED;padding:2px 7px;border-radius:8px;border:1px dashed #A100FF">' + agent + '</span>';
+        });
+        h += '</div>';
+      }
+      h += '</div>';
+    });
+  });
+
+  // Legend row
+  h += '<div style="grid-column:1/-1;padding:10px 16px;background:var(--panel);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;align-items:center">';
+  h += '<span style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">Legend:</span>';
+  [
+    { bg: '#F9FAFB', border: '#9CA3AF', label: 'Existing (no change)' },
+    { bg: '#EFF6FF', border: '#3456C5', label: 'New or enhanced' },
+    { bg: '#F4EBFF', border: '#A100FF', label: 'Agent capability' },
+    { bg: '#F3F4F6', border: '#D1D5DB', label: 'Not yet built' }
+  ].forEach(function(item) {
+    h += '<div style="display:flex;align-items:center;gap:6px">';
+    h += '<div style="width:20px;height:14px;background:' + item.bg + ';border-top:2px solid ' + item.border + ';border-radius:2px"></div>';
+    h += '<span style="font-size:11px;color:var(--ink)">' + item.label + '</span>';
+    h += '</div>';
+  });
+  h += '</div>';
+
+  h += '</div></div>';
+  el.innerHTML = h;
 }
 
 function renderArchLayers() {
