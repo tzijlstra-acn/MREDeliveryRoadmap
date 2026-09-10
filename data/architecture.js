@@ -382,4 +382,4 @@ var UX_MEASURES = [
 ];
 
 // ES module export for Vite/React
-export { ARCH_LAYERS, APP_TIERS };
+export { ARCH_LAYERS, APP_TIERS, ARCH_EVOLUTION, USER_JOURNEYS };
