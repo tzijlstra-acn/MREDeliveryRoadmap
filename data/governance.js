@@ -182,4 +182,4 @@ var RISKS = [
 ];
 
 // ES module export for Vite/React
-export { GOVERNANCE_FORUMS, DECISIONS, RISKS };
+export { GOVERNANCE_FORUMS, DECISIONS, RISKS, STAGE_GATES };

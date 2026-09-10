@@ -14,7 +14,7 @@ const ROOT = join(__dirname, '..');
 
 // Files to scan (relative to ROOT)
 const SCAN_EXTENSIONS = ['.html', '.js'];
-const EXCLUDE_DIRS = ['node_modules', '.git', '.github', 'scripts'];
+const EXCLUDE_DIRS = ['node_modules', '.git', '.github', 'scripts', 'dist'];
 
 // Forbidden patterns with descriptions
 const FORBIDDEN = [
