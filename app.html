@@ -830,13 +830,19 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 
   <!-- Portfolio tab bar -->
   <div class="tab-bar" role="tablist" style="margin-bottom:20px">
-    <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchPortfolioTab('reg-register-view')">Regulation register</button>
+    <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchPortfolioTab('matrix-view')">Regulation matrix</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchPortfolioTab('reg-register-view')">Regulation register</button>
     <button class="tab-btn" role="tab" aria-selected="false" onclick="switchPortfolioTab('wave-view')">Wave view</button>
     <button class="tab-btn" role="tab" aria-selected="false" onclick="switchPortfolioTab('dod-view')">Onboarding definition of done</button>
   </div>
 
+  <!-- Matrix view tab (default) -->
+  <div class="tab-content active" id="matrix-view">
+    <div id="matrix-view-container"></div>
+  </div>
+
   <!-- Regulation register tab -->
-  <div class="tab-content active" id="reg-register-view">
+  <div class="tab-content" id="reg-register-view">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" role="toolbar">
       <select id="reg-status-filter" onchange="renderRegTable()" style="padding:6px 12px;border:1px solid var(--line);border-radius:6px;font-size:12px;color:var(--ink)">
         <option value="all">All statuses</option>

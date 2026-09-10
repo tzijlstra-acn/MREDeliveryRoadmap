@@ -21,7 +21,7 @@ function navigate(sectionId) {
   if (sectionId === 'roadmap') renderRoadmap();
   if (sectionId === 'architecture' && !document.querySelector('#arch-layers .arch-layer')) renderArchitecture();
   if (sectionId === 'runs' && !document.querySelector('#runs-content .run-flow')) renderRuns();
-  if (sectionId === 'portfolio' && !document.querySelector('#reg-table tbody')) renderPortfolio();
+  if (sectionId === 'portfolio') renderPortfolio();
   if (sectionId === 'capabilities' && !document.querySelector('#ws-accordion .ws-card')) renderCapabilities();
   if (sectionId === 'team' && !document.querySelector('#pod-grid .pod-card')) renderTeam();
   if (sectionId === 'control' && !document.querySelector('#gate-cards .gate-card')) renderControl();

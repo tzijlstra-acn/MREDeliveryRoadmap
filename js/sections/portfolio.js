@@ -3,39 +3,136 @@ var regSortCol = 'priority';
 var regSortDir = 'asc';
 
 function switchPortfolioTab(tabId) {
-  var tabs = ['reg-register-view','wave-view','dod-view'];
+  var tabs = ['matrix-view', 'reg-register-view', 'wave-view', 'dod-view'];
   tabs.forEach(function(t) {
     var el = document.getElementById(t);
     if (el) el.classList.toggle('active', t === tabId);
   });
   document.querySelectorAll('#portfolio .tab-btn').forEach(function(btn, i) {
-    btn.classList.toggle('active', ['reg-register-view','wave-view','dod-view'][i] === tabId);
-    btn.setAttribute('aria-selected', ['reg-register-view','wave-view','dod-view'][i] === tabId ? 'true' : 'false');
+    btn.classList.toggle('active', tabs[i] === tabId);
+    btn.setAttribute('aria-selected', tabs[i] === tabId ? 'true' : 'false');
   });
+  if (tabId === 'matrix-view') renderMatrixView();
   if (tabId === 'wave-view') renderWaveView();
   if (tabId === 'dod-view') renderDodView();
 }
 
 function renderPortfolio() {
-  // Overview strip
-  var statuses = ['not-inventoried','inventoried','assessed','prioritised','mapped','configured','validated','live','continuously-monitored'];
-  var counts = {};
-  statuses.forEach(function(s){ counts[s] = 0; });
-  REGULATIONS.forEach(function(r){ if (counts[r.status] !== undefined) counts[r.status]++; });
-  var overviewItems = [
-    { label: 'Total regulations', value: REGULATIONS.length, color: 'var(--blue-dark)' },
-    { label: 'Inventoried+', value: REGULATIONS.filter(function(r){ return r.status !== 'not-inventoried'; }).length, color: 'var(--blue-mid)' },
-    { label: 'Assessed+', value: REGULATIONS.filter(function(r){ return ['assessed','prioritised','mapped','configured','validated','live','continuously-monitored'].includes(r.status); }).length, color: 'var(--purple)' },
-    { label: 'In delivery', value: REGULATIONS.filter(function(r){ return ['configured','validated','live','continuously-monitored'].includes(r.status); }).length, color: 'var(--success)' },
-    { label: 'Live', value: REGULATIONS.filter(function(r){ return r.status === 'live' || r.status === 'continuously-monitored'; }).length, color: 'var(--success)' }
+  var stagesForFunnel = [
+    { label: 'In portfolio', statuses: ['not-inventoried','inventoried','assessed','prioritised','mapped','configured','validated','live','continuously-monitored'] },
+    { label: 'Inventoried', statuses: ['inventoried','assessed','prioritised','mapped','configured','validated','live','continuously-monitored'] },
+    { label: 'Assessed', statuses: ['assessed','prioritised','mapped','configured','validated','live','continuously-monitored'] },
+    { label: 'Configured', statuses: ['configured','validated','live','continuously-monitored'] },
+    { label: 'Live', statuses: ['live','continuously-monitored'] }
   ];
-  document.getElementById('portfolio-overview').innerHTML = overviewItems.map(function(item) {
-    return '<div style="background:var(--panel);border-radius:10px;padding:14px 18px;min-width:120px;flex:1">' +
+
+  var funnelData = stagesForFunnel.map(function(s) {
+    return { name: s.label, value: REGULATIONS.filter(function(r){ return s.statuses.includes(r.status); }).length };
+  });
+
+  var overviewItems = [
+    { label: 'Total portfolio', value: REGULATIONS.length, color: 'var(--blue-dark)' },
+    { label: 'Inventoried+', value: funnelData[1].value, color: 'var(--blue-mid)' },
+    { label: 'Assessed+', value: funnelData[2].value, color: 'var(--purple)' },
+    { label: 'Configured+', value: funnelData[3].value, color: 'var(--success)' },
+    { label: 'Live', value: funnelData[4].value, color: 'var(--success)' }
+  ];
+
+  var kpiCards = overviewItems.map(function(item) {
+    return '<div style="background:var(--panel);border-radius:10px;padding:14px 18px;min-width:100px;flex:1">' +
       '<div style="font-size:24px;font-weight:700;color:' + item.color + '">' + item.value + '</div>' +
       '<div style="font-size:11px;color:var(--text-muted);margin-top:2px">' + item.label + '</div>' +
     '</div>';
   }).join('');
-  renderRegTable();
+
+  var chartPanel = '<div style="flex:1;min-width:200px;max-width:260px;padding:14px 18px;background:var(--panel);border-radius:10px">' +
+    '<div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Coverage progress</div>' +
+    '<div id="portfolio-funnel-chart" style="height:110px"></div>' +
+    '</div>';
+
+  document.getElementById('portfolio-overview').innerHTML = kpiCards + chartPanel;
+
+  // ECharts funnel
+  if (typeof uc3Chart === 'function') {
+    uc3Chart('portfolio-funnel-chart', {
+      tooltip: { trigger: 'item', formatter: '{b}: {c} of 24 regulations' },
+      series: [{
+        type: 'funnel', left: 0, right: 0, top: 0, bottom: 0,
+        min: 0, max: 24, gap: 2,
+        label: { show: true, position: 'inside', formatter: function(p) { return p.name + ' (' + p.value + ')'; }, fontSize: 10, color: '#fff' },
+        itemStyle: { borderWidth: 0 },
+        data: funnelData.map(function(d, i) {
+          var colors = ['#3456C5', '#5C4FC5', '#7A3EB1', '#A100FF', '#059669'];
+          return { name: d.name, value: d.value, itemStyle: { color: colors[i] } };
+        })
+      }]
+    });
+  }
+
+  renderMatrixView();
+}
+
+function renderMatrixView() {
+  var container = document.getElementById('matrix-view-container');
+  if (!container) return;
+
+  var STATUS_COLORS = {
+    'not-inventoried': '#9CA3AF', 'inventoried': '#3456C5', 'assessed': '#A78BFA',
+    'prioritised': '#F59E0B', 'mapped': '#5C4FC5', 'configured': '#8B5CF6',
+    'validated': '#10B981', 'live': '#059669', 'continuously-monitored': '#065F46'
+  };
+  var STATUS_LABEL = {
+    'not-inventoried': 'Not inventoried', 'inventoried': 'Inventoried', 'assessed': 'Assessed',
+    'prioritised': 'Prioritised', 'mapped': 'Mapped', 'configured': 'Configured',
+    'validated': 'Validated', 'live': 'Live', 'continuously-monitored': 'Monitored'
+  };
+  var WAVE_BADGE = {
+    'wave-1': { label: 'Wave 1', color: '#3456C5', bg: '#EAF3FA' },
+    'wave-2': { label: 'Wave 2', color: '#B97912', bg: 'var(--warning-pale)' },
+    'wave-3': { label: 'Wave 3', color: '#B97912', bg: 'var(--warning-pale)' }
+  };
+
+  // Legend
+  var legendPairs = [['not-inventoried','inventoried'], ['assessed','prioritised'], ['configured','validated'], ['live','']];
+  var legendHtml = '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center">';
+  legendHtml += '<span style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-right:4px">Status</span>';
+  Object.keys(STATUS_COLORS).forEach(function(s) {
+    legendHtml += '<span style="display:flex;align-items:center;gap:4px;font-size:10px"><span style="width:10px;height:10px;border-radius:2px;background:' + STATUS_COLORS[s] + ';flex-shrink:0"></span>' + STATUS_LABEL[s] + '</span>';
+  });
+  legendHtml += '</div>';
+
+  // 4x6 tile grid (sorted by priority)
+  var sorted = REGULATIONS.slice().sort(function(a, b) {
+    var ap = a.priority !== null && a.priority !== undefined ? a.priority : 999;
+    var bp = b.priority !== null && b.priority !== undefined ? b.priority : 999;
+    return ap - bp;
+  });
+
+  var tilesHtml = '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">';
+  sorted.forEach(function(r) {
+    var sc = STATUS_COLORS[r.status] || '#9CA3AF';
+    var sl = STATUS_LABEL[r.status] || r.status;
+    var wave = r.proposedWave ? WAVE_BADGE[r.proposedWave] : null;
+    var isRef = r.id === 'REG-01';
+
+    tilesHtml += '<div onclick="openRegDrawer(\'' + r.id + '\')" style="border:1px solid var(--line);border-top:4px solid ' + sc + ';border-radius:8px;padding:12px;background:' + (isRef ? '#EAF3FA' : 'var(--white)') + ';cursor:pointer;transition:box-shadow 0.15s" onmouseover="this.style.boxShadow=\'0 2px 8px rgba(0,0,0,0.10)\'" onmouseout="this.style.boxShadow=\'\'">';
+    tilesHtml += '<div style="font-size:9px;font-weight:700;color:var(--text-muted);font-family:monospace;margin-bottom:3px">' + r.id + '</div>';
+    tilesHtml += '<div style="font-size:11px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:6px">' + (r.shortName || r.name) + '</div>';
+    if (isRef && r.referenceScenario) {
+      tilesHtml += '<div style="font-size:9px;color:var(--blue-dark);font-weight:600;margin-bottom:5px">Ref: ' + r.referenceScenario + '</div>';
+    }
+    tilesHtml += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px">';
+    tilesHtml += '<span style="font-size:9px;font-weight:600;color:' + sc + '">' + sl + '</span>';
+    if (wave) {
+      tilesHtml += '<span style="font-size:9px;font-weight:600;color:' + wave.color + ';background:' + wave.bg + ';padding:1px 5px;border-radius:4px">' + wave.label + '</span>';
+    }
+    tilesHtml += '</div></div>';
+  });
+  tilesHtml += '</div>';
+
+  tilesHtml += '<div style="margin-top:10px;font-size:11px;color:var(--text-muted)">Click any tile to view regulation detail. Wave 2 and Wave 3 assignments are subject to gate decisions. REG-01 (DORA, Backup and Restore reference) is the only confirmed Wave 1 regulation.</div>';
+
+  container.innerHTML = legendHtml + tilesHtml;
 }
 
 function renderRegTable() {
