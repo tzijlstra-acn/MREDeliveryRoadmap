@@ -122,7 +122,7 @@ body {
 
 .section {
   padding: 40px 48px;
-  max-width: 1160px;
+  max-width: 1680px;
 }
 @media (max-width: 768px) { .section { padding: 24px 20px; } }
 
@@ -1467,4 +1467,92 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 .scale-scenario-panel-qual  {
   font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--line);
   padding-top: 8px; margin-top: 4px;
+}
+
+/* ── Executive proof-to-portfolio proposition ── */
+.exec-proposition {
+  display: flex; align-items: stretch; gap: 0;
+  border: 1px solid var(--line); border-radius: 12px;
+  overflow: hidden; margin-bottom: 32px;
+  background: var(--white);
+}
+.exec-prop-item {
+  flex: 1; padding: 20px 24px; display: flex; align-items: flex-start; gap: 14px;
+  border-right: 1px solid var(--line); min-width: 0;
+}
+.exec-prop-item:last-child { border-right: none; }
+.exec-prop-proof     { border-top: 3px solid #3456C5; }
+.exec-prop-capability { border-top: 3px solid #7A3EB1; }
+.exec-prop-portfolio  { border-top: 3px solid #C53A7B; }
+.exec-prop-icon {
+  font-size: 22px; line-height: 1; flex-shrink: 0; margin-top: 2px;
+}
+.exec-prop-content { display: flex; flex-direction: column; gap: 4px; }
+.exec-prop-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.exec-prop-title { font-size: 15px; font-weight: 700; color: var(--ink); }
+.exec-prop-desc  { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+.exec-prop-arrow {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 4px; font-size: 20px; color: var(--line); flex-shrink: 0;
+  background: var(--panel); border-right: 1px solid var(--line);
+}
+
+/* ── Runs executive journey ── */
+.runs-journey {
+  background: linear-gradient(135deg, #160029 0%, #1E003D 100%);
+  border-radius: 12px; padding: 24px 28px; margin-bottom: 28px;
+  border: 1px solid rgba(161,0,255,0.2);
+}
+.runs-journey-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+.runs-journey-steps {
+  display: flex; align-items: flex-start; flex-wrap: wrap; gap: 8px;
+}
+.runs-journey-step-wrap {
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.runs-journey-step {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  max-width: 120px;
+}
+.runs-journey-step-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(161,0,255,0.4); border: 1.5px solid rgba(161,0,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.runs-journey-step-text {
+  font-size: 12px; color: rgba(255,255,255,0.85);
+  text-align: center; line-height: 1.35;
+}
+.runs-journey-arrow {
+  font-size: 18px; color: rgba(161,0,255,0.5);
+  padding-top: 4px; flex-shrink: 0;
+}
+.runs-journey-note {
+  font-size: 11px; color: rgba(255,255,255,0.35);
+  margin-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 12px;
+}
+
+/* ── Architecture headless callout ── */
+.arch-headless-callout {
+  margin-top: 14px; padding: 14px 18px;
+  background: linear-gradient(90deg, #160029 0%, #1E0040 100%);
+  border-radius: 8px; border: 1px solid rgba(161,0,255,0.25);
+  font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.arch-headless-pill {
+  display: inline-block; flex-shrink: 0;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  background: rgba(161,0,255,0.3); color: rgba(255,255,255,0.7);
+  white-space: nowrap; margin-top: 1px;
 }

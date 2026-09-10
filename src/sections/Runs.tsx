@@ -99,6 +99,33 @@ export default function Runs() {
         </p>
       </div>
 
+      {/* Executive 7-step journey */}
+      <div className="runs-journey">
+        <div className="runs-journey-label">The plain-language story</div>
+        <div className="runs-journey-steps">
+          {[
+            { n: 1, text: 'A rule changes.',                          icon: '📋' },
+            { n: 2, text: 'Experts approve what it means.',           icon: '✅' },
+            { n: 3, text: 'The control framework is updated.',        icon: '🔄' },
+            { n: 4, text: 'The system finds who is affected.',        icon: '🔍' },
+            { n: 5, text: 'Teams receive a clear action.',            icon: '📨' },
+            { n: 6, text: 'The change is implemented and checked.',   icon: '🔧' },
+            { n: 7, text: 'Compliance is proven and monitored.',      icon: '📊' },
+          ].map((s, i, arr) => (
+            <div key={s.n} className="runs-journey-step-wrap">
+              <div className="runs-journey-step">
+                <div className="runs-journey-step-num">{s.n}</div>
+                <div className="runs-journey-step-text">{s.text}</div>
+              </div>
+              {i < arr.length - 1 && <div className="runs-journey-arrow">→</div>}
+            </div>
+          ))}
+        </div>
+        <div className="runs-journey-note">
+          Technical detail below. Human approval gates are non-bypassable at Steps 2 and 6.
+        </div>
+      </div>
+
       {/* Run selector */}
       <div className="runs-selector">
         {runs.map((r: any) => (

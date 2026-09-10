@@ -85,6 +85,36 @@ export default function Executive() {
         </p>
       </div>
 
+      {/* Proof-to-capability-to-portfolio visual */}
+      <div className="exec-proposition">
+        <div className="exec-prop-item exec-prop-proof">
+          <div className="exec-prop-icon">◎</div>
+          <div className="exec-prop-content">
+            <div className="exec-prop-tag">Reference scenario</div>
+            <div className="exec-prop-title">DORA Backup &amp; Restore</div>
+            <div className="exec-prop-desc">One compliance segment. Proves the end-to-end mechanism. Not the full DORA scope.</div>
+          </div>
+        </div>
+        <div className="exec-prop-arrow">→</div>
+        <div className="exec-prop-item exec-prop-capability">
+          <div className="exec-prop-icon">⬡</div>
+          <div className="exec-prop-content">
+            <div className="exec-prop-tag">Built once, reused everywhere</div>
+            <div className="exec-prop-title">Agentic Compliance Capability</div>
+            <div className="exec-prop-desc">Shared platform. Compliance Hub, Product Hub, DDCR remain the user experiences. Headless execution behind them.</div>
+          </div>
+        </div>
+        <div className="exec-prop-arrow">→</div>
+        <div className="exec-prop-item exec-prop-portfolio">
+          <div className="exec-prop-icon">▦</div>
+          <div className="exec-prop-content">
+            <div className="exec-prop-tag">North Star target</div>
+            <div className="exec-prop-title">24-Regulation Portfolio</div>
+            <div className="exec-prop-desc">Compliance-as-a-Service. Not 24 bespoke builds. One capability, scaled. Coverage: decision required at Gate 3.</div>
+          </div>
+        </div>
+      </div>
+
       {/* Three-act narrative */}
       <div className="exec-acts">
         {THREE_ACT.map((act) => (

@@ -250,6 +250,11 @@ export default function Architecture() {
         <p className="section-tagline">
           Watch the stack evolve from manual to AI-native. Click any layer for detail.
         </p>
+        <div className="arch-headless-callout">
+          <span className="arch-headless-pill">Core design principle</span>
+          Experience in existing hubs. Headless execution behind them. Transparent control throughout.
+          Users remain in Compliance Hub, Product Hub, and DDCR. Orchestration and agents run behind those experiences.
+        </div>
       </div>
 
       {/* Scrubber */}
