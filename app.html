@@ -653,25 +653,28 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
     <i class="ti ti-presentation"></i> Executive Decision
   </a>
   <a class="nav-item" data-section="roadmap" onclick="navigate('roadmap')" href="#roadmap">
-    <i class="ti ti-timeline"></i> Delivery Roadmap
+    <i class="ti ti-timeline"></i> Roadmap
   </a>
   <a class="nav-item" data-section="architecture" onclick="navigate('architecture')" href="#architecture">
-    <i class="ti ti-cpu"></i> Architecture &amp; Onboarding
+    <i class="ti ti-cpu"></i> Architecture &amp; Foundations
+  </a>
+  <a class="nav-item" data-section="runs" onclick="navigate('runs')" href="#runs">
+    <i class="ti ti-git-branch"></i> Obligation Runs
   </a>
   <a class="nav-item" data-section="portfolio" onclick="navigate('portfolio')" href="#portfolio">
     <i class="ti ti-books"></i> Regulatory Portfolio
   </a>
   <a class="nav-item" data-section="capabilities" onclick="navigate('capabilities')" href="#capabilities">
-    <i class="ti ti-layout-grid"></i> Capabilities
+    <i class="ti ti-layout-grid"></i> Deliverables &amp; Op Model
   </a>
   <a class="nav-item" data-section="team" onclick="navigate('team')" href="#team">
-    <i class="ti ti-users"></i> Team &amp; Delivery Scenarios
+    <i class="ti ti-users"></i> People &amp; Skills
   </a>
   <a class="nav-item" data-section="control" onclick="navigate('control')" href="#control">
     <i class="ti ti-chart-bar"></i> Execution Control
   </a>
   <a class="nav-item" data-section="scale" onclick="navigate('scale')" href="#scale" style="white-space:nowrap">
-    <i class="ti ti-rocket"></i> Value &amp; Scale
+    <i class="ti ti-rocket"></i> Value &amp; Tokenomics
   </a>
   <div class="sidebar-footer">
     <div style="margin-bottom:4px;font-weight:600;color:rgba(255,255,255,0.35)">Status</div>
@@ -745,6 +748,12 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
       <div style="font-size:12px;color:#B97912">Concept validated. North Star defined. Implementation not yet mobilised.</div>
     </div>
   </div>
+
+  <!-- Purple Plus context -->
+  <div id="purple-plus-callout" style="margin-bottom:24px"></div>
+
+  <!-- Three-scale-dimension model -->
+  <div id="three-scale-dimensions" style="margin-bottom:28px"></div>
 
   <!-- KPI strip -->
   <div id="kpi-strip" class="kpi-strip"></div>
@@ -825,6 +834,7 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
     <h1 class="section-title">On-premises architecture, orchestration boundaries and application integration</h1>
     <p class="section-tagline">Seven-layer on-premises architecture with deterministic workflow ownership and bounded agent execution. Four application integration tiers, defaulting to the lowest tier sufficient for reliable evidence.</p>
   </div>
+  <div id="app-population-context" style="margin-bottom:24px"></div>
   <div id="arch-evolution-table" style="margin-bottom:32px"></div>
   <div id="arch-layers" style="margin-bottom:32px"></div>
   <div id="arch-boundary" style="margin-bottom:32px"></div>
@@ -834,6 +844,18 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
   <div id="user-journeys" style="margin-bottom:32px"></div>
   <div id="tech-decisions" style="margin-bottom:32px"></div>
   <div id="deployment-principles" style="margin-bottom:32px"></div>
+</section>
+
+<!-- ============================================================
+     SECTION 3b: Obligation Chain and Run View
+============================================================ -->
+<section class="section" id="runs">
+  <div class="section-header">
+    <div class="section-label">Obligation Chain and Run View</div>
+    <h1 class="section-title">From external obligation to DDCR-reported conformance status</h1>
+    <p class="section-tagline">Three run patterns: regulatory change (Run A), application impact and remediation (Run B), and continuous evidence and monitoring (Run C). Every step shows its execution mechanism. Human gates are non-negotiable. MITRA and MAYA are provisionally assigned agent names.</p>
+  </div>
+  <div id="runs-content"></div>
 </section>
 
 <!-- ============================================================
@@ -931,7 +953,7 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 
   <!-- Deliverables tab -->
   <div class="tab-content" id="del-view">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" role="toolbar">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" role="toolbar">
       <select id="del-phase-filter" onchange="renderDeliverables()" style="padding:6px 12px;border:1px solid var(--line);border-radius:6px;font-size:12px;color:var(--ink)">
         <option value="all">All phases</option>
         <option value="phase-1">Phase 1</option>
@@ -943,6 +965,8 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
       </select>
       <span id="del-count" style="padding:6px 12px;font-size:12px;color:var(--text-muted);align-self:center"></span>
     </div>
+    <!-- OM dimension filter chips -->
+    <div id="del-om-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"></div>
     <div id="del-grid" class="del-grid"></div>
   </div>
 </section>
@@ -956,6 +980,9 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
     <h1 class="section-title">Three delivery scenarios - one decision required</h1>
     <p class="section-tagline">Lean, Recommended, and Accelerated scenarios with transparent FTE bands, squad model, and cost levers. All figures are illustrative planning assumptions, not commercial estimates.</p>
   </div>
+
+  <!-- Workforce impact panel -->
+  <div id="workforce-impact-panel" style="margin-bottom:32px"></div>
 
   <!-- Scenario selector -->
   <div id="team-scenario-selector" style="margin-bottom:32px"></div>
@@ -1061,6 +1088,9 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
     <p class="section-tagline">How the programme measures its impact, validates the 13.8% directional assumption, and decides when to scale.</p>
   </div>
 
+  <!-- Savings derivation bridge -->
+  <div id="value-derivation-bridge" style="margin-bottom:28px"></div>
+
   <!-- 13.8% hero -->
   <div class="card-hero" style="margin-bottom:28px">
     <div style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:10px">Working assumption</div>
@@ -1098,6 +1128,15 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
       <tbody id="kpi-table-body"></tbody>
     </table>
   </div>
+
+  <!-- Three-level savings scenarios -->
+  <div id="value-scenarios-table" style="margin-bottom:32px"></div>
+
+  <!-- Assumption history -->
+  <div id="assumption-history-table" style="margin-bottom:32px"></div>
+
+  <!-- Tokenomics -->
+  <div id="tokenomics-section" style="margin-bottom:32px"></div>
 
   <!-- Scale decision framework -->
   <h2 style="margin-bottom:6px">Scale decision framework</h2>
@@ -1219,6 +1258,10 @@ h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; 
 <script src="data/roadmap-content.js"></script>
 <script src="data/architecture.js"></script>
 <script src="data/scenarios.js"></script>
+<script src="data/runs.js"></script>
+<script src="data/models.js"></script>
+<script src="data/value-assumptions.js"></script>
+<script src="data/people-impact.js"></script>
 
 <script>
 // ── State ──
@@ -1243,6 +1286,7 @@ function navigate(sectionId) {
 
   if (sectionId === 'roadmap' && !document.querySelector('#roadmap-container table')) renderRoadmap();
   if (sectionId === 'architecture' && !document.querySelector('#arch-layers .arch-layer')) renderArchitecture();
+  if (sectionId === 'runs' && !document.querySelector('#runs-content .run-flow')) renderRuns();
   if (sectionId === 'portfolio' && !document.querySelector('#reg-table tbody')) renderPortfolio();
   if (sectionId === 'capabilities' && !document.querySelector('#ws-accordion .ws-card')) renderCapabilities();
   if (sectionId === 'team' && !document.querySelector('#pod-grid .pod-card')) renderTeam();
@@ -1285,6 +1329,8 @@ function confidenceChip(conf) {
 
 // ── Section 1: Executive Overview ──
 function renderExecutive() {
+  renderPurplePlusCallout();
+  renderThreeScaleDimensions();
   renderKpiStrip();
   renderExecPhaseSummary();
   renderExecScenarioChips();
@@ -1292,6 +1338,83 @@ function renderExecutive() {
   renderFoundation();
   renderActions();
   renderDecisions();
+}
+
+function renderPurplePlusCallout() {
+  var el = document.getElementById('purple-plus-callout');
+  if (!el) return;
+  el.innerHTML = [
+    '<div style="background:linear-gradient(135deg,#F4EBFF 0%,#EAF3FA 100%);border:1px solid #D8B4FE;border-radius:10px;padding:16px 20px;display:flex;align-items:flex-start;gap:16px;">',
+    '<div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#A100FF,#5A1E96);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-sparkles" style="color:#fff;font-size:18px;"></i></div>',
+    '<div>',
+    '<div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5A1E96;margin-bottom:4px;">Purple Plus transformation</div>',
+    '<div style="font-size:13px;font-weight:600;color:#1A1A1A;margin-bottom:4px;">UC3 is one of three flagship use cases spanning build, run and govern</div>',
+    '<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;">',
+    '<div style="font-size:12px;padding:6px 12px;border-radius:20px;background:#fff;border:1px solid #D8B4FE;color:#5A1E96;font-weight:600;">UC1 - Agentic SDLC (build) ~3,000 FTE</div>',
+    '<div style="font-size:12px;padding:6px 12px;border-radius:20px;background:#fff;border:1px solid #D8B4FE;color:#5A1E96;font-weight:600;">UC2 - Agentic IT Operations (run) ~800 FTE</div>',
+    '<div style="font-size:12px;padding:6px 12px;border-radius:20px;background:#A100FF;border:1px solid #A100FF;color:#fff;font-weight:700;">UC3 - Agentic Compliance (govern) ~2,864 FTE affected</div>',
+    '</div>',
+    '<div style="font-size:11px;color:#6B7280;margin-top:6px;">FTE figures represent affected workforce populations, not delivery team sizes. Source: StratC Purple Plus v0.99, September 2026. 2,864 FTE is a working assumption subject to GTRF validation.</div>',
+    '</div>',
+    '</div>'
+  ].join('');
+}
+
+function renderThreeScaleDimensions() {
+  var el = document.getElementById('three-scale-dimensions');
+  if (!el) return;
+  var dims = [
+    {
+      icon: 'ti-brain',
+      color: '#7A3EB1',
+      title: 'Capability maturity',
+      levels: [
+        { label: 'Stage 1: Automate', desc: 'Targeted automation and AI within individual compliance processes. Phase 1.' },
+        { label: 'Stage 2: Orchestrate', desc: 'AI connects processes, systems and LoD through a shared data layer. Phase 2.' },
+        { label: 'Stage 3: Transform', desc: 'Highly automated AI ecosystem. Humans retain oversight. Phase 3 and beyond.' }
+      ]
+    },
+    {
+      icon: 'ti-books',
+      color: '#3456C5',
+      title: 'Regulatory coverage',
+      levels: [
+        { label: 'Wave 1: DORA B&R', desc: 'DORA Backup and Restore as the reference scenario. Gate 1 proof of mechanism.' },
+        { label: 'Wave 2+: Decision required', desc: 'Additional regulations selected at Gate 2. Count and scope: decision required.' },
+        { label: 'North Star: 24 regulations', desc: 'Target portfolio. Committed Month 18 coverage: decision required at Gate 3.' }
+      ]
+    },
+    {
+      icon: 'ti-building',
+      color: '#059669',
+      title: 'Functional expansion',
+      levels: [
+        { label: 'IT Compliance (in scope)', desc: 'UC3 covers IT Compliance as the initial vertical. Proven through Backup and Restore.' },
+        { label: 'Cross-IT risk functions', desc: 'Extend to related IT risk and control functions. Phase 3 and beyond.' },
+        { label: 'Enterprise compliance', desc: 'North Star horizon: full enterprise coverage across all risk and compliance verticals.' }
+      ]
+    }
+  ];
+  var html = '<div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Three scale dimensions</div>';
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">';
+  dims.forEach(function(d) {
+    html += '<div style="border:1px solid ' + d.color + '44;border-radius:10px;padding:16px;background:#fff;">';
+    html += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">';
+    html += '<div style="width:32px;height:32px;border-radius:8px;background:' + d.color + '18;display:flex;align-items:center;justify-content:center;flex-shrink:0;">';
+    html += '<i class="ti ' + d.icon + '" style="color:' + d.color + ';font-size:16px;"></i></div>';
+    html += '<div style="font-size:13px;font-weight:700;color:#1A1A1A;">' + d.title + '</div>';
+    html += '</div>';
+    d.levels.forEach(function(l, i) {
+      html += '<div style="display:flex;gap:10px;margin-bottom:' + (i < d.levels.length - 1 ? '8' : '0') + 'px;">';
+      html += '<div style="width:18px;height:18px;border-radius:50%;background:' + d.color + (i === 0 ? '' : (i === 1 ? '99' : '44')) + ';display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700;color:#fff;margin-top:1px;">' + (i+1) + '</div>';
+      html += '<div><div style="font-size:12px;font-weight:600;color:#1A1A1A;">' + l.label + '</div>';
+      html += '<div style="font-size:11px;color:var(--text-muted);line-height:1.4;">' + l.desc + '</div></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
 }
 
 function renderExecPhaseSummary() {
@@ -1782,22 +1905,62 @@ function toggleWs(idx) {
   header.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 
+var activeOMFilter = 'all';
+
+var OM_DIMENSIONS = [
+  { id: 'all', label: 'All dimensions', color: '#6B7280' },
+  { id: 'product-service-portfolio', label: 'Product and Service Portfolio', color: '#A100FF' },
+  { id: 'organisation-processes', label: 'Organisation and Processes', color: '#3456C5' },
+  { id: 'technology-platforms', label: 'Technology and Platforms', color: '#059669' },
+  { id: 'value-management', label: 'Value Management', color: '#D97706' },
+  { id: 'people', label: 'People', color: '#DC2626' }
+];
+
+function renderOMFilterChips() {
+  var el = document.getElementById('del-om-filter');
+  if (!el) return;
+  el.innerHTML = OM_DIMENSIONS.map(function(dim) {
+    var isActive = activeOMFilter === dim.id;
+    return '<button onclick="selectOMFilter(\'' + dim.id + '\')" style="padding:5px 12px;border-radius:20px;border:1px solid ' + (isActive ? dim.color : 'var(--line)') + ';background:' + (isActive ? dim.color + '18' : '#fff') + ';color:' + (isActive ? dim.color : 'var(--text-muted)') + ';font-size:11px;font-weight:' + (isActive ? '700' : '500') + ';cursor:pointer;">' + dim.label + '</button>';
+  }).join('');
+}
+
+function selectOMFilter(dimId) {
+  activeOMFilter = dimId;
+  renderOMFilterChips();
+  renderDeliverables();
+}
+
 function renderDeliverables() {
+  renderOMFilterChips();
   var phaseFilter = document.getElementById('del-phase-filter').value;
   var wsFilter = document.getElementById('del-ws-filter').value;
   var filtered = DELIVERABLES.filter(function(d){
-    return (phaseFilter === 'all' || d.phaseId === phaseFilter) &&
-           (wsFilter === 'all' || d.workstreamId === wsFilter);
+    var phaseOk = phaseFilter === 'all' || d.phaseId === phaseFilter;
+    var wsOk = wsFilter === 'all' || d.workstreamId === wsFilter;
+    var omOk = activeOMFilter === 'all' || (Array.isArray(d.operatingModelDimension) && d.operatingModelDimension.includes(activeOMFilter));
+    return phaseOk && wsOk && omOk;
   });
   document.getElementById('del-count').textContent = 'Showing ' + filtered.length + ' of ' + DELIVERABLES.length + ' deliverables';
+
+  var omDimLabels = {};
+  OM_DIMENSIONS.forEach(function(d){ omDimLabels[d.id] = d.label; });
+  var omDimColors = {};
+  OM_DIMENSIONS.forEach(function(d){ omDimColors[d.id] = d.color; });
+
   document.getElementById('del-grid').innerHTML = filtered.map(function(d) {
     var ws = WORKSTREAMS.find(function(w){ return w.id === d.workstreamId; });
+    var omChips = Array.isArray(d.operatingModelDimension) ? d.operatingModelDimension.map(function(dim) {
+      var c = omDimColors[dim] || '#6B7280';
+      return '<span style="font-size:10px;padding:1px 6px;border-radius:8px;background:' + c + '18;color:' + c + ';border:1px solid ' + c + '33;font-weight:600;">' + (omDimLabels[dim] || dim) + '</span>';
+    }).join(' ') : '';
     return '<div class="del-card" onclick="openDeliverableDrawer(\'' + d.id + '\')" tabindex="0" role="button" onkeydown="if(event.key===\'Enter\')openDeliverableDrawer(\'' + d.id + '\')" aria-label="' + d.id + ' - ' + d.name + '">' +
       '<div class="del-id">' + d.id + '</div>' +
       '<div class="del-name">' + d.name + '</div>' +
       '<div class="del-summary">' + d.executiveSummary + '</div>' +
       '<div class="del-meta">' + phaseChip(d.phaseId) + ' ' + statusChip(d.status) + ' ' + confidenceChip(d.confidence) + (d.decisionRequired ? ' ' + chip('Decision required','decision-required') : '') + '</div>' +
-      (ws ? '<div style="margin-top:8px;font-size:11px;color:var(--text-muted)">' + ws.name + '</div>' : '') +
+      (omChips ? '<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;">' + omChips + '</div>' : '') +
+      (ws ? '<div style="margin-top:6px;font-size:11px;color:var(--text-muted)">' + ws.name + '</div>' : '') +
     '</div>';
   }).join('') || '<div style="padding:24px;text-align:center;color:var(--text-muted)">No deliverables match the selected filters.</div>';
 }
@@ -1806,12 +1969,77 @@ function renderDeliverables() {
 var activeScenario = 'recommended';
 
 function renderTeam() {
+  renderWorkforceImpactPanel();
   renderScenarioSelector();
   renderPodGrid();
   renderSquadModel();
   renderCostLevers();
   renderGuardrails();
   renderSkillHeatmap();
+}
+
+function renderWorkforceImpactPanel() {
+  var el = document.getElementById('workforce-impact-panel');
+  if (!el) return;
+  var s = WORKFORCE_IMPACT_SUMMARY;
+  var html = '<div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;">';
+  html += '<div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">Workforce impact context</div>';
+
+  // Summary metrics row
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px;">';
+  html += '<div style="padding:12px 14px;background:#fff;border-radius:8px;border:1px solid var(--line);">';
+  html += '<div style="font-size:22px;font-weight:700;color:#1A1A1A;">Up to ' + s.affectedRoleTypes + '</div>';
+  html += '<div style="font-size:12px;font-weight:600;margin-top:2px;">GTRF role types in scope</div>';
+  html += '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Subject to GTRF analysis</div>';
+  html += '</div>';
+  html += '<div style="padding:12px 14px;background:#fff;border-radius:8px;border:1px solid var(--line);">';
+  html += '<div style="font-size:22px;font-weight:700;color:#1A1A1A;">~' + s.fteInScope.toLocaleString() + '</div>';
+  html += '<div style="font-size:12px;font-weight:600;margin-top:2px;">FTE in potential scope</div>';
+  html += '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Working assumption, subject to GTRF validation</div>';
+  html += '</div>';
+  html += '<div style="padding:12px 14px;background:var(--success-pale);border-radius:8px;border:1px solid var(--success);">';
+  html += '<div style="font-size:22px;font-weight:700;color:var(--success);">' + s.capacityFreed + ' FTE</div>';
+  html += '<div style="font-size:12px;font-weight:600;color:var(--success);margin-top:2px;">Capacity freed at 13.8%</div>';
+  html += '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Capacity freed, not headcount reduction</div>';
+  html += '</div>';
+  html += '</div>';
+
+  // Future task outcome distribution
+  html += '<div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Future task outcome (directional)</div>';
+  html += '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">';
+  FUTURE_TASK_OUTCOME_TAXONOMY.forEach(function(fto) {
+    var count = GTRF_ROLES.filter(function(r){ return r.futureTaskOutcome === fto.id; }).length;
+    if (count === 0) return;
+    html += '<div style="padding:6px 12px;border-radius:20px;border:1px solid ' + fto.color + '44;background:' + fto.color + '12;display:flex;align-items:center;gap:6px;">';
+    html += '<span style="font-size:14px;font-weight:700;color:' + fto.color + ';">' + count + '</span>';
+    html += '<span style="font-size:11px;font-weight:600;color:' + fto.color + ';">' + fto.label + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  html += '<div style="font-size:11px;color:var(--text-muted);">' + s.populationDisclaimer + ' Future task outcome distribution is based on initial role assessment, subject to GTRF validation.</div>';
+  html += '</div>';
+
+  // GTRF roles table
+  html += '<h2 style="margin-top:24px;margin-bottom:8px;">GTRF roles in UC3 scope</h2>';
+  html += '<p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Up to 14 GTRF role types identified for initial UC3 impact assessment. Subject to GTRF analysis (Phase 1, December 2026).</p>';
+  html += '<div class="raid-table-wrap">';
+  html += '<table class="raid-table" aria-label="GTRF roles in UC3 scope">';
+  html += '<thead><tr><th>Role type</th><th>Future task outcome</th><th>Task shift summary</th><th>New skills required</th></tr></thead>';
+  html += '<tbody>';
+  GTRF_ROLES.forEach(function(r) {
+    var fto = FUTURE_TASK_OUTCOME_TAXONOMY.find(function(f){ return f.id === r.futureTaskOutcome; });
+    var ftoColor = fto ? fto.color : '#6B7280';
+    html += '<tr>';
+    html += '<td style="font-weight:600;">' + r.roleType + '</td>';
+    html += '<td><span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;background:' + ftoColor + '18;color:' + ftoColor + ';border:1px solid ' + ftoColor + '44;">' + (fto ? fto.label : r.futureTaskOutcome) + '</span></td>';
+    html += '<td style="font-size:12px;color:var(--text-muted);">' + r.taskShiftSummary + '</td>';
+    html += '<td style="font-size:12px;">' + r.newSkillsRequired.join(', ') + '</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+
+  el.innerHTML = html;
 }
 
 function renderScenarioSelector() {
@@ -2077,7 +2305,129 @@ function renderDecisionLog() {
   }).join('');
 }
 
-// ── Section 6: Value and Scale ──
+// ── Section 6: Value, Tokenomics and Assumptions ──
+
+function renderValueDerivationBridge() {
+  var el = document.getElementById('value-derivation-bridge');
+  if (!el) return;
+  var html = '<div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Savings derivation bridge (13.8% derivation)</div>';
+  html += '<div style="overflow-x:auto;"><div style="display:flex;align-items:center;gap:0;min-width:max-content;margin-bottom:12px;">';
+  VALUE_BRIDGE.forEach(function(vb, i) {
+    html += '<div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;min-width:160px;text-align:center;">';
+    html += '<div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;">Component ' + vb.symbol + '</div>';
+    html += '<div style="font-size:24px;font-weight:800;color:#1A1A1A;font-family:\'Space Grotesk\',sans-serif;">' + vb.label + '</div>';
+    html += '<div style="font-size:10px;color:var(--text-muted);margin-top:2px;">' + vb.rangeLabel + ' range</div>';
+    html += '<div style="font-size:11px;font-weight:600;color:#1A1A1A;margin-top:8px;line-height:1.3;">' + vb.component + '</div>';
+    html += '<div style="font-size:10px;color:var(--text-muted);margin-top:4px;line-height:1.3;">' + vb.scope + '</div>';
+    html += '</div>';
+    if (i < VALUE_BRIDGE.length - 1) {
+      html += '<div style="padding:0 8px;font-size:20px;color:#9CA3AF;font-weight:700;">x</div>';
+    }
+  });
+  html += '<div style="padding:0 12px;font-size:20px;color:#3456C5;font-weight:700;">=</div>';
+  html += '<div style="background:linear-gradient(135deg,#3456C5,#5C4FC5);border-radius:8px;padding:14px;min-width:140px;text-align:center;">';
+  html += '<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:4px;">Net result</div>';
+  html += '<div style="font-size:28px;font-weight:800;color:#fff;font-family:\'Space Grotesk\',sans-serif;">13.8%</div>';
+  html += '<div style="font-size:10px;color:rgba(255,255,255,0.65);margin-top:2px;">11-17% range</div>';
+  html += '<div style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.8);margin-top:8px;">396 FTE capacity freed</div>';
+  html += '<div style="font-size:10px;color:rgba(255,255,255,0.55);margin-top:2px;">Not headcount reduction</div>';
+  html += '</div>';
+  html += '</div></div>';
+  html += '<div style="font-size:11px;color:var(--text-muted);padding:10px 14px;background:var(--panel);border-radius:8px;">';
+  html += 'Source: UC3_Savings_Logic_Client_Slide.pptx. All components are working assumptions to be validated through operational pilot at Gate 2 (March 2027). 396 FTE represents capacity freed, not automatic headcount reduction. Denominator: 14 GTRF role types, 2,864 FTE (working assumption, subject to GTRF validation).';
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function renderValueScenariosTable() {
+  var el = document.getElementById('value-scenarios-table');
+  if (!el) return;
+  var html = '<h2 style="margin-bottom:6px;">Three scaling levels</h2>';
+  html += '<p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">The same bridge components at three different denominators and adoption assumptions. All are working assumptions.</p>';
+  html += '<div class="raid-table-wrap">';
+  html += '<table class="raid-table" aria-label="Three scaling levels">';
+  html += '<thead><tr><th>Level</th><th>Range</th><th>Base case</th><th>Denominator</th><th>Regulation scope</th><th>North Star stage</th><th>Gate target</th></tr></thead>';
+  html += '<tbody>';
+  VALUE_SCENARIOS.forEach(function(vs) {
+    html += '<tr>';
+    html += '<td style="font-weight:600;">' + vs.label + '</td>';
+    html += '<td>' + vs.lowLabel + ' - ' + vs.highLabel + '</td>';
+    html += '<td style="font-weight:700;">' + vs.baseLabel + '</td>';
+    html += '<td style="font-size:12px;color:var(--text-muted);">' + vs.denominator + '</td>';
+    html += '<td style="font-size:12px;">' + vs.regulationScope + '</td>';
+    html += '<td style="font-size:12px;">' + vs.northStarStage + '</td>';
+    html += '<td style="font-size:12px;">' + vs.gateTarget + '</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+  el.innerHTML = html;
+}
+
+function renderAssumptionHistoryTable() {
+  var el = document.getElementById('assumption-history-table');
+  if (!el) return;
+  var html = '<h2 style="margin-bottom:6px;">Assumption history</h2>';
+  html += '<p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Earlier estimates and their relationship to the current working assumption. Superseded figures are shown for audit purposes only.</p>';
+  html += '<div class="raid-table-wrap">';
+  html += '<table class="raid-table" aria-label="Assumption history">';
+  html += '<thead><tr><th>Figure</th><th>Period</th><th>Scope</th><th>Status</th><th>Notes</th></tr></thead>';
+  html += '<tbody>';
+  ASSUMPTION_HISTORY.forEach(function(ah) {
+    var statusColor = ah.status === 'current' ? 'var(--success)' : '#B97912';
+    var statusBg = ah.status === 'current' ? 'var(--success-pale)' : 'var(--warning-pale)';
+    html += '<tr>';
+    html += '<td style="font-weight:700;">' + ah.figure + '</td>';
+    html += '<td style="font-size:12px;">' + ah.period + '</td>';
+    html += '<td style="font-size:12px;color:var(--text-muted);">' + ah.scope + '</td>';
+    html += '<td><span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;background:' + statusBg + ';color:' + statusColor + ';">' + ah.statusLabel + '</span></td>';
+    html += '<td style="font-size:12px;color:var(--text-muted);">' + ah.notes + '</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+  el.innerHTML = html;
+}
+
+function renderTokenomicsSection() {
+  var el = document.getElementById('tokenomics-section');
+  if (!el) return;
+  var html = '<div style="border-top:1px solid var(--line);padding-top:24px;">';
+  html += '<h2 style="margin-bottom:6px;">Tokenomics and model catalogue</h2>';
+  html += '<p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Approved model classes for each execution type. Specific model versions and pricing are subject to enterprise AI governance approval and as-of-date pricing. All model recommendations require GT AI governance sign-off before deployment.</p>';
+
+  // Model catalogue table
+  html += '<h3 style="font-size:13px;font-weight:700;margin-bottom:10px;">Model catalogue (approved classes)</h3>';
+  html += '<div class="raid-table-wrap" style="margin-bottom:24px;">';
+  html += '<table class="raid-table">';
+  html += '<thead><tr><th>Tier</th><th>Label</th><th>Example tasks</th><th>Data residency</th><th>Governance status</th></tr></thead>';
+  html += '<tbody>';
+  MODEL_CATALOGUE.forEach(function(m) {
+    html += '<tr>';
+    html += '<td style="font-weight:600;">' + m.tier + '</td>';
+    html += '<td>' + m.label + '</td>';
+    html += '<td style="font-size:12px;color:var(--text-muted);">' + m.exampleTasks.join(', ') + '</td>';
+    html += '<td style="font-size:12px;">' + m.dataResidency + '</td>';
+    html += '<td style="font-size:12px;"><span style="font-weight:600;">' + m.governanceNote + '</span></td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+
+  // Cost per run components
+  html += '<h3 style="font-size:13px;font-weight:700;margin-bottom:10px;">Cost-per-run structure</h3>';
+  html += '<p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Token cost is one component of the total cost of a compliance run. Human review time is typically the largest component. Do not present token cost alone as the total run cost.</p>';
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">';
+  COST_PER_RUN_COMPONENTS.forEach(function(c) {
+    html += '<div style="padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:8px;">';
+    html += '<div style="font-size:12px;font-weight:700;margin-bottom:4px;">' + c.component + '</div>';
+    html += '<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">' + c.description + '</div>';
+    html += '<div style="font-size:10px;color:#5A1E96;font-weight:600;">Driver: ' + c.driver + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<div style="font-size:11px;color:var(--text-muted);margin-top:12px;padding:10px;background:var(--warning-pale);border-radius:8px;">Model pricing figures must not be published without an as-of date and "subject to contract" label. Approved model catalogue to be confirmed with GT AI governance. All cost estimates are illustrative planning assumptions, not commercial estimates.</div>';
+  html += '</div>';
+  el.innerHTML = html;
+}
+
 function renderKpiTabs(activeGroupId) {
   var tabBar = document.getElementById('kpi-tab-bar');
   var content = document.getElementById('kpi-tab-content');
@@ -2159,8 +2509,12 @@ function renderScaleDecisionCards() {
 }
 
 function renderScale() {
+  renderValueDerivationBridge();
   renderKpiTabs(KPIS[0].id);
   renderKpiTable();
+  renderValueScenariosTable();
+  renderAssumptionHistoryTable();
+  renderTokenomicsSection();
   renderScaleDecisionCards();
 
   var rec = ADDONS.filter(function(a){ return a.classification === 'recommended'; });
@@ -2494,8 +2848,136 @@ function openRegDrawer(regId) {
   openDrawer('del-drawer');
 }
 
+// ── Section 3b: Obligation Chain and Run View ──
+function renderRuns() {
+  var el = document.getElementById('runs-content');
+  if (!el) return;
+
+  var mechColors = {};
+  EXECUTION_MECHANISMS.forEach(function(m){ mechColors[m.id] = m.color; });
+  var mechLabels = {};
+  EXECUTION_MECHANISMS.forEach(function(m){ mechLabels[m.id] = m.label; });
+
+  var html = '';
+
+  // Legend
+  html += '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;padding:16px;background:var(--panel);border-radius:10px;">';
+  html += '<div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);width:100%;margin-bottom:6px;">Execution mechanism legend</div>';
+  EXECUTION_MECHANISMS.forEach(function(m) {
+    html += '<div style="display:flex;align-items:center;gap:6px;font-size:12px;">';
+    html += '<span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:' + m.color + ';flex-shrink:0;"></span>';
+    html += '<span style="font-weight:600;color:#1A1A1A;">' + m.label + '</span>';
+    html += '<span style="color:var(--text-muted)"> - ' + m.description + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Obligation chain backbone
+  html += '<div style="margin-bottom:32px;">';
+  html += '<div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Obligation chain backbone</div>';
+  html += '<div style="display:flex;flex-wrap:wrap;gap:0;align-items:center;padding:14px 16px;background:#F4EBFF;border:1px solid #D8B4FE;border-radius:10px;">';
+  var chain = ['External Obligation','Internal Obligation','Capability','Norm','Control Activity','Work Product','Fulfilment Data','Assurance'];
+  chain.forEach(function(node, i) {
+    html += '<span style="font-size:12px;font-weight:600;color:#5A1E96;white-space:nowrap;">' + node + '</span>';
+    if (i < chain.length - 1) {
+      html += '<span style="margin:0 6px;color:#A100FF;font-weight:700;font-size:14px;">&#8594;</span>';
+    }
+  });
+  html += '</div>';
+  html += '<div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Extended to: products, systems, risks, findings, actions, issues and fulfilment data. Source: UC3 Hypotheses Deepdive.</div>';
+  html += '</div>';
+
+  RUNS.forEach(function(run) {
+    html += '<div class="run-flow" style="margin-bottom:36px;">';
+
+    // Run header
+    html += '<div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;">';
+    html += '<div>';
+    html += '<div style="font-size:16px;font-weight:700;color:#1A1A1A;">' + run.label + '</div>';
+    html += '<div style="font-size:13px;color:var(--text-muted);margin-top:3px;">' + run.description + '</div>';
+    html += '<div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;">';
+    html += '<span style="font-size:11px;color:var(--text-muted)"><strong>Trigger:</strong> ' + run.trigger + '</span>';
+    html += '<span style="font-size:11px;color:var(--text-muted)"><strong>Output to:</strong> ' + run.outputSystem + '</span>';
+    html += '</div>';
+    html += '</div>';
+    html += '</div>';
+
+    // Steps - horizontal scrollable row
+    html += '<div style="overflow-x:auto;padding-bottom:8px;">';
+    html += '<div style="display:flex;gap:0;align-items:stretch;min-width:max-content;">';
+
+    run.steps.forEach(function(step, idx) {
+      var color = mechColors[step.executionMechanism] || '#6B7280';
+      var isGate = step.isHumanGate;
+      var borderStyle = isGate ? '3px solid ' + color : '1px solid ' + color + '44';
+      var bg = isGate ? color + '12' : '#FAFAFA';
+
+      html += '<div style="display:flex;align-items:center;">';
+
+      html += '<div style="width:180px;flex-shrink:0;border:' + borderStyle + ';border-radius:8px;padding:12px;background:' + bg + ';position:relative;">';
+
+      // Step number
+      html += '<div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:' + color + ';margin-bottom:4px;">Step ' + step.order + '</div>';
+
+      // Label
+      html += '<div style="font-size:12px;font-weight:600;color:#1A1A1A;line-height:1.3;margin-bottom:6px;">' + step.label + '</div>';
+
+      // Mechanism badge
+      html += '<div style="font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;background:' + color + ';color:#fff;display:inline-block;margin-bottom:4px;">' + (mechLabels[step.executionMechanism] || step.executionMechanism) + '</div>';
+
+      // Agent name
+      if (step.agentName) {
+        html += '<div style="font-size:10px;color:#5A1E96;font-weight:600;margin-top:3px;">' + step.agentName + ' <span style="font-weight:400;opacity:0.7;">(provisional)</span></div>';
+      }
+
+      // System
+      html += '<div style="font-size:10px;color:var(--text-muted);margin-top:3px;">' + step.system + '</div>';
+
+      // Model tier
+      if (step.modelTier) {
+        html += '<div style="font-size:10px;color:var(--text-muted);margin-top:2px;">Model: ' + step.modelTier + '</div>';
+      }
+
+      // Human gate flag
+      if (isGate) {
+        html += '<div style="font-size:10px;font-weight:700;color:' + color + ';margin-top:4px;border-top:1px solid ' + color + '44;padding-top:4px;">';
+        html += '<i class="ti ti-user-check" style="margin-right:3px;"></i>Human gate';
+        if (step.lod) html += ' - ' + step.lod;
+        if (step.authorityRule) html += '<br><span style="font-weight:400;">' + step.authorityRule + '</span>';
+        html += '</div>';
+      }
+
+      html += '</div>'; // step card
+
+      // Arrow connector
+      if (idx < run.steps.length - 1) {
+        html += '<div style="width:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;color:#9CA3AF;">&#8594;</div>';
+      }
+
+      html += '</div>'; // flex wrapper
+    });
+
+    html += '</div></div>'; // steps row + scroll wrapper
+
+    // Output artifact
+    html += '<div style="margin-top:10px;padding:10px 14px;background:var(--success-pale);border-left:3px solid var(--success);border-radius:0 6px 6px 0;font-size:12px;">';
+    html += '<strong>Output:</strong> ' + run.outputArtifact;
+    html += '</div>';
+
+    html += '</div>'; // run-flow
+  });
+
+  // Footnote
+  html += '<div style="font-size:11px;color:var(--text-muted);padding:12px;background:var(--panel);border-radius:8px;margin-top:8px;">';
+  html += 'MITRA and MAYA are provisionally assigned agent names per programme terminology. Run B is based on the authoritative demo flow in ProReinsuranceAIWorkflow/lib/experience/automate.ts. Human gate authority rules (AM-003, AM-007, AM-008, AM-010) are non-negotiable and cannot be bypassed by AI execution.';
+  html += '</div>';
+
+  el.innerHTML = html;
+}
+
 // ── Section 3: Architecture and Application Onboarding ──
 function renderArchitecture() {
+  renderAppPopulationContext();
   renderArchEvolution();
   renderArchLayers();
   renderArchBoundary();
@@ -2505,6 +2987,36 @@ function renderArchitecture() {
   renderUserJourneys();
   renderTechDecisions();
   renderDeploymentPrinciples();
+}
+
+function renderAppPopulationContext() {
+  var el = document.getElementById('app-population-context');
+  if (!el) return;
+  el.innerHTML = [
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:4px;">',
+    '<div style="padding:14px 16px;background:var(--blue-pale);border:1px solid #B8D4F0;border-radius:8px;">',
+    '<div style="font-size:22px;font-weight:700;color:var(--blue-dark);">~3,900</div>',
+    '<div style="font-size:12px;font-weight:600;color:var(--blue-dark);margin-top:2px;">Total GT applications</div>',
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">LeanIX view August 2026. Across 10 delivery units.</div>',
+    '</div>',
+    '<div style="padding:14px 16px;background:var(--blue-pale);border:1px solid #B8D4F0;border-radius:8px;">',
+    '<div style="font-size:22px;font-weight:700;color:var(--blue-dark);">~3,100</div>',
+    '<div style="font-size:12px;font-weight:600;color:var(--blue-dark);margin-top:2px;">Business-owned applications</div>',
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">LeanIX view August 2026. Growing ~200 per year.</div>',
+    '</div>',
+    '<div style="padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:8px;">',
+    '<div style="font-size:22px;font-weight:700;color:#1A1A1A;">368 of 588</div>',
+    '<div style="font-size:12px;font-weight:600;color:#1A1A1A;margin-top:2px;">Business capabilities</div>',
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Served by multiple apps from multiple units. Source: StratC deck slide 30.</div>',
+    '</div>',
+    '<div style="padding:14px 16px;background:#F4EBFF;border:1px solid #D8B4FE;border-radius:8px;">',
+    '<div style="font-size:22px;font-weight:700;color:#5A1E96;">MITRA + MAYA</div>',
+    '<div style="font-size:12px;font-weight:600;color:#5A1E96;margin-top:2px;">AI agents in the architecture</div>',
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">MITRA: Compliance Hub. MAYA: Product Hub. Both provisionally assigned names.</div>',
+    '</div>',
+    '</div>',
+    '<div style="font-size:11px;color:var(--text-muted);">Application figures: LeanIX view August 2026. Source: StratC Purple Plus v0.99, September 2026.</div>'
+  ].join('');
 }
 
 function renderArchEvolution() {

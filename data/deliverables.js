@@ -4,6 +4,7 @@ var DELIVERABLES = [
     executiveSummary: 'Establish governance, confirm leadership, build the integrated plan and stand up the delivery machine.',
     phaseId: 'phase-1', workstreamId: 'ws-1', accountableRoleId: 'programme-director',
     supportingRoleIds: ['pmo-lead','delivery-lead','business-analyst'],
+    operatingModelDimension: ['organisation-processes', 'value-management'],
     targetMonth: '2026-10', dependencies: [],
     definitionOfDone: [
       'Sponsor and Product Owner named',
@@ -20,6 +21,7 @@ var DELIVERABLES = [
     executiveSummary: 'Define the precise scope, measure the current-state effort and establish the success baseline.',
     phaseId: 'phase-1', workstreamId: 'ws-2', accountableRoleId: 'compliance-lead',
     supportingRoleIds: ['control-wp-sme','br-domain-sme','business-analyst'],
+    operatingModelDimension: ['organisation-processes', 'technology-platforms'],
     targetMonth: '2026-11', dependencies: ['D01'],
     definitionOfDone: [
       'Obligations, controls and Work Products agreed',
@@ -36,6 +38,7 @@ var DELIVERABLES = [
     executiveSummary: 'Define the system boundaries, shared data model and integration contracts for the three hubs.',
     phaseId: 'phase-1', workstreamId: 'ws-5', accountableRoleId: 'solution-architect',
     supportingRoleIds: ['agentic-architect','integration-lead','security-architect'],
+    operatingModelDimension: ['technology-platforms'],
     targetMonth: '2026-12', dependencies: ['D01','D02'],
     definitionOfDone: [
       'System responsibilities agreed',
@@ -52,6 +55,7 @@ var DELIVERABLES = [
     executiveSummary: 'Translate obligation-to-control mapping into actionable applicability logic and evidence requirements.',
     phaseId: 'phase-1', workstreamId: 'ws-2', accountableRoleId: 'compliance-lead',
     supportingRoleIds: ['irm-sme','control-wp-sme','br-domain-sme'],
+    operatingModelDimension: ['organisation-processes', 'technology-platforms'],
     targetMonth: '2026-12', dependencies: ['D02'],
     definitionOfDone: [
       'Obligation-to-control mapping approved',
@@ -67,6 +71,7 @@ var DELIVERABLES = [
     executiveSummary: 'Build and deploy specialised AI agents for Compliance Hub, Product Hub and Reporting Hub.',
     phaseId: 'phase-1', workstreamId: 'ws-4', accountableRoleId: 'agentic-architect',
     supportingRoleIds: ['ai-engineer','compliance-lead','integration-lead'],
+    operatingModelDimension: ['technology-platforms'],
     targetMonth: '2027-01', dependencies: ['D03','D04'],
     definitionOfDone: [
       'Compliance Hub support implemented',
@@ -82,6 +87,7 @@ var DELIVERABLES = [
     executiveSummary: 'Implement Human-in-the-Loop controls, security architecture and model-evaluation criteria.',
     phaseId: 'phase-1', workstreamId: 'ws-6', accountableRoleId: 'security-architect',
     supportingRoleIds: ['responsible-ai-lead','platform-engineer','qa-lead'],
+    operatingModelDimension: ['technology-platforms', 'organisation-processes'],
     targetMonth: '2027-02', dependencies: ['D03','D05'],
     definitionOfDone: [
       'Human-in-the-Loop controls operational',
@@ -97,6 +103,7 @@ var DELIVERABLES = [
     executiveSummary: 'Build the shared case-state model and automate handovers between hubs.',
     phaseId: 'phase-2', workstreamId: 'ws-4', accountableRoleId: 'agentic-architect',
     supportingRoleIds: ['orchestration-engineer','integration-lead','platform-engineer'],
+    operatingModelDimension: ['technology-platforms'],
     targetMonth: '2027-06', dependencies: ['D05','D06'],
     definitionOfDone: [
       'Common case state operational',
@@ -112,6 +119,7 @@ var DELIVERABLES = [
     executiveSummary: 'Connect evidence sources, implement verification rules and establish evidence lineage.',
     phaseId: 'phase-2', workstreamId: 'ws-5', accountableRoleId: 'integration-lead',
     supportingRoleIds: ['evidence-automation-engineer','data-engineer','compliance-lead'],
+    operatingModelDimension: ['technology-platforms'],
     targetMonth: '2027-07', dependencies: ['D07','D04'],
     definitionOfDone: [
       'Evidence sources connected',
@@ -127,6 +135,7 @@ var DELIVERABLES = [
     executiveSummary: 'Demonstrate end-to-end traceability from approved obligation to DDCR-reported compliance status.',
     phaseId: 'phase-2', workstreamId: 'ws-5', accountableRoleId: 'integration-lead',
     supportingRoleIds: ['compliance-hub-sme','product-hub-sme','reporting-hub-sme'],
+    operatingModelDimension: ['technology-platforms', 'product-service-portfolio'],
     targetMonth: '2027-08', dependencies: ['D07','D08'],
     definitionOfDone: [
       'Approved obligation change enters the Compliance Hub',
@@ -142,6 +151,7 @@ var DELIVERABLES = [
     executiveSummary: 'Execute real cases with trained pilot users; capture feedback and confirm operational readiness.',
     phaseId: 'phase-2', workstreamId: 'ws-3', accountableRoleId: 'om-lead',
     supportingRoleIds: ['training-lead','change-lead','pmo-lead'],
+    operatingModelDimension: ['people', 'organisation-processes'],
     targetMonth: '2027-09', dependencies: ['D09','D06'],
     definitionOfDone: [
       'Selected users trained',
@@ -157,6 +167,7 @@ var DELIVERABLES = [
     executiveSummary: 'Validate or recalibrate the 13.8% effort-reduction hypothesis with operational data.',
     phaseId: 'phase-3', workstreamId: 'ws-7', accountableRoleId: 'om-lead',
     supportingRoleIds: ['value-analyst','compliance-lead','pmo-lead'],
+    operatingModelDimension: ['value-management'],
     targetMonth: '2028-01', dependencies: ['D10'],
     definitionOfDone: [
       'Before-and-after metrics available',
@@ -172,6 +183,7 @@ var DELIVERABLES = [
     executiveSummary: 'Production service operational; reusable assets catalogued; next verticals funded and sequenced.',
     phaseId: 'phase-3', workstreamId: 'ws-7', accountableRoleId: 'om-lead',
     supportingRoleIds: ['programme-director','agentic-architect','integration-lead'],
+    operatingModelDimension: ['product-service-portfolio', 'value-management', 'organisation-processes'],
     targetMonth: '2028-03', dependencies: ['D11','D07','D08'],
     definitionOfDone: [
       'Production service operational',
@@ -191,6 +203,7 @@ var DELIVERABLES = [
     workstreamId: 'ws-8',
     accountableRoleId: 'reporting-hub-sme',
     supportingRoleIds: ['evidence-automation-engineer', 'solution-architect'],
+    operatingModelDimension: ['technology-platforms', 'value-management'],
     targetMonth: '2027-09',
     dependencies: ['D08', 'D12'],
     definitionOfDone: [
@@ -213,6 +226,7 @@ var DELIVERABLES = [
     workstreamId: 'ws-2',
     accountableRoleId: 'compliance-lead',
     supportingRoleIds: ['delivery-lead', 'solution-architect', 'agentic-architect'],
+    operatingModelDimension: ['product-service-portfolio', 'organisation-processes'],
     targetMonth: '2027-08',
     dependencies: ['D07', 'D09'],
     definitionOfDone: [
@@ -236,6 +250,7 @@ var DELIVERABLES = [
     workstreamId: 'ws-8',
     accountableRoleId: 'om-lead',
     supportingRoleIds: ['change-lead', 'training-lead'],
+    operatingModelDimension: ['people', 'organisation-processes'],
     targetMonth: '2028-02',
     dependencies: ['D12', 'D01'],
     definitionOfDone: [
@@ -261,6 +276,7 @@ var DELIVERABLES = [
     workstreamId: 'ws-8',
     accountableRoleId: 'value-analyst',
     supportingRoleIds: ['programme-director', 'om-lead'],
+    operatingModelDimension: ['value-management', 'organisation-processes'],
     targetMonth: '2028-03',
     dependencies: ['D04', 'D15'],
     definitionOfDone: [

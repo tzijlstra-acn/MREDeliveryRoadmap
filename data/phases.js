@@ -10,6 +10,8 @@ var PHASES = [
   },
   {
     id: 'phase-1', name: 'Phase 1', label: 'Integrate', color: '#3456C5',
+    northStarStage: 'stage-1-automate',
+    northStarStageLabel: 'Stage 1: Automate',
     start: '2026-10-01', end: '2027-03-31',
     tagline: 'Put AI support where the compliance work happens',
     months: ['2026-10','2026-11','2026-12','2027-01','2027-02','2027-03'],
@@ -94,6 +96,8 @@ var PHASES = [
   },
   {
     id: 'phase-2', name: 'Phase 2', label: 'Orchestrate', color: '#5C4FC5',
+    northStarStage: 'stage-2-orchestrate',
+    northStarStageLabel: 'Stage 2: Orchestrate',
     start: '2027-04-01', end: '2027-09-30',
     tagline: 'Connect the obligation-to-evidence chain',
     months: ['2027-04','2027-05','2027-06','2027-07','2027-08','2027-09'],
@@ -165,6 +169,8 @@ var PHASES = [
   },
   {
     id: 'phase-3', name: 'Phase 3', label: 'Industrialise', color: '#7A3EB1',
+    northStarStage: 'stage-3-transform',
+    northStarStageLabel: 'Stage 3: Transform (extends beyond Month 18)',
     start: '2027-10-01', end: '2028-03-31',
     tagline: 'Operate compliance as a reusable service',
     months: ['2027-10','2027-11','2027-12','2028-01','2028-02','2028-03'],

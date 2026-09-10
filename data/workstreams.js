@@ -2,6 +2,8 @@ var WORKSTREAMS = [
   {
     id: 'ws-1', name: 'Programme & Product Delivery', shortName: 'Programme', icon: 'ti-layout-kanban',
     color: '#3456C5', purpose: 'End-to-end programme governance, planning, backlog management and phase-gate execution.',
+    operatingModelDimension: ['organisation-processes', 'value-management'],
+    executionMechanism: 'human',
     lead: 'Programme Director', phases: ['phase-1','phase-2','phase-3'],
     deliverableIds: ['D01'],
     activities: [
@@ -28,6 +30,8 @@ var WORKSTREAMS = [
   {
     id: 'ws-2', name: 'Compliance & Control Engineering', shortName: 'Compliance', icon: 'ti-shield-check',
     color: '#5C4FC5', purpose: 'Regulatory interpretation, obligation mapping, applicability rules and control acceptance criteria.',
+    operatingModelDimension: ['technology-platforms', 'organisation-processes'],
+    executionMechanism: 'generative-ai',
     lead: 'Regulatory Compliance Lead', phases: ['phase-1','phase-2','phase-3'],
     deliverableIds: ['D02','D04'],
     activities: [
@@ -52,6 +56,8 @@ var WORKSTREAMS = [
   {
     id: 'ws-3', name: 'Process & Product Experience', shortName: 'Process & UX', icon: 'ti-sitemap',
     color: '#0891B2', purpose: 'End-to-end user journeys, Product Hub workflow design, human approvals and service design.',
+    operatingModelDimension: ['organisation-processes', 'people'],
+    executionMechanism: 'human',
     lead: 'UX / Service Designer', phases: ['phase-1','phase-2','phase-3'],
     deliverableIds: ['D10'],
     activities: [
@@ -76,6 +82,8 @@ var WORKSTREAMS = [
   {
     id: 'ws-4', name: 'Agentic AI & Orchestration', shortName: 'AI & Orchestration', icon: 'ti-brain',
     color: '#7A3EB1', purpose: 'Specialised agents, orchestration design, case-state management and model evaluation.',
+    operatingModelDimension: ['technology-platforms'],
+    executionMechanism: 'agentic-execution',
     lead: 'Agentic AI Architect', phases: ['phase-1','phase-2','phase-3'],
     deliverableIds: ['D05','D07'],
     activities: [
@@ -100,6 +108,8 @@ var WORKSTREAMS = [
   {
     id: 'ws-5', name: 'Data, Integration & Evidence', shortName: 'Data & Integration', icon: 'ti-database',
     color: '#059669', purpose: 'Hub integrations, canonical data model, evidence automation and traceability.',
+    operatingModelDimension: ['technology-platforms'],
+    executionMechanism: 'deterministic-automation',
     lead: 'Integration Lead', phases: ['phase-1','phase-2','phase-3'],
     deliverableIds: ['D03','D08','D09'],
     activities: [
@@ -122,6 +132,8 @@ var WORKSTREAMS = [
   {
     id: 'ws-6', name: 'Platform, Security & Responsible AI', shortName: 'Platform & Security', icon: 'ti-lock',
     color: '#D97706', purpose: 'Agent runtime, cloud platform, access control, observability, model governance and release controls.',
+    operatingModelDimension: ['technology-platforms'],
+    executionMechanism: 'deterministic-automation',
     lead: 'Platform / DevSecOps Engineer', phases: ['phase-1','phase-2','phase-3'],
     deliverableIds: ['D06'],
     activities: [
@@ -148,6 +160,8 @@ var WORKSTREAMS = [
   {
     id: 'ws-7', name: 'Operating Model, Adoption & Value', shortName: 'Operating Model', icon: 'ti-chart-arrows',
     color: '#DC2626', purpose: 'Roles, service ownership, BAU support, change management, value measurement and scale economics.',
+    operatingModelDimension: ['people', 'value-management', 'organisation-processes'],
+    executionMechanism: 'human',
     lead: 'Operating Model Lead', phases: ['phase-1','phase-2','phase-3'],
     deliverableIds: ['D11','D12'],
     activities: [
@@ -176,6 +190,8 @@ var WORKSTREAMS = [
     icon: 'ti-certificate',
     color: '#059669',
     purpose: 'Prove that regulatory requirements are implemented and remain fulfilled through automated evidence, technical verification and conformance reporting.',
+    operatingModelDimension: ['technology-platforms', 'value-management'],
+    executionMechanism: 'deterministic-automation',
     lead: 'Evidence and Verification Lead',
     phases: ['phase-2', 'phase-3'],
     activities: [

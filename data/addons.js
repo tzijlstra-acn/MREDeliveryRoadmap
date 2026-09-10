@@ -2,6 +2,7 @@ var ADDONS = [
   {
     id: 'A', letter: 'A', title: 'Compliance Vertical Prioritisation',
     classification: 'recommended', classLabel: 'Recommended accelerator', timing: 'Month 10+',
+    operatingModelDimension: ['value-management', 'organisation-processes'],
     purpose: 'A scoring matrix to prioritise future compliance verticals based on regulatory importance, manual effort, data readiness and reuse potential.',
     value: 'Ensures the highest-value verticals are sequenced next, supported by evidence rather than opinion.',
     dependencies: ['D12 - Scale Blueprint', 'Gate 2 assessment data'],
@@ -11,6 +12,7 @@ var ADDONS = [
   {
     id: 'B', letter: 'B', title: 'Application Onboarding Factory',
     classification: 'recommended', classLabel: 'Recommended accelerator', timing: 'Phase 3',
+    operatingModelDimension: ['product-service-portfolio', 'technology-platforms'],
     purpose: 'A repeatable onboarding process enabling additional applications to join the Backup and Restore vertical with minimum engineering effort.',
     value: 'Transforms one-off integration work into a scalable onboarding capability.',
     dependencies: ['D12 - Scale Blueprint', 'D03 - Architecture'],
@@ -20,6 +22,7 @@ var ADDONS = [
   {
     id: 'C', letter: 'C', title: 'Control Automation Asset Library',
     classification: 'recommended', classLabel: 'Recommended accelerator', timing: 'Phase 3',
+    operatingModelDimension: ['technology-platforms', 'product-service-portfolio'],
     purpose: 'A catalogued library of reusable agents, prompts, orchestration components and evidence adapters applicable to new compliance verticals.',
     value: 'Reduces the engineering effort for each additional vertical by reusing proven components.',
     dependencies: ['D05 - Agent Set', 'D07 - Orchestration', 'D08 - Evidence'],
@@ -29,6 +32,7 @@ var ADDONS = [
   {
     id: 'D', letter: 'D', title: 'Value and Benefits Cockpit',
     classification: 'recommended', classLabel: 'Recommended accelerator', timing: 'Phase 2+',
+    operatingModelDimension: ['value-management'],
     purpose: 'A live benefits dashboard tracking effort, cycle time, rework, evidence quality and adoption against the directional 13.8% hypothesis.',
     value: 'Makes programme value visible to sponsors and provides the evidence base for the scale business case.',
     dependencies: ['D11 - Measured Value Case', 'Baseline established in D02'],
@@ -38,6 +42,7 @@ var ADDONS = [
   {
     id: 'E', letter: 'E', title: 'Responsible AI and Audit Pack',
     classification: 'recommended', classLabel: 'Recommended accelerator', timing: 'Phase 1+',
+    operatingModelDimension: ['technology-platforms', 'organisation-processes'],
     purpose: 'A structured Responsible AI governance pack covering agent inventory, model governance, Human-in-the-Loop requirements and audit evidence.',
     value: 'Provides regulators, auditors and senior stakeholders with verifiable assurance on AI use.',
     dependencies: ['D06 - Governance Framework'],
@@ -47,6 +52,7 @@ var ADDONS = [
   {
     id: 'F', letter: 'F', title: 'Workforce and Adoption Pack',
     classification: 'optional', classLabel: 'Optional extension', timing: 'Phase 2+',
+    operatingModelDimension: ['people', 'organisation-processes'],
     purpose: 'A structured programme covering role-impact assessment, training paths, new service roles and Works Council considerations where applicable.',
     value: 'Ensures workforce readiness and manages the human side of the transition to agentic compliance support.',
     dependencies: ['D10 - Adoption Release', 'Target Operating Model'],
@@ -56,6 +62,7 @@ var ADDONS = [
   {
     id: 'G', letter: 'G', title: 'Additional Compliance Vertical - Priority A',
     classification: 'optional', classLabel: 'Optional extension', timing: 'Phase 3+',
+    operatingModelDimension: ['product-service-portfolio'],
     purpose: 'Onboard the highest-scoring next compliance vertical identified at Gate 2, reusing the Backup and Restore implementation pattern.',
     value: 'Demonstrates that the Compliance-as-a-Service model scales beyond the initial vertical.',
     dependencies: ['D12 - Scale Blueprint', 'Add-on A scoring matrix', 'Gate 2 approval'],
@@ -65,6 +72,7 @@ var ADDONS = [
   {
     id: 'H', letter: 'H', title: 'Additional Compliance Vertical - Priority B',
     classification: 'optional', classLabel: 'Optional extension', timing: 'Beyond Month 18',
+    operatingModelDimension: ['product-service-portfolio'],
     purpose: 'Onboard the second-priority compliance vertical following validation of Priority A.',
     value: 'Extends the asset base and builds further evidence for the enterprise scale business case.',
     dependencies: ['Add-on G - Priority Vertical A', 'Scale business case approval'],
@@ -74,6 +82,7 @@ var ADDONS = [
   {
     id: 'I', letter: 'I', title: 'SDLC Agent Layer Integration',
     classification: 'optional', classLabel: 'Optional extension', timing: 'Beyond Month 18',
+    operatingModelDimension: ['technology-platforms'],
     purpose: 'Extend the compliance agent capability into the software delivery lifecycle so that compliance requirements are surfaced to engineering teams during development.',
     value: 'Moves compliance left into design and build, reducing late-stage remediation effort.',
     dependencies: ['D12 - Scale Blueprint', 'SDLC tooling access confirmation'],
@@ -83,6 +92,7 @@ var ADDONS = [
   {
     id: 'J', letter: 'J', title: 'Continuous Compliance Monitoring',
     classification: 'optional', classLabel: 'Optional extension', timing: 'Beyond Month 18',
+    operatingModelDimension: ['technology-platforms', 'value-management'],
     purpose: 'Implement near-real-time compliance monitoring across the production vertical, surfacing drift, exceptions and emerging gaps automatically.',
     value: 'Transforms compliance from a periodic assessment to a continuous, evidence-based view.',
     dependencies: ['D09 - Hub-to-Hub Flow', 'D12 - Scale Blueprint'],

@@ -48,6 +48,7 @@ console.log('UC3 Data Integrity Tests');
 console.log('========================');
 
 let PHASES, WORKSTREAMS, DELIVERABLES, ROLES, PODS, MILESTONES, GOVERNANCE_FORUMS, DECISIONS, RISKS, KPIS, ADDONS, REGULATIONS, WAVES, STAGE_GATES, ROADMAP_CONTENT, ARCH_LAYERS, APP_TIERS, SCENARIOS;
+let RUNS, EXECUTION_MECHANISMS, MODEL_CATALOGUE, TASK_MODEL_ROUTING, VALUE_BRIDGE, VALUE_SCENARIOS, ASSUMPTION_HISTORY, GTRF_ROLES, WORKFORCE_IMPACT_SUMMARY;
 
 try {
   PHASES = loadData('phases.js', 'PHASES');
@@ -67,6 +68,15 @@ try {
   ARCH_LAYERS = loadData('architecture.js', 'ARCH_LAYERS');
   APP_TIERS = loadData('architecture.js', 'APP_TIERS');
   SCENARIOS = loadData('scenarios.js', 'SCENARIOS');
+  RUNS = loadData('runs.js', 'RUNS');
+  EXECUTION_MECHANISMS = loadData('runs.js', 'EXECUTION_MECHANISMS');
+  MODEL_CATALOGUE = loadData('models.js', 'MODEL_CATALOGUE');
+  TASK_MODEL_ROUTING = loadData('models.js', 'TASK_MODEL_ROUTING');
+  VALUE_BRIDGE = loadData('value-assumptions.js', 'VALUE_BRIDGE');
+  VALUE_SCENARIOS = loadData('value-assumptions.js', 'VALUE_SCENARIOS');
+  ASSUMPTION_HISTORY = loadData('value-assumptions.js', 'ASSUMPTION_HISTORY');
+  GTRF_ROLES = loadData('people-impact.js', 'GTRF_ROLES');
+  WORKFORCE_IMPACT_SUMMARY = loadData('people-impact.js', 'WORKFORCE_IMPACT_SUMMARY');
   try {
     STAGE_GATES = loadData('governance.js', 'STAGE_GATES');
   } catch (e) {
@@ -300,7 +310,7 @@ if (STAGE_GATES) {
 section('Content safeguards');
 
 // Load all data files as text for string search
-var allText = ['phases.js','workstreams.js','deliverables.js','roles.js','milestones.js','governance.js','kpis.js','addons.js','regulations.js','waves.js','roadmap-content.js','architecture.js','scenarios.js'].map(function(f) {
+var allText = ['phases.js','workstreams.js','deliverables.js','roles.js','milestones.js','governance.js','kpis.js','addons.js','regulations.js','waves.js','roadmap-content.js','architecture.js','scenarios.js','runs.js','models.js','value-assumptions.js','people-impact.js'].map(function(f) {
   return readFileSync(join(ROOT, 'data', f), 'utf8');
 }).join('\n');
 
@@ -434,6 +444,163 @@ SCENARIOS.forEach(function(s) {
   assert(!/—/.test(JSON.stringify(s)), 'Scenario ' + s.id + ' must not contain an em dash');
   assert(!/–/.test(JSON.stringify(s)), 'Scenario ' + s.id + ' must not contain an en dash');
 });
+
+// -- New field assertions: phases northStarStage --
+section('Phase northStarStage fields');
+[p1, p2, p3].forEach(function(p) {
+  if (!p) return;
+  assert(p.northStarStage, 'Phase ' + p.id + ' must have a northStarStage field');
+  assert(p.northStarStageLabel, 'Phase ' + p.id + ' must have a northStarStageLabel field');
+});
+assert(p1 && p1.northStarStage === 'stage-1-automate', 'Phase 1 northStarStage must be stage-1-automate');
+assert(p2 && p2.northStarStage === 'stage-2-orchestrate', 'Phase 2 northStarStage must be stage-2-orchestrate');
+assert(p3 && p3.northStarStage === 'stage-3-transform', 'Phase 3 northStarStage must be stage-3-transform');
+
+// -- New field assertions: operatingModelDimension --
+var validOMDims = ['product-service-portfolio','organisation-processes','technology-platforms','value-management','people'];
+section('operatingModelDimension on workstreams, deliverables, addons');
+WORKSTREAMS.forEach(function(ws) {
+  assert(Array.isArray(ws.operatingModelDimension) && ws.operatingModelDimension.length > 0, 'Workstream ' + ws.id + ' must have operatingModelDimension');
+  ws.operatingModelDimension.forEach(function(dim) {
+    assert(validOMDims.includes(dim), 'Workstream ' + ws.id + ' operatingModelDimension "' + dim + '" must be a valid OM dimension');
+  });
+  assert(ws.executionMechanism, 'Workstream ' + ws.id + ' must have an executionMechanism field');
+});
+DELIVERABLES.forEach(function(d) {
+  assert(Array.isArray(d.operatingModelDimension) && d.operatingModelDimension.length > 0, 'Deliverable ' + d.id + ' must have operatingModelDimension');
+  d.operatingModelDimension.forEach(function(dim) {
+    assert(validOMDims.includes(dim), 'Deliverable ' + d.id + ' operatingModelDimension "' + dim + '" must be a valid OM dimension');
+  });
+});
+ADDONS.forEach(function(a) {
+  assert(Array.isArray(a.operatingModelDimension) && a.operatingModelDimension.length > 0, 'Add-on ' + a.id + ' must have operatingModelDimension');
+  a.operatingModelDimension.forEach(function(dim) {
+    assert(validOMDims.includes(dim), 'Add-on ' + a.id + ' operatingModelDimension "' + dim + '" must be a valid OM dimension');
+  });
+});
+
+// -- New field assertions: futureTaskOutcome on roles --
+var validFTOs = ['retained','augmented','automated','agent-executed','retired'];
+section('futureTaskOutcome on roles');
+ROLES.forEach(function(r) {
+  assert(r.futureTaskOutcome, 'Role ' + r.id + ' must have a futureTaskOutcome field');
+  assert(validFTOs.includes(r.futureTaskOutcome), 'Role ' + r.id + ' futureTaskOutcome "' + r.futureTaskOutcome + '" must be a valid value');
+});
+
+// -- Runs data --
+section('Runs (RUNS)');
+assert(Array.isArray(RUNS), 'RUNS must be an array');
+assert(RUNS.length === 3, 'Must have exactly 3 runs (A, B, C)');
+['run-a','run-b','run-c'].forEach(function(rid) {
+  assert(RUNS.find(function(r){return r.id===rid;}), 'Run ' + rid + ' must exist');
+});
+var validMechanisms = ['human','deterministic-automation','generative-ai','agentic-execution','human-gate'];
+RUNS.forEach(function(run) {
+  assert(run.id, 'Run must have an id');
+  assert(run.label, 'Run ' + run.id + ' must have a label');
+  assert(run.description, 'Run ' + run.id + ' must have a description');
+  assert(run.trigger, 'Run ' + run.id + ' must have a trigger');
+  assert(Array.isArray(run.steps) && run.steps.length > 0, 'Run ' + run.id + ' must have steps');
+  run.steps.forEach(function(step) {
+    assert(step.id, 'Run ' + run.id + ' step must have an id');
+    assert(step.label, 'Run ' + run.id + ' step ' + step.id + ' must have a label');
+    assert(validMechanisms.includes(step.executionMechanism), 'Run ' + run.id + ' step ' + step.id + ' executionMechanism must be valid');
+    assert(typeof step.isHumanGate === 'boolean', 'Run ' + run.id + ' step ' + step.id + ' must have isHumanGate boolean');
+    if (step.agentName) {
+      assert(step.agentNote === 'Provisionally assigned', 'Run ' + run.id + ' step ' + step.id + ' agentName must have agentNote "Provisionally assigned"');
+    }
+  });
+  // No em or en dashes
+  assert(!/—/.test(JSON.stringify(run)), 'Run ' + run.id + ' must not contain an em dash');
+  assert(!/–/.test(JSON.stringify(run)), 'Run ' + run.id + ' must not contain an en dash');
+});
+assert(Array.isArray(EXECUTION_MECHANISMS) && EXECUTION_MECHANISMS.length === 5, 'EXECUTION_MECHANISMS must have 5 entries');
+
+// -- Model catalogue --
+section('Model catalogue (MODEL_CATALOGUE)');
+assert(Array.isArray(MODEL_CATALOGUE), 'MODEL_CATALOGUE must be an array');
+assert(MODEL_CATALOGUE.length === 5, 'Must have exactly 5 model catalogue tiers');
+['tier-efficient','tier-reasoning','tier-frontier','tier-embedding','tier-guardrail'].forEach(function(tid) {
+  assert(MODEL_CATALOGUE.find(function(t){return t.id===tid;}), 'Model tier ' + tid + ' must exist');
+});
+MODEL_CATALOGUE.forEach(function(t) {
+  assert(t.id, 'Model tier must have id');
+  assert(t.label, 'Model tier ' + t.id + ' must have a label');
+  assert(t.description, 'Model tier ' + t.id + ' must have a description');
+  assert(t.governanceNote, 'Model tier ' + t.id + ' must have a governanceNote');
+  assert(!/—/.test(JSON.stringify(t)), 'Model tier ' + t.id + ' must not contain an em dash');
+  assert(!/–/.test(JSON.stringify(t)), 'Model tier ' + t.id + ' must not contain an en dash');
+});
+assert(Array.isArray(TASK_MODEL_ROUTING) && TASK_MODEL_ROUTING.length === 9, 'TASK_MODEL_ROUTING must have 9 entries');
+
+// -- Value bridge --
+section('Value bridge and scenarios (VALUE_BRIDGE, VALUE_SCENARIOS, ASSUMPTION_HISTORY)');
+assert(Array.isArray(VALUE_BRIDGE) && VALUE_BRIDGE.length === 4, 'VALUE_BRIDGE must have exactly 4 components');
+VALUE_BRIDGE.forEach(function(vb) {
+  assert(vb.id, 'Value bridge component must have id');
+  assert(vb.component, 'Value bridge ' + vb.id + ' must have a component name');
+  assert(typeof vb.base === 'number', 'Value bridge ' + vb.id + ' must have a numeric base');
+  assert(vb.qualifier, 'Value bridge ' + vb.id + ' must have a qualifier');
+  assert(!/—/.test(JSON.stringify(vb)), 'Value bridge ' + vb.id + ' must not contain an em dash');
+  assert(!/—/.test(JSON.stringify(vb)), 'Value bridge ' + vb.id + ' must not contain an en dash');
+});
+// Bridge formula check: A x B x C x D ~= 13.8%
+var bridgeResult = VALUE_BRIDGE.reduce(function(acc, vb){ return acc * vb.base; }, 1);
+assert(Math.abs(bridgeResult - 0.138) < 0.01, 'VALUE_BRIDGE base components must multiply to approximately 13.8% (got ' + (bridgeResult*100).toFixed(2) + '%)');
+
+assert(Array.isArray(VALUE_SCENARIOS) && VALUE_SCENARIOS.length === 3, 'VALUE_SCENARIOS must have 3 entries (Prove, Replicate, Scale)');
+['vs-prove','vs-replicate','vs-scale'].forEach(function(vid) {
+  assert(VALUE_SCENARIOS.find(function(v){return v.id===vid;}), 'Value scenario ' + vid + ' must exist');
+});
+VALUE_SCENARIOS.forEach(function(vs) {
+  assert(vs.qualifier, 'Value scenario ' + vs.id + ' must have a qualifier');
+  assert(!/52 FTE/i.test(JSON.stringify(vs)), 'Value scenario ' + vs.id + ' must not contain forbidden 52 FTE');
+  assert(!/3\.0%/.test(JSON.stringify(vs)), 'Value scenario ' + vs.id + ' must not contain forbidden 3.0%');
+  assert(!/—/.test(JSON.stringify(vs)), 'Value scenario ' + vs.id + ' must not contain an em dash');
+  assert(!/–/.test(JSON.stringify(vs)), 'Value scenario ' + vs.id + ' must not contain an en dash');
+});
+var scaleScenario = VALUE_SCENARIOS.find(function(v){return v.id==='vs-scale';});
+assert(scaleScenario && scaleScenario.base === 0.138, 'Scale scenario base must be 0.138');
+assert(scaleScenario && scaleScenario.capacityFreed === '396 FTE (capacity freed, not headcount reduction)', 'Scale scenario must label 396 FTE as capacity freed, not headcount reduction');
+
+assert(Array.isArray(ASSUMPTION_HISTORY) && ASSUMPTION_HISTORY.length === 3, 'ASSUMPTION_HISTORY must have 3 entries');
+var currentAssumption = ASSUMPTION_HISTORY.find(function(a){return a.status==='current';});
+assert(currentAssumption, 'ASSUMPTION_HISTORY must have a current assumption entry');
+assert(currentAssumption && currentAssumption.figure === '11-17% / 13.8%', 'Current assumption must be 11-17% / 13.8%');
+
+// -- People impact --
+section('People impact (GTRF_ROLES, WORKFORCE_IMPACT_SUMMARY)');
+assert(Array.isArray(GTRF_ROLES) && GTRF_ROLES.length === 14, 'GTRF_ROLES must have exactly 14 entries');
+GTRF_ROLES.forEach(function(r) {
+  assert(r.id, 'GTRF role must have id');
+  assert(r.roleType, 'GTRF role ' + r.id + ' must have a roleType');
+  assert(r.futureTaskOutcome, 'GTRF role ' + r.id + ' must have a futureTaskOutcome');
+  assert(validFTOs.includes(r.futureTaskOutcome), 'GTRF role ' + r.id + ' futureTaskOutcome must be valid');
+  assert(r.qualifierNote && r.qualifierNote.includes('Subject to GTRF'), 'GTRF role ' + r.id + ' must have a qualifierNote referencing GTRF analysis');
+  assert(!/—/.test(JSON.stringify(r)), 'GTRF role ' + r.id + ' must not contain an em dash');
+  assert(!/–/.test(JSON.stringify(r)), 'GTRF role ' + r.id + ' must not contain an en dash');
+});
+assert(WORKFORCE_IMPACT_SUMMARY.fteInScope === 2864, 'WORKFORCE_IMPACT_SUMMARY fteInScope must be 2864');
+assert(WORKFORCE_IMPACT_SUMMARY.capacityFreed === 396, 'WORKFORCE_IMPACT_SUMMARY capacityFreed must be 396');
+assert(/working assumption|subject to GTRF/i.test(WORKFORCE_IMPACT_SUMMARY.fteInScopeNote), 'fteInScopeNote must label 2864 FTE as working assumption');
+assert(/not automatic headcount reduction|not.*headcount reduction/i.test(WORKFORCE_IMPACT_SUMMARY.capacityFreedNote), 'capacityFreedNote must clarify capacity freed is not automatic headcount reduction');
+
+// -- Extend content safeguards to new data files --
+section('Content safeguards extended (new data files)');
+var newDataText = ['runs.js','models.js','value-assumptions.js','people-impact.js'].map(function(f) {
+  return readFileSync(join(ROOT, 'data', f), 'utf8');
+}).join('\n');
+
+assert(!/—/.test(newDataText), 'Unicode em dash must not appear in new data files');
+assert(!/–/.test(newDataText), 'Unicode en dash must not appear in newDataFiles');
+assert(!/52 FTE/i.test(newDataText), 'Forbidden value "52 FTE" must not appear in new data files');
+assert(!/3\.0%/.test(newDataText), 'Forbidden value "3.0%" must not appear in new data files');
+assert(!/enterprise.{0,50}headcount reduction/i.test(newDataText), 'Enterprise-wide headcount reduction claim must not appear in new data files');
+assert(/Provisionally assigned/.test(newDataText), 'MITRA/MAYA must be labelled "Provisionally assigned" in runs.js');
+assert(/working assumption/i.test(newDataText), 'Value assumptions must use working assumption language');
+assert(/capacity freed/i.test(newDataText), '396 FTE must be framed as capacity freed in new data files');
+assert(!/396 FTE.{0,60}headcount reduction target/i.test(newDataText), '396 FTE must not be framed as a headcount reduction target (must be capacity freed)');
+assert(/Subject to GTRF/i.test(newDataText), 'GTRF role data must note subject to GTRF analysis');
 
 // -- Summary --
 console.log('\n========================');
