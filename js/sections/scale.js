@@ -201,8 +201,82 @@ function renderScaleDecisionCards() {
   }).join('');
 }
 
+function renderValueLogicTree() {
+  var el = document.getElementById('value-logic-tree');
+  if (!el) return;
+
+  var nodes = [
+    { label: 'Regulatory change',          sub: 'New or amended regulation requiring structured response',                        color: '#3456C5' },
+    { label: 'Obligation extraction',      sub: 'MITRA extracts obligations from source documents (provisionally assigned)',     color: '#A100FF', agent: true },
+    { label: 'Control and norm mapping',   sub: 'Map obligations to controls, norms and Work Products via canonical object model', color: '#5C4FC5' },
+    { label: 'Application scoping',        sub: '~3,900 apps assessed for applicability. LeanIX view August 2026.',              color: '#5C4FC5' },
+    { label: 'Effort baseline',            sub: 'Current effort per control activity measured in Phase 1. Baseline to validate.', color: '#374151' },
+    { label: 'Automation and assistance',  sub: '13.8% directional effort reduction. Capacity released, not headcount reduction. To validate.', color: '#D97706', warn: true },
+    { label: '396 FTE capacity freed',     sub: '14 GTRF role types, 2,864 FTE denominator. Working assumption, subject to GTRF validation.', color: '#059669', result: true }
+  ];
+
+  var h = '<h2 style="font-size:16px;font-weight:700;margin-bottom:8px">Value logic chain</h2>';
+  h += '<p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">How regulatory change converts into measurable capacity released through the agentic compliance chain.</p>';
+  h += '<div style="display:flex;flex-direction:column;gap:0;max-width:640px">';
+
+  nodes.forEach(function(node, idx) {
+    var isLast = idx === nodes.length - 1;
+    h += '<div style="display:flex;flex-direction:column;align-items:flex-start">';
+    h += '<div style="background:' + (node.result ? node.color : 'var(--white)') + ';border:' + (node.warn ? '1.5px solid ' + node.color : (node.result ? 'none' : '1px solid var(--line)')) + ';border-left:4px solid ' + node.color + ';border-radius:8px;padding:12px 16px;width:100%;box-sizing:border-box">';
+    h += '<div style="font-size:13px;font-weight:700;color:' + (node.result ? '#fff' : 'var(--ink)') + ';margin-bottom:3px">' + node.label + '</div>';
+    if (node.agent) h += '<span style="font-size:9px;font-weight:700;background:#F4EBFF;color:#7C3AED;padding:1px 6px;border-radius:6px;border:1px dashed #A100FF;margin-bottom:4px;display:inline-block">Agent-assisted (provisional)</span> ';
+    h += '<span style="font-size:11px;color:' + (node.result ? 'rgba(255,255,255,0.8)' : 'var(--text-muted)') + ';line-height:1.4">' + node.sub + '</span>';
+    h += '</div>';
+    if (!isLast) h += '<div style="width:3px;height:14px;background:var(--line);margin-left:22px"></div>';
+    h += '</div>';
+  });
+
+  h += '</div>';
+  el.innerHTML = h;
+}
+
+function renderCostRunChart() {
+  if (typeof echarts === 'undefined') return;
+  uc3ChartDestroy('cost-run-chart');
+
+  var components = [
+    { name: 'Human review',       value: 50, color: '#3456C5' },
+    { name: 'Exception handling', value: 20, color: '#5C4FC5' },
+    { name: 'Platform / hosting', value: 12, color: '#374151' },
+    { name: 'Model inference',    value: 10, color: '#A100FF' },
+    { name: 'Orchestration',      value: 4,  color: '#059669' },
+    { name: 'Vector retrieval',   value: 2,  color: '#6B7280' },
+    { name: 'Evidence storage',   value: 2,  color: '#6B7280' }
+  ];
+
+  uc3Chart('cost-run-chart', {
+    title: {
+      text: 'Cost-per-run: relative component breakdown',
+      left: 0,
+      textStyle: { fontSize: 13, fontWeight: '700', color: '#1A1A1A' },
+      subtext: 'Illustrative relative proportions only. No cost figures shown. To be baselined at Gate 1 (March 2027).',
+      subtextStyle: { fontSize: 10, color: '#6B7280' }
+    },
+    tooltip: {
+      trigger: 'axis',
+      formatter: function(params) { return params[0].name + ': relative unit ' + params[0].value + ' (illustrative proportion, not a cost figure)'; }
+    },
+    grid: { top: 72, bottom: 20, left: 150, right: 60 },
+    xAxis: { type: 'value', name: 'Relative scale (illustrative)', nameLocation: 'end', nameTextStyle: { fontSize: 10, color: '#9CA3AF' }, axisLabel: { show: false }, splitLine: { show: false } },
+    yAxis: { type: 'category', data: components.map(function(c){ return c.name; }).reverse(), axisLabel: { fontSize: 11 } },
+    series: [{
+      type: 'bar',
+      barMaxWidth: 32,
+      data: components.map(function(c){ return { value: c.value, itemStyle: { color: c.color, borderRadius: [0, 4, 4, 0] } }; }).reverse(),
+      label: { show: true, position: 'right', formatter: function(p){ return p.dataIndex === 0 ? 'Primary lever' : ''; }, color: '#6B7280', fontSize: 10 }
+    }]
+  });
+}
+
 function renderScale() {
+  renderValueLogicTree();
   renderValueDerivationBridge();
+  renderCostRunChart();
   renderKpiTabs(KPIS[0].id);
   renderKpiTable();
   renderValueScenariosTable();
