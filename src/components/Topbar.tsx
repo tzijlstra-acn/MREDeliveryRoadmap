@@ -4,25 +4,21 @@ import {
   IconPresentation,
   IconTimeline,
   IconGitBranch,
-  IconCpu,
   IconBooks,
   IconLayoutGrid,
-  IconUsers,
   IconChartBar,
   IconRocket,
 } from '@tabler/icons-react'
 import { NavLink } from 'react-router-dom'
 
 const NAV_ITEMS = [
-  { to: '/executive',    icon: IconPresentation, label: 'Executive Decision' },
-  { to: '/roadmap',      icon: IconTimeline,     label: 'Delivery Roadmap' },
-  { to: '/runs',         icon: IconGitBranch,    label: 'Obligation Chain and Runs' },
-  { to: '/architecture', icon: IconCpu,          label: 'Architecture Evolution' },
-  { to: '/portfolio',    icon: IconBooks,        label: 'Regulatory Portfolio' },
-  { to: '/om',           icon: IconLayoutGrid,   label: 'Target Operating Model' },
-  { to: '/team',         icon: IconUsers,        label: 'Team and Skills' },
-  { to: '/scale',        icon: IconRocket,       label: 'Value and Tokenomics' },
-  { to: '/control',      icon: IconChartBar,     label: 'Execution Control' },
+  { to: '/executive',       icon: IconPresentation, label: 'Executive Decision' },
+  { to: '/roadmap',         icon: IconTimeline,     label: 'Delivery Roadmap' },
+  { to: '/obligation-run',  icon: IconGitBranch,    label: 'Obligation Run and Architecture' },
+  { to: '/portfolio',       icon: IconBooks,        label: 'Regulatory Portfolio' },
+  { to: '/operating-model', icon: IconLayoutGrid,   label: 'Operating Model and People' },
+  { to: '/scale',           icon: IconRocket,       label: 'Value and Tokenomics' },
+  { to: '/control',         icon: IconChartBar,     label: 'Execution Control' },
 ]
 
 interface TopbarProps {

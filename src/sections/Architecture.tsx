@@ -212,7 +212,7 @@ function LayerDrawerContent({ layer, phase }: { layer: any; phase: PhaseKey }) {
 /* ---------- main component ---------- */
 export default function Architecture() {
   const [phase, setPhase] = useState<PhaseKey>('today')
-  const [playing, setPlaying] = useState(true)
+  const [playing, setPlaying] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const openDrawer = useStore((s) => s.openDrawer)
 

@@ -2,11 +2,9 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import Executive from './sections/Executive'
 import Roadmap from './sections/Roadmap'
-import Runs from './sections/Runs'
-import Architecture from './sections/Architecture'
+import ObligationRun from './sections/ObligationRun'
 import Portfolio from './sections/Portfolio'
-import OM from './sections/OM'
-import Team from './sections/Team'
+import OperatingModel from './sections/OperatingModel'
 import Scale from './sections/Scale'
 import Control from './sections/Control'
 
@@ -17,13 +15,16 @@ export default function Router() {
         <Route path="/" element={<Navigate to="/executive" replace />} />
         <Route path="/executive" element={<Executive />} />
         <Route path="/roadmap" element={<Roadmap />} />
-        <Route path="/runs" element={<Runs />} />
-        <Route path="/architecture" element={<Architecture />} />
+        <Route path="/obligation-run" element={<ObligationRun />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/om" element={<OM />} />
-        <Route path="/team" element={<Team />} />
+        <Route path="/operating-model" element={<OperatingModel />} />
         <Route path="/scale" element={<Scale />} />
         <Route path="/control" element={<Control />} />
+        {/* Legacy redirects */}
+        <Route path="/runs" element={<Navigate to="/obligation-run" replace />} />
+        <Route path="/architecture" element={<Navigate to="/obligation-run" replace />} />
+        <Route path="/om" element={<Navigate to="/operating-model" replace />} />
+        <Route path="/team" element={<Navigate to="/operating-model" replace />} />
         <Route path="*" element={<Navigate to="/executive" replace />} />
       </Routes>
     </Layout>
